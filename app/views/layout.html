@@ -35,6 +35,9 @@
 {% from "govuk/components/header/macro.njk"              import govukHeader -%}
 {% from "govuk/components/footer/macro.njk"              import govukFooter -%}
 
+{# Custom macros #}
+{% from "./macros/govukPagination/macro.njk"             import govukPagination -%}
+
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}

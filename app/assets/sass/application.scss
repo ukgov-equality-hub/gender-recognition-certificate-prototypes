@@ -24,4 +24,9 @@ code {
   padding: 0 govuk-spacing(1);
 }
 
+// Additional GOV.UK styles and publisher components
+@import "govuk-publisher-components/all-components";
+@import "govuk/guide";
+
+
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you

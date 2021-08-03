@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block beforeContent %}
+  {% include "./_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active">
+              Overview
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Overview
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+        <p>Apply for a Gender Recognition Certificate if you want your acquired gender to be legally recognised in the UK.</p>
+
+
+
+        <h2>
+          Making an application
+        </h2>
+        <p>You will need to provide us with documents that show you have been living in your acquired gender before applying for a GRC. You can do this entirely online.</p>
+        <p>Once you have gone through the application process and submitted your documents, the Gender Recognition Panel will review your application. </p>
+        <p>You will then be told if it has been successful, and what you can do if it has not.</p>
+
+
+
+        <h2>
+          Application costs
+        </h2>
+        <p>Applying for a Gender recognition certificate costs £5.</p>
+        <p>You can apply for <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees">help in paying this fee</a>.</p>
+        <p>There may be other costs involved, such as legal or mediation fees that you may need to consider. <a href="#0">Check if you can get Legal Aid to help with these costs</a>.</p>
+
+
+
+        <h2>
+          If you need help with your application
+        </h2>
+        <p>If you require help in compiling and submitting the documents, <a href="#0">help is available</a>.</p>
+      </div>
+
+      {{ govukPagination({
+        next: {
+          href: 'who-can-apply',
+          text: 'Who can apply'
+        }
+      }) }}
+
+      <div class="gem-c-print-link govuk-!-display-none-print gem-c-print-link--show-without-js govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+        <a class="gem-c-print-link__link govuk-link--no-visited-state" rel="alternate" role="button" href="/apply-gender-recognition-certificate/print">Print entire guide</a>
+      </div>
+    </div>
+
+    {% include "./_related-content.html" %}
+
+  </div>
+{% endblock %}
