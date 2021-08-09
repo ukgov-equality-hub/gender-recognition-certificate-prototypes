@@ -11,27 +11,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-l">
+        Requirements for applying
+      </h1>
+
+      <p>The standard track requires you to demonstrate that you:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--/spaced">
+        <li>have, or have had, gender dysphoria</li>
+        <li>have lived fully for the last two years in your affirmed gender and continue to do so</li>
+        <li>intend to live permanently in their acquired gender until death</li>
+      </ul>
+
+      <p>The alternative track requires you to demonstrate that you:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--/spaced">
+        <li>were in a protected marriage or civil partnership at the time the gender recognition provisions of The Marriage(Same Sex Couples) Act 2013 commenced on 10 December 2014. For those in Scottish protected marriages or civil partnerships this date is  16 December 2014 and for those married or in a civil partnership registered in Northern Ireland the date is 13 January 2020</li>
+        <li>have or have had gender dysphoria or else have undergone surgical treatment for the purpose of modifying their sexual characteristics</li>
+        <li>have lived fully in their acquired gender for a period of six years prior to 10 December 2014 - the commencement date of the gender recognition provisions of the Marriage (Same Sex Couples) Act 2013 and continued to do so up to the date the application was made; (for Scottish protected marriages or civil partnerships this date is 16 December 2014); and for those married or in a civil partnership registered in Northern Ireland the date is 13 January 2020</li>
+        <li>intend to live permanently in their acquired gender until death</li>
+        <li>are ordinarily resident in England, Wales, Scotland or Northern Ireland</li>
+      </ul>
+
       <form method="post">
-
-        {% set standardTrackEvidence %}
-          <p>This track requires you to demonstrate that you:</p>
-          <ul class="govuk-list govuk-list--bullet govuk-list--spaced govuk-!-margin-bottom-0">
-            <li>have, or have had, gender dysphoria</li>
-            <li>have lived fully for the last two years in your affirmed gender and continue to do so</li>
-            <li>intend to live permanently in their acquired gender until death</li>
-          </ul>
-        {% endset %}
-
-        {% set alternativeTrackEvidence %}
-          <p>This track requires you to demonstrate that you:</p>
-          <ul class="govuk-list govuk-list--bullet govuk-list--spaced govuk-!-margin-bottom-0">
-            <li>were in a protected marriage or civil partnership at the time the gender recognition provisions of The Marriage(Same Sex Couples) Act 2013 commenced on 10 December 2014. For those in Scottish protected marriages or civil partnerships this date is  16 December 2014 and for those married or in a civil partnership registered in Northern Ireland the date is 13 January 2020</li>
-            <li>have or have had gender dysphoria or else have undergone surgical treatment for the purpose of modifying their sexual characteristics</li>
-            <li>have lived fully in their acquired gender for a period of six years prior to 10 December 2014 - the commencement date of the gender recognition provisions of the Marriage (Same Sex Couples) Act 2013 and continued to do so up to the date the application was made; (for Scottish protected marriages or civil partnerships this date is 16 December 2014); and for those married or in a civil partnership registered in Northern Ireland the date is 13 January 2020</li>
-            <li>intend to live permanently in their acquired gender until death</li>
-            <li>are ordinarily resident in England, Wales, Scotland or Northern Ireland</li>
-          </ul>
-        {% endset %}
 
         {{ govukRadios({
           idPrefix: 'select-track',
@@ -39,33 +39,20 @@
           classes: '',
           fieldset: {
             legend: {
-              text: 'Which application track do you meet the criteria for?',
+              text: 'Which application track do you want to use?',
               isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [
             {
               html: 'Standard track',
-              label: {
-                classes: 'govuk-label--s'
-              },
               value: 'Standard track',
-              hint: {
-                html: standardTrackEvidence
-              },
               checked: checked('select-track','Standard track')
             },
             {
               html: 'Alternative track',
-              label: {
-                classes: 'govuk-label--s'
-              },
               value: 'Alternative track',
-              classes: 'govuk-!-font-weight-bold',
-              hint: {
-                html: alternativeTrackEvidence
-              },
               checked: checked('select-track','Alternative track')
             },
             {
