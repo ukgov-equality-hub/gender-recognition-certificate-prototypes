@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">
+        Eligibility checker
+      </h1>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <p>A tool to check if a someone can apply for a GRC based on the <a href="https://design-system.service.gov.uk/patterns/check-a-service-is-suitable/">&lsquo;Check a service is suitable&rsquo; pattern</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        Version 2
+      </h2>
+
+      <h3 class="govuk-heading-s">Changes</h3>
+      <p>A more complex flow that guides the user to the standard or alternative track based on the requirements.</p>
+
+      <h3 class="govuk-heading-s">Research notes</h3>
+      <p class="govuk-hint">Not researched yet.</p>
+      {# <p><a href="#0">View user research report</a>.<p> #}
+
+      {{ govukButton({
+        text: 'View prototype',
+        href: 'v2/start'
+      }) }}
+
+
+
+
+
+
+      {# {% set v1 %} #}
+        <h2 class="govuk-heading-m">
+          Version 1
+        </h2>
+
+        <p>A simplified eligibility check that still relies on the user being able to choose between the standard and alternative tracks. </p>
+
+        <h3 class="govuk-heading-s">Research notes</h3>
+        <p class="govuk-hint">Not researched yet.</p>
+        {# <p><a href="#0">View user research report</a>.<p> #}
+
+        {{ govukButton({
+          text: 'View prototype',
+          href: 'v1/start'
+        }) }}
+      {# {% endset %} #}
+
+      {# {{ govukAccordion({
+        items: [
+          {
+            heading: { text: 'Version 1' },
+            content: { html: v1 }
+          }
+        ]
+      }) }} #}
+
+    </div>
+  </div>
+{% endblock %}

@@ -10,6 +10,7 @@ router.get('/prototype-admin/clear-data', function (req, res) {
 
 // Grab the URL for the heroku link and check if local env
 router.use('/', (req, res, next) => {
+  res.locals.repoURL = config.repoURL
   res.locals.herokuURL = config.herokuURL
   res.locals.currentURL = req.url
   res.locals.internal = config.internal

@@ -7,7 +7,7 @@ module.exports = {
   serviceName: 'Apply for a Gender Recognition Certificate',
 
   // URL for heroku app (used in footer when running locally)
-  herokuURL: 'https://grc-prototypes.herokuapp.com/',
+  herokuURL: 'https://grc-prototypes.herokuapp.com',
 
   // URL for the repo (used in footer)
   repoURL: 'https://github.com/cabinetoffice/gender-recognition-certificate-prototypes',

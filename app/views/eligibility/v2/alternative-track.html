@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        You can apply for a Gender Recognition Certificate
+      </h1>
+
+      <p>You can apply for a Gender Recognition Certificate using the alternative track.</p>
+
+      {{ govukButton({
+        text: 'Start application',
+        href: '#0',
+        isStartButton: true
+      }) }}
+
+      <p><a href="start">Go back to this tool&rsquo;s start page</a>.</p>
+
+    </div>
+  </div>
+{% endblock %}
