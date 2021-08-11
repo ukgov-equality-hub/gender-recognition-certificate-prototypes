@@ -12,11 +12,16 @@
       <p>A tool to check if a someone can apply for a GRC based on the <a href="https://design-system.service.gov.uk/patterns/check-a-service-is-suitable/">&lsquo;Check a service is suitable&rsquo; pattern</a>.</p>
 
       <h2 class="govuk-heading-m">
-        Version 2
+        Version 3
       </h2>
 
       <h3 class="govuk-heading-s">Changes</h3>
-      <p>A more complex flow that guides the user to the standard or alternative track based on the requirements.</p>
+      <p>The decision was made to not include the alternative track in the private beta and to review at a later date if it was worth adding (it currently accounts for 0.3% of applications).</p>
+
+      <p class="govuk-!-margin-bottom-2">Other changes made:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Change</li>
+      </ul>
 
       <h3 class="govuk-heading-s">Research notes</h3>
       <p class="govuk-hint">Not researched yet.</p>
@@ -24,39 +29,51 @@
 
       {{ govukButton({
         text: 'View prototype',
-        href: 'v2/start'
+        href: 'v3/start'
       }) }}
 
 
 
 
 
+      {% set v2 %}
+        <p>A more complex flow that guides the user to the standard or alternative track based on the requirements.</p>
 
-      {# {% set v1 %} #}
-        <h2 class="govuk-heading-m">
-          Version 1
-        </h2>
+        {{ govukInsetText({
+          text: 'This version was not researched with users, it was used by the team to explore the idea. v3 was the first testable version.'
+        }) }}
 
+        {{ govukButton({
+          text: 'View prototype',
+          href: 'v2/start'
+        }) }}
+      {% endset %} {# /v2 #}
+
+      {% set v1 %}
         <p>A simplified eligibility check that still relies on the user being able to choose between the standard and alternative tracks. </p>
 
-        <h3 class="govuk-heading-s">Research notes</h3>
-        <p class="govuk-hint">Not researched yet.</p>
-        {# <p><a href="#0">View user research report</a>.<p> #}
+        {{ govukInsetText({
+          text: 'This version was not researched with users, it was used by the team to explore the idea. v3 was the first testable version.'
+        }) }}
 
         {{ govukButton({
           text: 'View prototype',
           href: 'v1/start'
         }) }}
-      {# {% endset %} #}
+      {% endset %} {# /v1 #}
 
-      {# {{ govukAccordion({
+      {{ govukAccordion({
         items: [
+          {
+            heading: { text: 'Version 2' },
+            content: { html: v2 }
+          },
           {
             heading: { text: 'Version 1' },
             content: { html: v1 }
           }
         ]
-      }) }} #}
+      }) }}
 
     </div>
   </div>
