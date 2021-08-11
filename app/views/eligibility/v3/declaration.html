@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Declaration
+        </h1>
+
+        <p>If your birth was registered in the UK, to process your application, the Gender Recognition Panel needs to pass your details to the relevant Registrar General.</p>
+
+        <p>Similarly if your marriage or civil partnership was registered in England and Wales or Scotland and you are applying for gender recognition while remaining married or in a civil partnership, then the Panel will need to pass your details onto the appropriate Registrar General.</p>
+
+        <p>If you consent below, the Registrar General will contact you (if your application is successful) to inform you about options for your new birth certificate (and where appropriate a new marriage or civil partnership certificate).</p>
+
+        {{ govukCheckboxes({
+          idPrefix: 'declaration',
+          name: 'declaration',
+          classes: 'govuk-!-margin-top-9',
+          items: [
+            {
+              html: 'I consent to the Registrar General contacting me in relation to the issue of a new birth/marriage/ civil partnership certificate, as appropriate.',
+              value: 'I consent to the Registrar General contacting me in relation to the issue of a new birth/marriage/ civil partnership certificate, as appropriate.',
+              checked: checked('declaration','I consent to the Registrar General contacting me in relation to the issue of a new birth/marriage/ civil partnership certificate, as appropriate.')
+            },
+            {
+              html: 'I certify that all the information given in this application is correct to the best of my knowledge. I understand that to make a false application is an offence.',
+              value: 'I certify that all the information given in this application is correct to the best of my knowledge. I understand that to make a false application is an offence.',
+              checked: checked('declaration','I certify that all the information given in this application is correct to the best of my knowledge. I understand that to make a false application is an offence.')
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -72,6 +72,10 @@ router.post('/until-death-check', function (req, res) {
   }
 })
 
+router.post('/declaration', function (req, res) {
+  res.redirect('task-list');
+})
+
 
 
 
