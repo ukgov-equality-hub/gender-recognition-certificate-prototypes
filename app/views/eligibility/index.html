@@ -9,7 +9,9 @@
     </div>
 
     <div class="govuk-grid-column-two-thirds">
-      <p>A tool to check if a someone can apply for a GRC based on the <a href="https://design-system.service.gov.uk/patterns/check-a-service-is-suitable/">&lsquo;Check a service is suitable&rsquo; pattern</a>.</p>
+      <p>We want to explore if a flow before the application process could help with understanding options and requirements, based on the <a href="https://design-system.service.gov.uk/patterns/check-a-service-is-suitable/">&lsquo;Check a service is suitable&rsquo; pattern</a>.</p>
+
+      <p>We will route the user to the correct track and tell them what questions to expect as well as what evidence will be required. </p>
 
       <h2 class="govuk-heading-m">
         Version 3
@@ -31,6 +33,50 @@
         text: 'View prototype',
         href: 'v3/start'
       }) }}
+
+
+
+
+      {% set v3Pages %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="v3/start">Start page</a>
+          </li>
+          <li class="govuk-!-font-weight-bold">
+            Questions
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="v3/age-check">Age check</a></li>
+              <li><a href="v3/overseas-check">Overseas check</a></li>
+              <li><a href="v3/overseas-approved-check">Overseas approved list check</a></li>
+              <li><a href="v3/dysphoria-check">Dysphoria check</a></li>
+              <li><a href="v3/two-years-check">Two years check</a></li>
+              <li><a href="v3/until-death-check">Until death check</a></li>
+              <li>Married check</li>
+            </ul>
+          </li>
+
+          <li class="govuk-!-font-weight-bold">
+            Exit pages
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="v3/not-old-enough">Age no</a></li>
+              <li><a href="v3/dysphoria-no">Dysphoria no / alt track</a></li>
+              <li><a href="v3/two-years-no">Two years no</a></li>
+              <li><a href="v3/until-death-no">Until death no</a></li>
+
+              <li><a href="v3/overseas-track">Overseas track start</a></li>
+              <li><a href="v3/standard-track">Standard track start</a></li>
+            </ul>
+          </li>
+
+          <li>Declaration</li>
+          <li>Task list</li>
+        </ul>
+      {% endset %} {# /v3Pages #}
+      {{ govukDetails({
+        summaryText: 'Links to all pages',
+        html: v3Pages
+      }) }}
+
 
 
 
