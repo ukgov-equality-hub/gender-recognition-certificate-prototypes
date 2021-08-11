@@ -65,11 +65,13 @@ router.post('/two-years-check', function (req, res) {
 router.post('/until-death-check', function (req, res) {
   if (req.session.data['until-death-check'] == 'No') {
     res.redirect('until-death-no');
-  } else if (req.session.data['dysphoria-check'] == 'No') {
-    res.redirect('alternative-track');
   } else {
-    res.redirect('standard-track');
+    res.redirect('marriage-check');
   }
+})
+
+router.post('/marriage-check', function (req, res) {
+  res.redirect('standard-track');
 })
 
 router.post('/declaration', function (req, res) {

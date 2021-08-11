@@ -14,10 +14,14 @@
       <form method="post">
 
         <h1 class="govuk-heading-l">
-          Approved countries and territories
+          Gender recognition in approved countries and territories
         </h1>
 
-        <ul class="govuk-list govuk-list--bullet">
+        <p>The documents you need to provide depends on where your affirmed gender has been recognised.</p>
+
+        <p>This is based on the following list of approved countries and territories.</p>
+
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
           <li>Australia <span class="govuk-hint">(Territories of Australian Capital Territory and Northern Territory and the states of New South Wales, Queensland, South Australia, Tasmania, Victoria and Western Australia)</span></li>
           <li>Canada <span class="govuk-hint">(Provinces of Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Ontario, Prince Edward Island, Quebec and Saskatchewan and the Yukon Territory)</span></li>
           <li>Austria</li>
@@ -68,9 +72,12 @@
           classes: '',
           fieldset: {
             legend: {
-              text: 'Was your overseas recognition in one of these approved countries or territories?',
+              text: 'Do you have official documentation that shows that your affirmed gender has been recognised in one of these countries or territories?',
               classes: 'govuk-fieldset__legend--m'
             }
+          },
+          hint: {
+            text: 'Official documentation could be the country of territory’s equivalent of a Gender Recognition Certificate'
           },
           items: [
             {

@@ -8,39 +8,51 @@
         You can apply for a Gender Recognition Certificate
       </h1>
 
-      <p>You can apply for a Gender Recognition Certificate using the new online service.</p>
+      <p>You can apply for a Gender Recognition Certificate using this service.</p>
 
-      <h2 class="govuk-heading-m">
-        Documents you need to provide
-      </h2>
-
-      <p>You will need to provide:</p>
-      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-        <li>an original or certified <a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">copy of your full birth certificate</a> or official confirmation of date of birth and birth gender (if outside UK)</li>
+      <p>The documents you need to provide are:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
+        <li>an original or certified <a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">copy of your full birth certificate</a>, or an official confirmation of date of birth and birth gender if you were born outside the UK</li>
         <li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">Gender Recognition Statutory Declaration</a></li>
-        <li>copies of all change of name documents if you plan to change your name</li>
+        <li>all change of name documents if you plan to change your name and have not already done so</li>
         <li>a medical report that includes details of your gender dysphoria diagnosis</li>
         <li>a medical report that includes specific details of your treatment, or planned treatment</li>
+        {{ '<li>an original or certified copy of your marriage certificate</li>' | safe if data['married-check'] == 'Yes' }}
       </ul>
 
-      <p>If you have ever been married or been in a civil partnership, you will also need to provide:</p>
-      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+      {% if data['married-check'] == 'Yes' %}
+        <p>If you intend to stay married:</p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
+          <li>your spouse or civil partner’s statutory declaration</li>
+        </ul>
+
+        <p>If you do not intend to stay married:</p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
+          <li>a copy of your decree(s) dissolving the marriage or civil partnership</li>
+        </ul>
+
+        <p>If your spouse or civil partner has died:</p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
+          <li>a copy of your spouse or civil partner’s death certificate</li>
+        </ul>
+      {% endif %}
+
+      <p>You will also need to provide as much evidence as you can that you have been living in your affirmed gender for at least 2 years.  Everything you provide must be dated and include your name.</p>
+
+      {# <p>If you have ever been married or been in a civil partnership, you will also need to provide:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
         <li>an original marriage certificate or a certified copy </li>
         <li>spouse of civil partner’s statutory declaration, if you intend to remain married after receiving your Gender Recognition Certificate</li>
         <li>a copy of your decree(s) dissolving the marriage or civil partnership, if you do not intend to remain married</li>
-      </ul>
+      </ul> #}
 
-      <p>If your spouse or civil partner has died you need to provide:</p>
-      <ul class="govuk-list govuk-list--bullet">
+      {# <p>If your spouse or civil partner has died you need to provide:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
         <li>a copy of your spouse or civil partner’s death certificate</li>
-      </ul>
+      </ul> #}
 
-      <h2 class="govuk-heading-m">
-        Examples of evidence you can provide
-      </h2>
-
-      <p>All documents that show you have been living in your acquired gender for at least 2 years must be dated and include your name.</p>
-      <ul class="govuk-list govuk-list--bullet">
+      <p>Evidence can include:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-/7">
         <li>driving licence </li>
         <li>passport</li>
         <li>a P60 or P45</li>
@@ -58,15 +70,16 @@
         What your medical reports must include
       </h2>
 
-      <p>The first report must provide specific details of your diagnosis of gender dysphoria.</p>
+      <p>The first report must provide specific details of your diagnosis of gender dysphoria. It must be provided by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria.</p>
 
-      <p>It must be provided by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria.</p>
+      <p>The second report must include specific details of your treatment, or planned treatment, such as hormone treatments or surgery.</p>
 
-      <p>The second report must include specific details of your treatment, or planned treatment, such as hormone treatments or surgery. </p>
-
-      <p>This report must be made by a registered medical practitioner but they do not need to practise in the field of gender dysphoria. </p>
+      <p>This report must be made by a registered medical practitioner but they do not need to practise in the field of gender dysphoria.</p>
 
       <p>This means the report could be completed by your GP or surgeon.</p>
+
+
+
 
       {{ govukButton({
         text: 'Start application',
@@ -75,7 +88,7 @@
         classes: 'govuk-!-margin-top-2 govuk-!-margin-bottom-8'
       }) }}
 
-      <p><a href="start">Go back to this tool&rsquo;s start page</a>.</p>
+      {# <p><a href="start">Go back to this tool&rsquo;s start page</a>.</p> #}
 
     </div>
   </div>

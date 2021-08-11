@@ -14,14 +14,14 @@
       <form method="post">
 
         <h1 class="govuk-heading-l">
-          Providing evidence that you have been diagnosed with gender dysphoria, gender identity disorder or transsexualism
+          Required medical reports
         </h1>
 
-        <p>You will need to provide:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>a medical report that includes details of your gender dysphoria diagnosis</li>
-          <li>a medical report that includes specific details of your treatment, or planned treatment</li>
-        </ul>
+        <p>You will need to provide 2 medical reports:</p>
+        <ol class="govuk-list govuk-list--number govuk-list--spaced govuk-!-margin-bottom-8">
+          <li>a medical report that includes specific details of your gender dysphoria diagnosis provided by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria</li>
+          <li>a medical report that includes specific details of your treatment, or planned treatment, such as hormone treatments or surgery, made by a registered medical practitioner - this could be your GP or surgeon</li>
+        </ol>
 
         {{ govukRadios({
           idPrefix: 'dysphoria-check',
