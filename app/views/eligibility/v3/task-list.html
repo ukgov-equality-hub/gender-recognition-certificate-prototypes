@@ -62,14 +62,16 @@
               </span>
               <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not started</strong>
             </li>
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="#0">
-                  Marriage details
-                </a>
-              </span>
-              <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not started</strong>
-            </li>
+            {% if data['married-check'] == 'Yes' %}
+              <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                  <a href="#0">
+                    Marriage details
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not started</strong>
+              </li>
+            {% endif %}
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
                 <a href="#0">
