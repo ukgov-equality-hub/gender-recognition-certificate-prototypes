@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: backURL
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: 'What is your name?',
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true
+          }
+        }) %}
+
+          {{ govukInput({
+            id: 'first-name',
+            name: 'first-name',
+            value: data['first-name'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'First name',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'given-name',
+            spellcheck: false
+          }) }}
+
+          {{ govukInput({
+            id: 'last-name',
+            name: 'last-name',
+            value: data['last-name'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'Last name',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'given-name',
+            spellcheck: false
+          }) }}
+
+        {% endcall %}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

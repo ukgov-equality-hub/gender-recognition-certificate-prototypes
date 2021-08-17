@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'name'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: 'another-name-check',
+          name: 'another-name-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Do you want us to use a different name when contacting you?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('another-name-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('another-name-check','No')
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

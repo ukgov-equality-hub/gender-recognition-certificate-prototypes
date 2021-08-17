@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Declaration
+        </h1>
+
+        <p>If your birth was registered in the UK the Gender Recognition Panel will give your details to the relevant Registrar General. </p>
+
+        <p>If you are married or in a civil partnership registered in England and Wales or Scotland and you are applying for gender recognition while remaining married or in a civil partnership, then the panel will need to give your details to the appropriate Registrar General. </p>
+
+        <p class="govuk-!-margin-bottom-8">If your application is successful, the Registrar General will contact you about your new birth certificate and a new certificate for your marriage or civil partnership, if relevant.</p>
+
+        {{ govukCheckboxes({
+          idPrefix: 'declaration',
+          name: 'declaration',
+          items: [
+            {
+              html: ' I consent to the Registrar General contacting me',
+              value: ' I consent to the Registrar General contacting me',
+              checked: checked('declaration',' I consent to the Registrar General contacting me')
+            },
+            {
+              html: 'I certify that all information given in this application is correct and that I understand making a false application is an offence.',
+              value: 'I certify that all information given in this application is correct and that I understand making a false application is an offence.',
+              checked: checked('declaration','I certify that all information given in this application is correct and that I understand making a false application is an offence.')
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

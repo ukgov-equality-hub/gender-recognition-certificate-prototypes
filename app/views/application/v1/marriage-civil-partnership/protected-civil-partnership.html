@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'current-check'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Protected civil partnerships
+        </h1>
+
+        <p class="govuk-!-margin-bottom-2">You can apply for a Gender Recognition Certificate and stay in your civil partnership if:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your civil partnership was made under the law of England, Wales or Northern Ireland (your civil partnership is called a &lsquo;protected&rsquo; civil partnership)</li>
+          <li>your civil partnership was made outside of the UK and is recognised as a civil partnership under the Civil Partnership Act 2004</li>
+          <li>protected Scottish civil partnership</li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-8">Your partner will need to agree to the civil partnership continuing after your gender recognition by completing a statutory declaration.</p>
+
+
+        {{ govukRadios({
+          idPrefix: 'protected-civil-partnership',
+          name: 'protected-civil-partnership',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Is your civil partnership a protected civil partnership?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              html: 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
+              value: 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
+              checked: checked('protected-civil-partnership','Yes, registered in England, Wales, Northern Ireland or outside of the UK')
+            },
+            {
+              html: 'Yes, a protected Scottish civil partnership',
+              value: 'Yes, a protected Scottish civil partnership',
+              checked: checked('protected-civil-partnership','Yes, a protected Scottish civil partnership')
+            },
+            {
+              divider: 'or'
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('protected-civil-partnership','No')
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

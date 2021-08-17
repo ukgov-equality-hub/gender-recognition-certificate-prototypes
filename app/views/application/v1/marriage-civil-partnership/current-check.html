@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'protected-civil-partnership' if data['current-check'] == 'Civil partnership' else 'protected-marriage'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: 'current-check',
+          name: 'current-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Are you currently married or in a civil partnership?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              html: 'Married',
+              value: 'Married',
+              checked: checked('current-check','Married')
+            },
+            {
+              html: 'Civil partnership',
+              value: 'Civil partnership',
+              checked: checked('current-check','Civil partnership')
+            },
+            {
+              divider: 'or'
+            },
+            {
+              html: 'Neither',
+              value: 'Neither',
+              checked: checked('current-check','Neither')
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
