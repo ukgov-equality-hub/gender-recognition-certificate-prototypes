@@ -32,8 +32,8 @@
 
 
         {{ govukRadios({
-          idPrefix: 'help-check',
-          name: 'help-check',
+          idPrefix: 'payment-method',
+          name: 'payment-method',
           classes: '',
           fieldset: {
             legend: {
@@ -45,17 +45,17 @@
             {
               html: 'Cheque',
               value: 'Cheque',
-              checked: checked('help-check','Cheque')
+              checked: checked('payment-method','Cheque')
             },
             {
               html: 'Credit or debit card',
               value: 'Credit or debit card',
-              checked: checked('help-check','Credit or debit card')
+              checked: checked('payment-method','Credit or debit card')
             },
             {
               html: 'Postal order',
               value: 'Postal order',
-              checked: checked('help-check','Postal order')
+              checked: checked('payment-method','Postal order')
             }
           ]
         }) }}

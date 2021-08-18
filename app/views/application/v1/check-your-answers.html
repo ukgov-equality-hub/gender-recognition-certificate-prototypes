@@ -392,7 +392,7 @@
               text: 'Another name for contacting you'
             },
             value: {
-              text: data['name-for-correspondence-check'] or 'Yes'
+              text: data['name-for-correspondence-check'] or 'No'
             },
             actions: {
               items: [
@@ -408,7 +408,7 @@
               text: 'Other name for contact'
             },
             value: {
-              html: data['name-for-correspondence'] or 'Rosie Hanson'
+              html: data['name-for-correspondence']
             },
             actions: {
               items: [
@@ -418,7 +418,7 @@
                 }
               ]
             }
-          },
+          } if data['name-for-correspondence-check'] == 'Yes',
           {
             key: {
               text: 'Address'
@@ -596,15 +596,63 @@
           } if data['uk-check'] == 'No',
           {
             key: {
-              text: 'Birth name'
+              html: 'Mother&rsquo;s name'
             },
             value: {
-              text: birthName
+              html: data['mothers-first-name'] + ' ' + data['mothers-last-name']
             },
             actions: {
               items: [
                 {
-                  href: 'birth-adoption/age-check',
+                  href: 'birth-adoption/mothers-name',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              html: 'Father&rsquo;s name on certificate'
+            },
+            value: {
+              text: data['fathers-name-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/fathers-name-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              html: 'Father&rsquo;s name'
+            },
+            value: {
+              text: data['fathers-first-name'] + ' ' + data['fathers-last-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/fathers-name',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No' and data['fathers-name-check'] == 'Yes',
+          {
+            key: {
+              text: 'Place of birth'
+            },
+            value: {
+              text: data['place-of-birth'] or 'London'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/place-of-birth',
                   text: 'Change'
                 }
               ]
@@ -612,15 +660,15 @@
           },
           {
             key: {
-              text: 'Sex registered at birth'
+              text: 'Adopted'
             },
             value: {
-              text: data['sex'] or 'Male'
+              html: data['adopted'] or 'No'
             },
             actions: {
               items: [
                 {
-                  href: 'birth-adoption/sex',
+                  href: 'birth-adoption/adopted',
                   text: 'Change'
                 }
               ]
@@ -628,37 +676,82 @@
           },
           {
             key: {
-              text: 'Date of birth'
+              text: 'Forces registering service, British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions'
             },
             value: {
-              html: dob
+              html: data['forces'] or 'No'
             },
             actions: {
               items: [
                 {
-                  href: 'birth-adoption/dob',
-                  text: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Birth registered in UK'
-            },
-            value: {
-              html: data['uk-check'] or 'Yes'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/uk-check',
+                  href: 'birth-adoption/forces',
                   text: 'Change'
                 }
               ]
             }
           }
-        ]
+        ] | cleanArray
+      }) }}
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Payment details
+      </h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Applying for help'
+            },
+            value: {
+              text: data['help-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'payment/help-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Help application type'
+            },
+            value: {
+              text: data['help-type'],
+              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'payment/help-type',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['help-check'] == 'Yes',
+          {
+            key: {
+              text: 'Payment method'
+            },
+            value: {
+              html: data['payment-method'] or 'Credit or debit card'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'payment/payment-method',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['help-check'] != 'Yes'
+        ] | cleanArray
       }) }}
 
 
@@ -669,17 +762,12 @@
 
       <h2 class="govuk-heading-m">Next steps</h2>
 
-      <p>By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+      <p>Once you&rsquo;re happy with the details of your application continue to generate a filled application form that you can sign and post along with evidence to support your application.</p>
 
-      <form action="/confirmation" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Generate application form
-        </button>
-
-      </form>
+      {{ govukButton({
+        text: 'Generate application form',
+        href: 'confirmation'
+      }) }}
 
     </div>
   </div>
