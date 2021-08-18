@@ -3,7 +3,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: '../eligibility/until-death-check'
+    href: 'palce-of-birth'
   }) }}
 {% endblock %}
 
@@ -14,38 +14,37 @@
       <form method="post">
 
         {{ govukRadios({
-          idPrefix: 'current-check',
-          name: 'current-check',
+          idPrefix: 'adopted',
+          name: 'adopted',
           classes: '',
           fieldset: {
             legend: {
-              text: 'Are you currently married or in a civil partnership?',
+              text: 'Were you adopted in the United Kingdom?',
               isPageHeading: true,
               classes: 'govuk-fieldset__legend--l'
             }
           },
+          hint: {
+            text: 'This information will help us locate your original birth record.'
+          },
           items: [
             {
-              html: 'Married',
-              value: 'Married',
-              checked: checked('current-check','Married')
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('adopted','Yes')
             },
             {
-              html: 'Civil partnership',
-              value: 'Civil partnership',
-              checked: checked('current-check','Civil partnership')
+              html: 'No',
+              value: 'No',
+              checked: checked('adopted','No')
             },
             {
-              divider: 'or'
-            },
-            {
-              html: 'Neither',
-              value: 'Neither',
-              checked: checked('current-check','Neither')
+              html: 'I don&rsquo;t know',
+              value: 'I don&rsquo;t know',
+              checked: checked('adopted','I don&rsquo;t know')
             }
           ]
         }) }}
-
 
         {{ govukButton({
           html: 'Continue'

@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'dob'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {% set hintText %}
+          <p class="govuk-hint govuk-!-margin-bottom-2">Select yes if:</p>
+          <ul class="govuk-hint govuk-list govuk-list--bullet">
+            <li>you have a UK birth or adoption certificate/you were born in the UK</li>
+            <li>your birth was registered by the Forces registering service, a British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions</li>
+          </ul>
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: 'uk-check',
+          name: 'uk-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Was your birth registered in the UK?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          hint: {
+            html: hintText
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('uk-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('uk-check','No')
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

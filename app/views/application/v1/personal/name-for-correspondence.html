@@ -1,29 +1,9 @@
 {% extends "layout.html" %}
 
-{% set backLink %}
-  {% if data['current-check'] == 'Neither' %}
-    ../marriage-civil-partnership/partner-died
-  {% elif data['current-check'] == 'Civil partnership' %}
-    {% if data['same-time'] == 'Yes' %}
-      ../marriage-civil-partnership/same-time
-    {% elif data['stay-together'] == 'Yes' %}
-      ../marriage-civil-partnership/stay-together
-    {% else %}
-      ../marriage-civil-partnership/interim-check
-    {% endif %}
-  {% else %}
-    {% if data['stay-together'] == 'Yes' %}
-      ../marriage-civil-partnership/stay-together
-    {% else %}
-      ../marriage-civil-partnership/interim-check
-    {% endif %}
-  {% endif %}
-{% endset %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: backLink
+    href: 'name-for-correspondence-check'
   }) }}
 {% endblock %}
 
@@ -35,16 +15,16 @@
 
         {% call govukFieldset({
           legend: {
-            text: 'What is your name?',
+            text: 'What name would you like us to use when contacting you?',
             classes: 'govuk-fieldset__legend--l',
             isPageHeading: true
           }
         }) %}
 
           {{ govukInput({
-            id: 'first-name',
-            name: 'first-name',
-            value: data['first-name'],
+            id: 'first-name-correspondence',
+            name: 'first-name-correspondence',
+            value: data['first-name-correspondence'],
             classes: 'govuk-!-width-three-quarters',
             label: {
               html: 'First name',
@@ -55,9 +35,9 @@
           }) }}
 
           {{ govukInput({
-            id: 'last-name',
-            name: 'last-name',
-            value: data['last-name'],
+            id: 'last-name-correspondence',
+            name: 'last-name-correspondence',
+            value: data['last-name-correspondence'],
             classes: 'govuk-!-width-three-quarters',
             label: {
               html: 'Last name',

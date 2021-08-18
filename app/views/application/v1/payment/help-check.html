@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../birth-adoption/country' if data['uk-check'] == 'No' else '../birth-adoption/forces'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Payment
+        </h1>
+
+        <p>Applying for a Gender Recognition Certificate costs £5.</p>
+
+        <p>You can <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">apply online for help paying this fee (opens in new tab)</a>.</p>
+
+        <p class="govuk-!-margin-bottom-8">You can also download the EX160 form from that page and submit it with your application.</p>
+
+
+        {{ govukRadios({
+          idPrefix: 'help-check',
+          name: 'help-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Are you appling for help paying the fee?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          hint: {
+            text: 'If you select yes, your application for a Gender Recognition Certificate will only be reviewed if your application for help paying the fee is accepted.'
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('help-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('help-check','No')
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

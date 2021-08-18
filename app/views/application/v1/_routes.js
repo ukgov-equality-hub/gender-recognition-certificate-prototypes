@@ -141,13 +141,6 @@ router.post('/marriage-civil-partnership/same-time', function (req, res) {
 
 
 
-router.post('/marriage-civil-partnership/stay-together', function (req, res) {
-  if (req.session.data['stay-together'] == 'No') {
-    res.redirect('interim-check');
-  } else {
-    res.redirect('../personal/name');
-  }
-})
 
 router.post('/marriage-civil-partnership/interim-check', function (req, res) {
   if (req.session.data['interim-check'] == 'No') {
@@ -168,10 +161,18 @@ router.post('/marriage-civil-partnership/interim-check', function (req, res) {
 // PERSONAL DETAILS
 //
 router.post('/personal/name', function (req, res) {
-  res.redirect('another-name-check');
+  res.redirect('name-for-correspondence-check');
 })
 
-router.post('/personal/another-name-check', function (req, res) {
+router.post('/personal/name-for-correspondence-check', function (req, res) {
+  if (req.session.data['name-for-correspondence-check'] == 'No') {
+    res.redirect('address');
+  } else {
+    res.redirect('name-for-correspondence');
+  }
+})
+
+router.post('/personal/name-for-correspondence', function (req, res) {
   res.redirect('address');
 })
 
@@ -205,7 +206,57 @@ router.post('/personal/ni-number', function (req, res) {
 /////////////////////////////////////////////////////
 // BIRTH / ADOPTION
 //
+router.post('/birth-adoption/name', function (req, res) {
+  res.redirect('sex');
+})
 
+router.post('/birth-adoption/sex', function (req, res) {
+  res.redirect('dob');
+})
+
+router.post('/birth-adoption/dob', function (req, res) {
+  res.redirect('uk-check');
+})
+
+router.post('/birth-adoption/uk-check', function (req, res) {
+  if (req.session.data['uk-check'] == 'No') {
+    res.redirect('country');
+  } else {
+    res.redirect('mothers-name');
+  }
+})
+
+router.post('/birth-adoption/country', function (req, res) {
+  res.redirect('../payment/help-check');
+})
+
+router.post('/birth-adoption/mothers-name', function (req, res) {
+  res.redirect('fathers-name-check');
+})
+
+router.post('/birth-adoption/fathers-name-check', function (req, res) {
+  if (req.session.data['fathers-name-check'] == 'No') {
+    res.redirect('place-of-birth');
+  } else {
+    res.redirect('fathers-name');
+  }
+})
+
+router.post('/birth-adoption/fathers-name', function (req, res) {
+  res.redirect('place-of-birth');
+})
+
+router.post('/birth-adoption/place-of-birth', function (req, res) {
+  res.redirect('adopted');
+})
+
+router.post('/birth-adoption/adopted', function (req, res) {
+  res.redirect('forces');
+})
+
+router.post('/birth-adoption/forces', function (req, res) {
+  res.redirect('../payment/help-check');
+})
 //
 // BIRTH / ADOPTION
 /////////////////////////////////////////////////////
@@ -217,7 +268,21 @@ router.post('/personal/ni-number', function (req, res) {
 /////////////////////////////////////////////////////
 // PAYMENT
 //
+router.post('/payment/help-check', function (req, res) {
+  if (req.session.data['help-check'] == 'Yes') {
+    res.redirect('help-type');
+  } else {
+    res.redirect('method');
+  }
+})
 
+router.post('/payment/help-type', function (req, res) {
+  res.redirect('../check-your-answers');
+})
+
+router.post('/payment/method', function (req, res) {
+  res.redirect('../check-your-answers');
+})
 //
 // PAYMENT
 /////////////////////////////////////////////////////

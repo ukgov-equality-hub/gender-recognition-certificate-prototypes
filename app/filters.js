@@ -60,6 +60,16 @@ module.exports = function (env) {
 
 
 
+  filters.cleanArray = (array) => {
+    return array.filter(item => {
+      return (item && (item !==""))
+    })
+  }
+
+
+
+
+
 
 
 

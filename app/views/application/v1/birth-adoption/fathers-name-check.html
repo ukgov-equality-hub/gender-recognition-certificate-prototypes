@@ -3,7 +3,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: '../eligibility/until-death-check'
+    href: 'mothers-name'
   }) }}
 {% endblock %}
 
@@ -14,34 +14,26 @@
       <form method="post">
 
         {{ govukRadios({
-          idPrefix: 'current-check',
-          name: 'current-check',
+          idPrefix: 'fathers-name-check',
+          name: 'fathers-name-check',
           classes: '',
           fieldset: {
             legend: {
-              text: 'Are you currently married or in a civil partnership?',
+              html: 'Is your father&rsquo;s name listed on the certificate?',
               isPageHeading: true,
               classes: 'govuk-fieldset__legend--l'
             }
           },
           items: [
             {
-              html: 'Married',
-              value: 'Married',
-              checked: checked('current-check','Married')
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('fathers-name-check','Yes')
             },
             {
-              html: 'Civil partnership',
-              value: 'Civil partnership',
-              checked: checked('current-check','Civil partnership')
-            },
-            {
-              divider: 'or'
-            },
-            {
-              html: 'Neither',
-              value: 'Neither',
-              checked: checked('current-check','Neither')
+              html: 'No',
+              value: 'No',
+              checked: checked('fathers-name-check','No')
             }
           ]
         }) }}

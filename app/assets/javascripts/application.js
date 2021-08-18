@@ -8,3 +8,8 @@ if (window.console && window.console.info) {
 $(document).ready(function () {
   window.GOVUKFrontend.initAll()
 })
+
+
+// Turn off autocomplete on all forms and inputs
+$(".form").attr("autocomplete", "off");
+$(".govuk-input").attr("autocomplete", "off");

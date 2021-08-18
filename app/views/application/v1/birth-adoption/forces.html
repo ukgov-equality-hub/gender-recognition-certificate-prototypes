@@ -3,7 +3,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: 'name'
+    href: 'adopted'
   }) }}
 {% endblock %}
 
@@ -14,30 +14,37 @@
       <form method="post">
 
         {{ govukRadios({
-          idPrefix: 'another-name-check',
-          name: 'another-name-check',
+          idPrefix: 'forces',
+          name: 'forces',
           classes: '',
           fieldset: {
             legend: {
-              text: 'Do you want us to use a different name when contacting you?',
+              text: 'Was your birth registered by a Forces registering service, or with a British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions?',
               isPageHeading: true,
               classes: 'govuk-fieldset__legend--l'
             }
+          },
+          hint: {
+            text: 'This information will help us locate your original birth record.'
           },
           items: [
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('another-name-check','Yes')
+              checked: checked('forces','Yes')
             },
             {
               html: 'No',
               value: 'No',
-              checked: checked('another-name-check','No')
+              checked: checked('forces','No')
+            },
+            {
+              html: 'I don&rsquo;t know',
+              value: 'I don&rsquo;t know',
+              checked: checked('forces','I don&rsquo;t know')
             }
           ]
         }) }}
-
 
         {{ govukButton({
           html: 'Continue'

@@ -1,0 +1,686 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/url/of/previous/page">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers before sending your application
+      </h1>
+
+
+
+      <h2 class="govuk-heading-m">
+        Eligibility details
+      </h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Aged 18 or over'
+            },
+            value: {
+              text: data['age-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'eligibility/age-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Recognised in a country or territory outside the UK'
+            },
+            value: {
+              text: data['overseas-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'eligibility/overseas-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Able to provide 2 medical reports'
+            },
+            value: {
+              html: data['dysphoria-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'eligibility/dysphoria-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Lived in afirmed gender for at least 2 years'
+            },
+            value: {
+              html: data['two-years-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'eligibility/two-years-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Intend to live fully in your affirmed gender'
+            },
+            value: {
+              html: data['until-death-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'eligibility/until-death-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+
+      {% if data['current-check'] == 'No' %}
+
+
+        <h2 class="govuk-heading-m">
+          Marriage or civil partnership details
+        </h2>
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Neither'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Spouse or partner has died'
+              },
+              value: {
+                text: data['partner-died'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/partner-died',
+                    text: 'Change'
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+      {% elif  data['current-check'] == 'Civil partnership' %}
+
+
+        <h2 class="govuk-heading-m">
+          Civil partnership details
+        </h2>
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Civil partnership'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Protected civil partnership'
+              },
+              value: {
+                text: data['protected-civil-partnership'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/protected-civil-partnership',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Partner appling at the same time'
+              },
+              value: {
+                text: data['same-time'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/same-time',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-civil-partnership'] == 'Yes, a protected Scottish civil partnership',
+            {
+              key: {
+                text: 'Remain in civil partnership'
+              },
+              value: {
+                text: data['stay-together'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/stay-together',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
+            {
+              key: {
+                text: 'Interim GRC'
+              },
+              value: {
+                text: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/interim-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-civil-partnership'] == 'No' or data['stay-together'] == 'No' or data['same-time'] == 'No'
+          ] | cleanArray
+        }) }}
+
+
+      {% else %}
+
+
+        <h2 class="govuk-heading-m">
+          Marriage details
+        </h2>
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Married'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Protected marriage'
+              },
+              value: {
+                text: data['protected-marriage'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/protected-marriage',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Remain married'
+              },
+              value: {
+                text: data['stay-together'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/stay-together',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-marriage'] == 'Yes',
+            {
+              key: {
+                text: 'Interim GRC'
+              },
+              value: {
+                text: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/interim-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-marriage'] == 'No' or data['stay-together'] == 'No'
+          ] | cleanArray
+        }) }}
+
+
+      {% endif %}
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
+
+      {% set name %}
+        {% if data['first-name'] %}
+          {{ data['first-name'] + ' ' + data['last-name'] }}
+        {% else %}
+          Rosie Armstrong
+        {% endif %}
+      {% endset %}
+
+      {% set address %}
+        {% if data['address-line-1'] %}
+          {{ data['address-line-1'] }}<br>
+          {{ data['address-line-2'] }}
+          {{ '<br>' | safe if data['address-line-2'] }}
+          {{ data['address-town'] }}
+          {{ '<br>' | safe if data['address-town'] }}
+          {{ data['address-county'] }}
+          {{ '<br>' | safe if data['address-county'] }}
+          {{ data['address-postcode'] }}
+        {% else %}
+          72 Guild Street<br>London<br>SE23 6FH
+        {% endif %}
+      {% endset %}
+
+      {% set contactDetails %}
+        {% if data['contact'] == 'Email' %}
+          {{ data['contact-by-email'] }}
+        {% elif data['contact'] == 'Phone' %}
+          {{ data['contact-by-phone'] }}
+        {% else %}
+          Post
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Name'
+            },
+            value: {
+              text: name
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/name',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Another name for contacting you'
+            },
+            value: {
+              text: data['name-for-correspondence-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/name-for-correspondence-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Other name for contact'
+            },
+            value: {
+              html: data['name-for-correspondence'] or 'Rosie Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/name-for-correspondence',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Address'
+            },
+            value: {
+              html: address
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/address',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Contact preference'
+            },
+            value: {
+              html: contactDetails
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/contact-preferences',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Notify HMRC'
+            },
+            value: {
+              html: data['notify-hmrc'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/hmrc',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'NI number'
+            },
+            value: {
+              html: data['ni-number'] or 'QQ 12 34 56 C'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'personal/contact-preferences',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['notify-hmrc'] == 'Yes'
+        ] | cleanArray
+      }) }}
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Birth registration details
+      </h2>
+
+      {% set birthName %}
+        {% if data['birth-first-name'] %}
+          {{ data['birth-first-name'] + ' ' + data['birth-last-name'] }}
+        {% else %}
+          Jim Hanson
+        {% endif %}
+      {% endset %}
+
+      {% set dob %}
+        {% if data['dob-day'] %}
+          {% set inputdates = data['dob-year'] + "-" + data['dob-month'] + "-" + data['dob-day'] %}
+          {{ inputdates | date("DD MMMM YYYY") }}
+        {% else %}
+          1 June 1987
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Birth name'
+            },
+            value: {
+              text: birthName
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/age-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Sex registered at birth'
+            },
+            value: {
+              text: data['sex'] or 'Male'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/sex',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Date of birth'
+            },
+            value: {
+              html: dob
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/dob',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Birth registered in UK'
+            },
+            value: {
+              html: data['uk-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/uk-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Registered birth country'
+            },
+            value: {
+              html: data['country'] or 'Egypt'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/country',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] == 'No',
+          {
+            key: {
+              text: 'Birth name'
+            },
+            value: {
+              text: birthName
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/age-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Sex registered at birth'
+            },
+            value: {
+              text: data['sex'] or 'Male'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/sex',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Date of birth'
+            },
+            value: {
+              html: dob
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/dob',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Birth registered in UK'
+            },
+            value: {
+              html: data['uk-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'birth-adoption/uk-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+
+
+
+
+      <h2 class="govuk-heading-m">Next steps</h2>
+
+      <p>By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      <form action="/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Generate application form
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
