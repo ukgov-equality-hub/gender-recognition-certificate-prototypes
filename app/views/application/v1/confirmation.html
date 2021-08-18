@@ -9,20 +9,56 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <div class="govuk-panel govuk-panel--confirmation">
-        <h1 class="govuk-panel__title">Application complete</h1>
+      {# <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Form complete</h1>
         <div class="govuk-panel__body">
           Your reference number<br><strong>HDJ2123F</strong>
         </div>
-      </div>
+      </div> #}
 
-      <p>
-        We have sent you a confirmation email.
-      </p>
+      {% set html %}
+      <section class="gem-c-attachment">
+        <div class="gem-c-attachment__thumbnail">
+          <a target="_self" tabindex="-1" aria-hidden="true"
+            href="/images/contract.pdf">
+            <svg class="gem-c-attachment__thumbnail-image" version="1.1" viewBox="0 0 99 140"
+              aria-hidden="true">
+              <path d="M12 12h75v27H12zM12 59h9v9h-9zM12 77h9v9h-9zM12 95h9v9h-9zM12 113h9v9h-9zM30 59h57v9H30zM30 77h39v9H30zM30 95h57v9H30zM30 113h48v9H30z"stroke-width="0"></path>
+            </svg>
+          </a>
+        </div>
 
-      <h2 class="govuk-heading-m">What happens next</h2>
-      <p>We've sent your application to Hackney Electoral Register Office.</p>
-      <p>They will contact you either to confirm your registration, or to ask for more information.</p>
+        <div class="gem-c-attachment__details">
+          <h2 class="gem-c-attachment__title">
+            <a class="govuk-link gem-c-attachment__link" target="_self"
+              href="#0">{{ data['first-name'] }} {{ data['last-name'] }}: application for a  Gender Recognition Certificate</a>
+          </h2>
+          <p class="gem-c-attachment__metadata">
+            <span class="gem-c-attachment__attribute"><abbr title="Portable Document Format"
+                class="gem-c-attachment__abbr">PDF</abbr></span>,
+            <span class="gem-c-attachment__attribute">19.5 KB</span>
+          </p>
+
+        </div>
+      </section>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        titleHtml: 'Application form ready to download',
+        titleHeadingLevel: '1',
+        html: html,
+        type: 'success'
+      }) }}
+
+      <p>You should save and print your application form.</p>
+
+
+      <h2 class="govuk-heading-m">Next steps</h2>
+      <p>It is necessary to sign and date your application to verify that all the information that you have given is, to the best of your knowledge, true. It is an offence to apply fraudulently for a Gender Recognition Certificate.</p>
+      <p>A checklist is provided to help you ensure that you have remembered to include everything and to enable you to keep a record of all the documents you send. Please place all documentation, including the application form and cheque, if applicable, into one envelope and post it to the address supplied.</p>
+
+
+
       <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
 
 
