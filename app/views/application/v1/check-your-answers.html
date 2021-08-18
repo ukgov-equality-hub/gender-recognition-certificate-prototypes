@@ -368,6 +368,20 @@
         {% endif %}
       {% endset %}
 
+      {% set niNumber %}
+        {% if data['ni-number'] %}
+          {% set nino = data['ni-number'] | upper | replace(" ", "")  %}
+          {% for item in nino | batch(2) %}
+            {% for nino in item -%}
+               {{ nino }}
+            {%- endfor %}
+          {% endfor %}
+        {% else %}
+          QQ 12 34 56 C
+        {% endif %}
+      {% endset %}
+
+
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -472,12 +486,12 @@
               text: 'NI number'
             },
             value: {
-              html: data['ni-number'] or 'QQ 12 34 56 C'
+              html: niNumber
             },
             actions: {
               items: [
                 {
-                  href: 'personal/contact-preferences',
+                  href: 'personal/ni-number',
                   text: 'Change'
                 }
               ]
