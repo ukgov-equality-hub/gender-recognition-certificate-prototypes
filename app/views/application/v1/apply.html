@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block beforeContent %}
+  {% include "./_includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="overview">Overview</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active">
+              Apply for a Gender Recognition Certificate
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Apply for a Gender Recognition Certificate
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+
+        <p>Use this service to start your application and find out what you need to provide with your application.</p>
+
+        <p>As part of the application process, you will be asked for both personal and contact details, as well as information on your circumstances, such as whether you are married or in a civil partnership.</p>
+
+        <p>It takes approximately 15 minutes to complete.</p>
+
+        {{ govukButton({
+          text: 'Start now',
+          href: 'eligibility/overseas-check',
+          isStartButton: true
+        }) }}
+
+
+        <h2>
+          Next steps
+        </h2>
+
+        <p>After you finish the questions in the application we will:</p>
+        <ul>
+          <li>give you with an application form which includes the information you provide and a checklist of documents that you need to gather</li>
+          <li>ask you to print out the application form and gather your documents</li>
+          <li>request payment for your application</li>
+          <li>give you the address where you need to send your application and documents</li>
+        </ul>
+
+        <p>It will then be reviewed by the Gender Recognition Panel. They may contact you if they require more information.</p>
+
+        <p>You will then be told if you will be issued with a Gender Recognition Certificate.</p>
+
+        <p>If your application is unsuccessful, you will be told how you can reapply or appeal the decision.</p>
+
+        <p>Decisions take around 12 weeks on average.</p>
+
+
+      </div>
+
+
+
+      {{ govukPagination({
+        previous: {
+          href: 'documents-needed',
+          text: 'Documents you need to provide'
+        }
+      }) }}
+
+      {% include "./_includes/explore-topic.html" %}
+    </div>
+
+    {% include "./_includes/related-content.html" %}
+
+  </div>
+{% endblock %}

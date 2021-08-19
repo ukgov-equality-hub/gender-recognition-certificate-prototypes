@@ -26,22 +26,6 @@
         rows: [
           {
             key: {
-              text: 'Aged 18 or over'
-            },
-            value: {
-              text: data['age-check'] or 'Yes'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'eligibility/age-check',
-                  text: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
               text: 'Recognised in a country or territory outside the UK'
             },
             value: {
@@ -71,42 +55,58 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: 'Lived in afirmed gender for at least 2 years'
-            },
-            value: {
-              html: data['two-years-check'] or 'Yes'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'eligibility/two-years-check',
-                  text: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Intend to live fully in your affirmed gender'
-            },
-            value: {
-              html: data['until-death-check'] or 'Yes'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'eligibility/until-death-check',
-                  text: 'Change'
-                }
-              ]
-            }
           }
         ]
       }) }}
+      {# {
+        key: {
+          text: 'Aged 18 or over'
+        },
+        value: {
+          text: data['age-check'] or 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'eligibility/age-check',
+              text: 'Change'
+            }
+          ]
+        }
+      },
 
+      {
+        key: {
+          text: 'Lived in afirmed gender for at least 2 years'
+        },
+        value: {
+          html: data['two-years-check'] or 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'eligibility/two-years-check',
+              text: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: 'Intend to live fully in your affirmed gender'
+        },
+        value: {
+          html: data['until-death-check'] or 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'eligibility/until-death-check',
+              text: 'Change'
+            }
+          ]
+        }
+      } #}
 
 
 
@@ -776,7 +776,7 @@
 
       <h2 class="govuk-heading-m">Next steps</h2>
 
-      <p>Once you&rsquo;re happy with the details of your application continue to generate a filled application form that you can sign and post along with evidence to support your application.</p>
+      <p>When you are happy with your application details, you can generate a filled-in application form. Print this form, then sign it, and post it with your medical reports, declarations and any evidence to support your application.</p>
 
       {{ govukButton({
         text: 'Generate application form',

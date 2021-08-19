@@ -18,6 +18,12 @@ router.get('/start', function (req, res, next) {
   next()
 })
 
+// Clear session data on apply page
+router.get('/apply', function (req, res, next) {
+  req.session.destroy()
+  next()
+})
+
 
 
 /////////////////////////////////////////////////////
@@ -51,7 +57,8 @@ router.post('/eligibility/dysphoria-check', function (req, res) {
   if (req.session.data['dysphoria-check'] == 'No') {
     res.redirect('dysphoria-no');
   } else {
-    res.redirect('two-years-check');
+    // res.redirect('two-years-check');
+    res.redirect('../marriage-civil-partnership/current-check');
   }
 })
 

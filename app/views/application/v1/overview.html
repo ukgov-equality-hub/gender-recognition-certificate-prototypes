@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block beforeContent %}
+  {% include "./_includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active">
+              Overview
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Overview
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+
+        <p>Apply for a Gender Recognition Certificate if you want your affirmed gender to be legally recognised in the UK.</p>
+
+        <p>Although you do not need a Gender Recognition Certificate to get new legal documents like a driving licence or passport, this is not the same as legal recognition.</p>
+
+        <p>Having a Gender Recognition Certificate will allow:</p>
+        <ul>
+          <li>issue of a new birth certificate which shows your correct gender</li>
+          <li>HMRC to update your gender in its records</li>
+        </ul>
+
+        <p>Read more about <a href="https://www.gov.uk/government/publications/gender-recognition-how-pensions-and-benefits-may-be-affected/gender-recognition-certificate-pensions-and-benefits-note">how a Gender Recognition Certificate could impact any pensions and benefits</a>.</p>
+
+        <h2>Fees</h2>
+
+        <p>Applying for a Gender recognition certificate costs £5.</p>
+
+        <p>If you cannot pay this fee, you can apply for help.</p>
+
+        <p>There may be other costs involved, such as legal or mediation fees that you may need to consider. <a href="https://www.gov.uk/legal-aid">Check if you can get Legal Aid to help with these costs</a>.</p>
+
+      </div>
+
+      {{ govukPagination({
+        next: {
+          href: 'who-can-apply',
+          text: 'Who can apply'
+        }
+      }) }}
+
+      {% include "./_includes/explore-topic.html" %}
+    </div>
+
+    {% include "./_includes/related-content.html" %}
+
+  </div>
+{% endblock %}
