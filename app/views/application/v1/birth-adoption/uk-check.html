@@ -13,14 +13,6 @@
 
       <form method="post">
 
-        {% set hintText %}
-          <p class="govuk-hint govuk-!-margin-bottom-2">Select yes if:</p>
-          <ul class="govuk-hint govuk-list govuk-list--bullet">
-            <li>you have a UK birth or adoption certificate/you were born in the UK</li>
-            <li>your birth was registered by the Forces registering service, a British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions</li>
-          </ul>
-        {% endset -%}
-
         {{ govukRadios({
           idPrefix: 'uk-check',
           name: 'uk-check',
@@ -33,7 +25,7 @@
             }
           },
           hint: {
-            html: hintText
+            html: 'Select yes if you have a UK birth or adoption certificate or your birth was registered by the Forces registering service, a British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions.'
           },
           items: [
             {
