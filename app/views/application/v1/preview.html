@@ -552,16 +552,140 @@
   <p class="page-number">Page 4</p>
 
   <h2 class="govuk-heading-m govuk-!-font-size-27">
+    Checklist of documents in support of your application
+  </h2>
+  <p>This checklist will help you and the Gender Recognition Panel ensure that you have included everything that you are required to submit with your application. Please list every piece of evidence that you are including with your application. We will return documentation to you once it has been checked.</p>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukCheckboxes({
+        items: [
+          {
+            html: 'Statutory declaration'
+          },
+          {
+            html: 'Your spouse&rsquo;s statutory declaration'
+          } if data['current-check'] == 'Marriage' and data['stay-together'] == 'Yes',
+          {
+            html: 'Your civil partner&rsquo;s statutory declaration'
+          } if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes',
+          {
+            html: 'Your original marriage certificate or a certified copy'
+          } if data['current-check'] == 'Marriage',
+          {
+            html: 'Your original civil partnership certificate or a certified copy'
+          } if data['current-check'] == 'Civil partnership',
+          {
+            html: 'A copy of your spouse or civil partner&rsquo;s death certificate'
+          } if data['current-check'] == 'Marriage' and data['stay-together'] == 'No',
+          {
+            html: 'A copy of your spouse or civil partner&rsquo;s death certificate'
+          } if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'No',
+          {
+            html: 'Your original birth certificate or a certified copy'
+          },
+          {
+            html: 'A copy of all change of name documents or other documents to show any changes from the name appearing on your birth certificate to your current name'
+          },
+          {
+            html: 'A medical report that includes details of your gender dysphoria diagnosis'
+          },
+          {
+            html: 'A medical report that includes specific details of your treatment, or planned treatment'
+          }
+        ]
+      }) }}
+      {# {
+        html: 'A copy of your decree(s) dissolving the marriage or civil partnership'
+      }, #}
+
+
+      {{ govukInput({
+        label: {
+          html: 'List all evidence of living full time in your acquired gender for at least 2 years prior to the date of application',
+          classes: 'govuk-label--s'
+        },
+        hint: {
+          html: 'Everything you provide must be dated and include your name. <br>3 or 4 documents per a year is advised.'
+        },
+        attributes: {
+          style: 'padding: 100px;'
+        }
+      }) }}
+
+
+      {{ govukInput({
+        label: {
+          html: 'List any other letters or documents you have enclosed with your application',
+          classes: 'govuk-label--s'
+        },
+        attributes: {
+          style: 'padding: 100px;'
+        }
+      }) }}
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="page">
+  <p class="page-number">Page 5</p>
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27">
     Declarations
   </h2>
   <p>If your birth was registered in the UK, to process your application, the Gender Recognition Panel needs to pass your details to the relevant Registrar General. Similarly if your marriage or civil partnership was registered in England and Wales or Scotland and you are applying for gender recognition while remaining married or in a civil partnership, then the Panel will need to pass your details onto the appropriate Registrar General.</p>
   <p>If you consent below, the Registrar General will contact you (if your application is successful) to inform you about options for your new birth certificate (and where appropriate a new marriage or civil partnership certificate).</p>
   <p>I consent to the Registrar General contacting me in relation to the issue of a new birth/marriage/civil partnership certificate, as appropriate.</p>
-  <p>I certify that all the information given in this application is correct to the best of my knowledge. I understand that to make a false application is an offence.</p>
+  <p class="govuk-!-margin-bottom-8">I certify that all the information given in this application is correct to the best of my knowledge. I understand that to make a false application is an offence.</p>
 
-Signature of applicantDate
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      {{ govukInput({
+        label: {
+          html: 'Signature',
+          classes: 'govuk-label--s'
+        },
+        attributes: {
+          style: 'padding: 60px;'
+        }
+      }) }}
 
-  {# <p>Section 22 of the Gender Recognition Act 2004 protects the information on your application form and information about your gender history if your application is successful. The data you provide will only be processed as permitted by the Act. It will be processed primarily for the purpose of determining your application (and any related legal proceedings) and for maintaining the Gender Recognition Register. The Guidance Notes to this application form and Explanatory Leaflet contain more information about how your data may be processed. Information about you will not be disclosed except where permitted by law, or where you have consented to it.The Ministry of Justice is the Data Controller for the Gender Recognition Secretariat and Panel for the purposes of the Data Protection Act 1998. If you want to know more about what information we have about you, or the way we use your information, you can find details on the MoJ website www.justice.gov.uk/about/datasharingandprotection.htmThe Ministry of Justice and HM Courts and Tribunals Service processes personal information about you in the context of tribunal proceedings. For details of the standards we follow when processing your data, please visit the following address https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/personal-information-charter To receive a paper copy of this privacy notice, please call 0300 123 1024 Textphone 18001 0300 123 1024. If calling from Scotland, please call 0300 790 6234 Textphone 18001 0300 790 6234.</p> #}
+      {{ govukDateInput({
+        fieldset: {
+          legend: {
+            text: 'Date',
+            classes: 'govuk-fieldset__legend--s'
+          }
+        },
+        classes: 'govuk-!-margin-bottom-8',
+        items: [
+          {
+            name: 'day',
+            classes: 'govuk-input--width-2'
+          },
+          {
+            name: 'month',
+            classes: 'govuk-input--width-2'
+          },
+          {
+            name: 'year',
+            classes: 'govuk-input--width-4'
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+
+
+  <p class="govuk-!-font-size-14">Section 22 of the Gender Recognition Act 2004 protects the information on your application form and information about your gender history if your application is successful. The data you provide will only be processed as permitted by the Act. It will be processed primarily for the purpose of determining your application (and any related legal proceedings) and for maintaining the Gender Recognition Register. The Guidance Notes to this application form and Explanatory Leaflet contain more information about how your data may be processed. Information about you will not be disclosed except where permitted by law, or where you have consented to it.</p>
+  <p class="govuk-!-font-size-14">The Ministry of Justice is the Data Controller for the Gender Recognition Secretariat and Panel for the purposes of the Data Protection Act 1998. If you want to know more about what information we have about you, or the way we use your information, you can find details on the MoJ website www.justice.gov.uk/about/datasharingandprotection.htm</p>
+  <p class="govuk-!-font-size-14">The Ministry of Justice and HM Courts and Tribunals Service processes personal information about you in the context of tribunal proceedings. For details of the standards we follow when processing your data, please visit the following address https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/personal-information-charter To receive a paper copy of this privacy notice, please call 0300 123 1024 Textphone 18001 0300 123 1024. If calling from Scotland, please call 0300 790 6234 Textphone 18001 0300 790 6234.</p>
 
 </div>
 
