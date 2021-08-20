@@ -12,8 +12,8 @@
       {% set html %}
       <section class="gem-c-attachment">
         <div class="gem-c-attachment__thumbnail">
-          <a target="_self" tabindex="-1" aria-hidden="true"
-            href="/images/contract.pdf">
+          <a rel="noreferrer noopener" target="_blank" tabindex="-1" aria-hidden="true"
+            href="preview">
             <svg class="gem-c-attachment__thumbnail-image" version="1.1" viewBox="0 0 99 140"
               aria-hidden="true">
               <path d="M12 12h75v27H12zM12 59h9v9h-9zM12 77h9v9h-9zM12 95h9v9h-9zM12 113h9v9h-9zM30 59h57v9H30zM30 77h39v9H30zM30 95h57v9H30zM30 113h48v9H30z"stroke-width="0"></path>
@@ -23,21 +23,64 @@
 
         <div class="gem-c-attachment__details">
           <h2 class="gem-c-attachment__title">
-            <a class="govuk-link gem-c-attachment__link" target="_self"
-              href="#0">{{ data['first-name'] or 'Rosie' }} {{ data['last-name'] or 'Armstrong' }}: application for a  Gender Recognition Certificate</a>
+            <a class="govuk-link gem-c-attachment__link" href="preview" rel="noreferrer noopener" target="_blank">
+              {{ data['first-name'] or 'Rosie' }} {{ data['last-name'] or 'Armstrong' }}: application for a  Gender Recognition Certificate
+            </a>
           </h2>
           <p class="gem-c-attachment__metadata">
             <span class="gem-c-attachment__attribute"><abbr title="Portable Document Format"
                 class="gem-c-attachment__abbr">PDF</abbr></span>,
-            <span class="gem-c-attachment__attribute">19.5 KB</span>
+            <span class="gem-c-attachment__attribute">195 KB</span>
           </p>
 
         </div>
       </section>
+
+      <section class="gem-c-attachment">
+        <div class="gem-c-attachment__thumbnail">
+          <a rel="noreferrer noopener" target="_blank" tabindex="-1" aria-hidden="true"
+            href="preview">
+            <svg class="gem-c-attachment__thumbnail-image" version="1.1" viewBox="0 0 99 140"
+              aria-hidden="true">
+              <path d="M12 12h75v27H12zM12 59h9v9h-9zM12 77h9v9h-9zM12 95h9v9h-9zM12 113h9v9h-9zM30 59h57v9H30zM30 77h39v9H30zM30 95h57v9H30zM30 113h48v9H30z"stroke-width="0"></path>
+            </svg>
+          </a>
+        </div>
+
+{% if data['current-check'] == 'No' %}
+        <div class="gem-c-attachment__details">
+          <h2 class="gem-c-attachment__title">
+            <a class="govuk-link gem-c-attachment__link" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf" rel="noreferrer noopener" target="_blank">
+              Statutory declaration for single applicants
+            </a>
+          </h2>
+          <p class="gem-c-attachment__metadata">
+            <span class="gem-c-attachment__attribute"><abbr title="Portable Document Format"
+                class="gem-c-attachment__abbr">PDF</abbr></span>,
+            <span class="gem-c-attachment__attribute">134 KB</span>
+          </p>
+
+        </div>
+{% else %}
+        <div class="gem-c-attachment__details">
+          <h2 class="gem-c-attachment__title">
+            <a class="govuk-link gem-c-attachment__link" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">
+              Statutory declaration for applicants
+            </a>
+          </h2>
+          <p class="gem-c-attachment__metadata">
+            <span class="gem-c-attachment__attribute"><abbr title="Portable Document Format"
+                class="gem-c-attachment__abbr">PDF</abbr></span>,
+            <span class="gem-c-attachment__attribute">144 KB</span>
+          </p>
+
+        </div>
+{% endif %}
+      </section>
       {% endset %}
 
       {{ govukNotificationBanner({
-        titleHtml: 'Download your application form',
+        titleHtml: 'Download your application form and declaration',
         titleHeadingLevel: '1',
         html: html,
         type: 'success'
@@ -46,20 +89,27 @@
 
       <p>The application form includes a checklist for each document that you need to provide with your application.</p>
 
+
+
       <h2 class="govuk-heading-m">Next steps</h2>
 
       <p class="govuk-!-margin-bottom-2">You should now:</p>
       <ul class="govuk-list govuk-list--bullet govuk-list--space/d">
-        <li><a <a href="/public/images/completed-grc-application-form.pdf" download="/public/images/completed-grc-application-form.pdf">save and then print your application form (PDF, 19.5 KB)</a></li>
+        <li>save and then print your application form</li>
         <li>sign and date the form to verify the information is correct</li>
         <li>post your application form alongside any documents to us in one envelope</li>
       </ul>
 
-      <p class="govuk-!-margin-bottom-2">Send this to:</p>
-      <p>Gender Recognition Panel <br>
-      PO Box 9300 <br>
-      Leicester <br>
-      LE1 8DJ</p>
+      {% set postalDetails %}
+        <p class="govuk-!-margin-bottom-2">Send this to:</p>
+        <p>Gender Recognition Panel <br>
+        PO Box 9300 <br>
+        Leicester <br>
+        LE1 8DJ</p>
+      {% endset -%}
+      {{ govukInsetText({
+        html: postalDetails
+      }) }}
 
       <p>You should include your fee if you are paying via cheque or postal order.</p>
 

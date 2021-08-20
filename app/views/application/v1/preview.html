@@ -1,28 +1,90 @@
-{% extends "layout.html" %}
-
-{% block pageTitle %}
-  Check your answers
-{% endblock %}
-
-{% block beforeContent %}
-  <a class="govuk-back-link" href="/url/of/previous/page">Back</a>
-{% endblock %}
+{% extends "layout_unbranded.html" %}
 
 {% block content %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+<style>
+  .govuk-template, .govuk-template__body {
+    background-color: rgba(40, 40, 43, 1);
+    margin: 10px 0;
+  }
 
-      <h1 class="govuk-heading-l">
-        Check your answers before downloading your application form
-      </h1>
+  .govuk-main-wrapper {
+    padding-top: 0!important;
+  }
+
+  .page {
+    position: relative;
+    width: 792px;
+    height: 1273px;
+    background-color: #fff;
+    padding: 100px 80px 70px!important;
+    margin: 0 0 10px;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,2),0 6px 20px 0 rgba(0,0,0,19) !important;
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 70px;
+    right: 100px;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .govuk-phase-banner {
+    display: none !important;
+  }
+
+  .govuk-summary-list__key {
+    width: 100%;
+  }
+
+  p, .govuk-summary-list {
+    font-size: 20px;
+  }
+</style>
+
+<div class="page">
+  <p class="page-number">Page 1</p>
+  <img src="/public/images/hmcts-logo.png" width="250" class="govuk-!-margin-bottom-9"/>
+  <h1 class="govuk-heading-l">
+    Standard application for a<br>
+    Gender Recognition Certificate
+  </h1>
+
+  <p>This application form is pre-filled based on the answers you gave online.</p>
+
+  <p>Sign it and post it with your medical reports, declarations and any evidence to support your application.</p>
+
+  {% set postalDetails %}
+    <p class="govuk-!-margin-bottom-2">Send this to:</p>
+    <p>Gender Recognition Panel <br>
+    PO Box 9300 <br>
+    Leicester <br>
+    LE1 8DJ</p>
+  {% endset -%}
+  {{ govukInsetText({
+    html: postalDetails
+  }) }}
 
 
+  <p>Your application will be reviewed by the Gender Recognition Panel. They may contact you if they require more information.</p>
 
-      <h2 class="govuk-heading-m">
+  <p>You will then be told if you will be issued with a Gender Recognition Certificate.</p>
+
+  <p>If your application is unsuccessful, you will be told how you can reapply or appeal the decision.</p>
+
+  <p>Decisions take around 12 weeks on average.</p>
+</div>
+
+<div class="page">
+  <p class="page-number">Page 2</p>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      <h2 class="govuk-heading-m govuk-!-font-size-27">
         Requirements
       </h2>
       {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
+        classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
@@ -30,14 +92,6 @@
             },
             value: {
               text: data['overseas-check'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'eligibility/overseas-check',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -46,14 +100,6 @@
             },
             value: {
               html: data['dysphoria-check'] or 'Yes'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'eligibility/dysphoria-check',
-                  text: 'Change'
-                }
-              ]
             }
           }
         ]
@@ -64,14 +110,6 @@
         },
         value: {
           text: data['age-check'] or 'Yes'
-        },
-        actions: {
-          items: [
-            {
-              href: 'eligibility/age-check',
-              text: 'Change'
-            }
-          ]
         }
       },
 
@@ -81,14 +119,6 @@
         },
         value: {
           html: data['two-years-check'] or 'Yes'
-        },
-        actions: {
-          items: [
-            {
-              href: 'eligibility/two-years-check',
-              text: 'Change'
-            }
-          ]
         }
       },
       {
@@ -97,14 +127,6 @@
         },
         value: {
           html: data['until-death-check'] or 'Yes'
-        },
-        actions: {
-          items: [
-            {
-              href: 'eligibility/until-death-check',
-              text: 'Change'
-            }
-          ]
         }
       } #}
 
@@ -113,11 +135,11 @@
       {% if data['current-check'] == 'No' %}
 
 
-        <h2 class="govuk-heading-m">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">
           Marriage or civil partnership details
         </h2>
         {{ govukSummaryList({
-          classes: 'govuk-!-margin-bottom-9',
+          classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
           rows: [
             {
               key: {
@@ -125,14 +147,6 @@
               },
               value: {
                 text: 'Neither'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/current-check',
-                    text: 'Change'
-                  }
-                ]
               }
             },
             {
@@ -141,14 +155,6 @@
               },
               value: {
                 text: data['partner-died'] or 'No'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/partner-died',
-                    text: 'Change'
-                  }
-                ]
               }
             }
           ]
@@ -158,11 +164,11 @@
       {% elif  data['current-check'] == 'Civil partnership' %}
 
 
-        <h2 class="govuk-heading-m">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">
           Civil partnership details
         </h2>
         {{ govukSummaryList({
-          classes: 'govuk-!-margin-bottom-9',
+          classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
           rows: [
             {
               key: {
@@ -170,14 +176,6 @@
               },
               value: {
                 text: 'Civil partnership'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/current-check',
-                    text: 'Change'
-                  }
-                ]
               }
             },
             {
@@ -186,14 +184,6 @@
               },
               value: {
                 text: data['protected-civil-partnership'] or 'No'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/protected-civil-partnership',
-                    text: 'Change'
-                  }
-                ]
               }
             },
             {
@@ -202,14 +192,6 @@
               },
               value: {
                 text: data['same-time'] or 'No'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/same-time',
-                    text: 'Change'
-                  }
-                ]
               }
             } if data['protected-civil-partnership'] == 'Yes, a protected Scottish civil partnership',
             {
@@ -218,14 +200,6 @@
               },
               value: {
                 text: data['stay-together'] or 'Yes'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/stay-together',
-                    text: 'Change'
-                  }
-                ]
               }
             } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
             {
@@ -234,14 +208,6 @@
               },
               value: {
                 text: 'Yes'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/interim-check',
-                    text: 'Change'
-                  }
-                ]
               }
             } if data['protected-civil-partnership'] == 'No' or data['stay-together'] == 'No' or data['same-time'] == 'No'
           ] | cleanArray
@@ -251,11 +217,11 @@
       {% else %}
 
 
-        <h2 class="govuk-heading-m">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">
           Marriage details
         </h2>
         {{ govukSummaryList({
-          classes: 'govuk-!-margin-bottom-9',
+          classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
           rows: [
             {
               key: {
@@ -263,14 +229,6 @@
               },
               value: {
                 text: 'Married'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/current-check',
-                    text: 'Change'
-                  }
-                ]
               }
             },
             {
@@ -279,14 +237,6 @@
               },
               value: {
                 text: data['protected-marriage'] or 'No'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/protected-marriage',
-                    text: 'Change'
-                  }
-                ]
               }
             },
             {
@@ -295,14 +245,6 @@
               },
               value: {
                 text: data['stay-together'] or 'Yes'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/stay-together',
-                    text: 'Change'
-                  }
-                ]
               }
             } if data['protected-marriage'] == 'Yes',
             {
@@ -311,14 +253,6 @@
               },
               value: {
                 text: 'Yes'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/interim-check',
-                    text: 'Change'
-                  }
-                ]
               }
             } if data['protected-marriage'] == 'No' or data['stay-together'] == 'No'
           ] | cleanArray
@@ -331,7 +265,7 @@
 
 
 
-      <h2 class="govuk-heading-m">
+      <h2 class="govuk-heading-m govuk-!-font-size-27">
         Personal details
       </h2>
 
@@ -383,7 +317,7 @@
 
 
       {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
+        classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
@@ -391,14 +325,6 @@
             },
             value: {
               text: name
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/name',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -407,14 +333,6 @@
             },
             value: {
               text: data['name-for-correspondence-check'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/name-for-correspondence-check',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -423,14 +341,6 @@
             },
             value: {
               html: data['name-for-correspondence']
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/name-for-correspondence',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['name-for-correspondence-check'] == 'Yes',
           {
@@ -439,14 +349,6 @@
             },
             value: {
               html: address
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/address',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -455,14 +357,6 @@
             },
             value: {
               html: contactDetails
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/contact-preferences',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -471,14 +365,6 @@
             },
             value: {
               html: data['notify-hmrc'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/hmrc',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -487,24 +373,25 @@
             },
             value: {
               html: niNumber
-            },
-            actions: {
-              items: [
-                {
-                  href: 'personal/ni-number',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['notify-hmrc'] == 'Yes'
         ] | cleanArray
       }) }}
 
+    </div>
+  </div>
+</div>
 
 
 
 
-      <h2 class="govuk-heading-m">
+
+<div class="page">
+  <p class="page-number">Page 3</p>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      <h2 class="govuk-heading-m govuk-!-font-size-27">
         Birth registration details
       </h2>
 
@@ -526,7 +413,7 @@
       {% endset %}
 
       {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
+        classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
@@ -534,14 +421,6 @@
             },
             value: {
               text: birthName
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/age-check',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -550,14 +429,6 @@
             },
             value: {
               text: data['sex'] or 'Male'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/sex',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -566,14 +437,6 @@
             },
             value: {
               html: dob
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/dob',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -582,14 +445,6 @@
             },
             value: {
               html: data['uk-check'] or 'Yes'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/uk-check',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -598,14 +453,6 @@
             },
             value: {
               html: data['country'] or 'Egypt'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/country',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['uk-check'] == 'No',
           {
@@ -614,14 +461,6 @@
             },
             value: {
               html: data['mothers-first-name'] + ' ' + data['mothers-last-name']
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/mothers-name',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['uk-check'] != 'No',
           {
@@ -630,14 +469,6 @@
             },
             value: {
               text: data['fathers-name-check'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/fathers-name-check',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['uk-check'] != 'No',
           {
@@ -646,14 +477,6 @@
             },
             value: {
               text: data['fathers-first-name'] + ' ' + data['fathers-last-name']
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/fathers-name',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['uk-check'] != 'No' and data['fathers-name-check'] == 'Yes',
           {
@@ -662,14 +485,6 @@
             },
             value: {
               text: data['place-of-birth'] or 'London'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/place-of-birth',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -678,14 +493,6 @@
             },
             value: {
               html: data['adopted'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/adopted',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -694,14 +501,6 @@
             },
             value: {
               html: data['forces'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'birth-adoption/forces',
-                  text: 'Change'
-                }
-              ]
             }
           }
         ] | cleanArray
@@ -710,11 +509,11 @@
 
 
 
-      <h2 class="govuk-heading-m">
+      <h2 class="govuk-heading-m govuk-!-font-size-27">
         Payment details
       </h2>
       {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
+        classes: 'govuk-summary-list--no-borde/r govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
@@ -722,14 +521,6 @@
             },
             value: {
               text: data['help-check'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'payment/help-check',
-                  text: 'Change'
-                }
-              ]
             }
           },
           {
@@ -739,14 +530,6 @@
             value: {
               text: data['help-type'],
               html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'payment/help-type',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['help-check'] == 'Yes',
           {
@@ -755,34 +538,35 @@
             },
             value: {
               html: data['payment-method'] or 'Credit or debit card'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'payment/payment-method',
-                  text: 'Change'
-                }
-              ]
             }
           } if data['help-check'] != 'Yes'
         ] | cleanArray
       }) }}
 
 
-
-
-
-
-
-      <h2 class="govuk-heading-m">Next steps</h2>
-
-      <p>When you are happy with your application details, you can generate a filled-in application form. Print this form, then sign it, and post it with your medical reports, declarations and any evidence to support your application.</p>
-
-      {{ govukButton({
-        text: 'Generate application form',
-        href: 'generating'
-      }) }}
-
     </div>
   </div>
+</div>
+
+<div class="page">
+  <p class="page-number">Page 4</p>
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27">
+    Declarations
+  </h2>
+  <p>If your birth was registered in the UK, to process your application, the Gender Recognition Panel needs to pass your details to the relevant Registrar General. Similarly if your marriage or civil partnership was registered in England and Wales or Scotland and you are applying for gender recognition while remaining married or in a civil partnership, then the Panel will need to pass your details onto the appropriate Registrar General.</p>
+  <p>If you consent below, the Registrar General will contact you (if your application is successful) to inform you about options for your new birth certificate (and where appropriate a new marriage or civil partnership certificate).</p>
+  <p>I consent to the Registrar General contacting me in relation to the issue of a new birth/marriage/civil partnership certificate, as appropriate.</p>
+  <p>I certify that all the information given in this application is correct to the best of my knowledge. I understand that to make a false application is an offence.</p>
+
+Signature of applicantDate
+
+  {# <p>Section 22 of the Gender Recognition Act 2004 protects the information on your application form and information about your gender history if your application is successful. The data you provide will only be processed as permitted by the Act. It will be processed primarily for the purpose of determining your application (and any related legal proceedings) and for maintaining the Gender Recognition Register. The Guidance Notes to this application form and Explanatory Leaflet contain more information about how your data may be processed. Information about you will not be disclosed except where permitted by law, or where you have consented to it.The Ministry of Justice is the Data Controller for the Gender Recognition Secretariat and Panel for the purposes of the Data Protection Act 1998. If you want to know more about what information we have about you, or the way we use your information, you can find details on the MoJ website www.justice.gov.uk/about/datasharingandprotection.htmThe Ministry of Justice and HM Courts and Tribunals Service processes personal information about you in the context of tribunal proceedings. For details of the standards we follow when processing your data, please visit the following address https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/personal-information-charter To receive a paper copy of this privacy notice, please call 0300 123 1024 Textphone 18001 0300 123 1024. If calling from Scotland, please call 0300 790 6234 Textphone 18001 0300 790 6234.</p> #}
+
+</div>
+
+
+{# <script>
+  window.print();
+</script> #}
 {% endblock %}
