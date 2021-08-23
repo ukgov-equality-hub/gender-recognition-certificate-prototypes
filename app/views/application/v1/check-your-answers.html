@@ -110,7 +110,7 @@
 
 
 
-      {% if data['current-check'] == 'No' %}
+      {% if data['current-check'] == 'Neither' %}
 
 
         <h2 class="govuk-heading-m">
@@ -230,6 +230,22 @@
             } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
             {
               key: {
+                text: 'Can provide a declaration of consent from your partner'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/partner-agrees',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'Yes',
+            {
+              key: {
                 text: 'Interim GRC'
               },
               value: {
@@ -243,7 +259,7 @@
                   }
                 ]
               }
-            } if data['protected-civil-partnership'] == 'No' or data['stay-together'] == 'No' or data['same-time'] == 'No'
+            } if data['stay-together'] == 'No' or data['same-time'] == 'No' or data['partner-agrees'] == 'No'
           ] | cleanArray
         }) }}
 
@@ -275,22 +291,6 @@
             },
             {
               key: {
-                text: 'Protected marriage'
-              },
-              value: {
-                text: data['protected-marriage'] or 'No'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'marriage-civil-partnership/protected-marriage',
-                    text: 'Change'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
                 text: 'Remain married'
               },
               value: {
@@ -304,7 +304,23 @@
                   }
                 ]
               }
-            } if data['protected-marriage'] == 'Yes',
+            },
+            {
+              key: {
+                text: 'Can provide a declaration of consent from your spouse'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'marriage-civil-partnership/partner-agrees',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK' and data['stay-together'] == 'Yes',
             {
               key: {
                 text: 'Interim GRC'
@@ -320,7 +336,7 @@
                   }
                 ]
               }
-            } if data['protected-marriage'] == 'No' or data['stay-together'] == 'No'
+            } if data['protected-marriage'] == 'No' or data['stay-together'] == 'No' or data['partner-agrees'] == 'No'
           ] | cleanArray
         }) }}
 
@@ -776,7 +792,9 @@
 
       <h2 class="govuk-heading-m">Next steps</h2>
 
-      <p>When you are happy with your application details, you can generate a filled-in application form. Print this form, then sign it, and post it with your medical reports, declarations and any evidence to support your application.</p>
+      <p>Confirm the information you&rsquo;ve provided is correct and then generate your application form. </p>
+
+      <p>The form will include the information you have already provided, a checklist of documents that you will need to send us, and the statutory declaration you need to fill in and sign.</p>
 
       {{ govukButton({
         text: 'Generate application form',

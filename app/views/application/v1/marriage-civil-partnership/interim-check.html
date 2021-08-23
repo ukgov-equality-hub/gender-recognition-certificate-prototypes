@@ -31,15 +31,29 @@
 
       <form method="post">
 
+        <h1 class="govuk-heading-l">
+          Interim Gender Recognition Certificate
+        </h1>
+
+        <p>You cannot receive a full Gender Recognition Certificate if you want to remain married but do not have a declaration of consent from your spouse.</p>
+
+        <p class="govuk-!-margin-bottom-2">However, you can apply for an interim Gender Recognition Certificate if you are:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>currently married but do not intend to stay married,</li>
+          <li>are not able to provide a declaration of consent from your spouse</li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-8">The interim certificate can be used as grounds to end your marriage. You will then be able to receive a full Gender Recognition Certificate.</p>
+
+
         {{ govukRadios({
           idPrefix: 'interim-check',
           name: 'interim-check',
           classes: '',
           fieldset: {
             legend: {
-              text: 'Do you want to apply for an interim GRC?',
-              isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              text: 'Do you want to apply for an interim Gender Recognition Certificate?',
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [

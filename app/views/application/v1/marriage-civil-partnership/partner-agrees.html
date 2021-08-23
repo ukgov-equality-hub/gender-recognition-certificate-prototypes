@@ -3,7 +3,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: 'protected-civil-partnership' if data['current-check'] == 'Civil partnership' else 'protected-marriage'
+    href: 'stay-together'
   }) }}
 {% endblock %}
 
@@ -15,15 +15,15 @@
 
         {% set questionText %}
           {% if data['current-check'] == 'Civil partnership' %}
-            Do you plan to remain in your civil partnership after receiving your Gender Recognition Certificate?
+            Will you be able to provide a declaration of consent from your partner?
           {% else %}
-            Do you plan to remain married after receiving your Gender Recognition Certificate?
+            Will you be able to provide a declaration of consent from your spouse?
           {% endif %}
         {% endset %}
 
         {{ govukRadios({
-          idPrefix: 'stay-together',
-          name: 'stay-together',
+          idPrefix: 'partner-agrees',
+          name: 'partner-agrees',
           classes: '',
           fieldset: {
             legend: {
@@ -36,7 +36,7 @@
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('stay-together','Yes'),
+              checked: checked('partner-agrees','Yes'),
               conditional: {
                 html: stayMarriedCheck
               }
@@ -44,7 +44,7 @@
             {
               html: 'No',
               value: 'No',
-              checked: checked('stay-together','No')
+              checked: checked('partner-agrees','No')
             }
           ]
         }) }}

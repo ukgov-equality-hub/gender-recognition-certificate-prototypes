@@ -94,7 +94,8 @@ router.post('/marriage-civil-partnership/current-check', function (req, res) {
   } else if (req.session.data['current-check'] == 'Civil partnership') {
     res.redirect('protected-civil-partnership');
   } else {
-    res.redirect('protected-marriage');
+    // res.redirect('protected-marriage');
+    res.redirect('stay-together');
   }
 })
 
@@ -107,16 +108,28 @@ router.post('/marriage-civil-partnership/partner-died', function (req, res) {
 
 
 // MARRIAGE
-router.post('/marriage-civil-partnership/protected-marriage', function (req, res) {
-  if (req.session.data['protected-marriage'] == 'No') {
-    res.redirect('interim-check');
-  } else {
-    res.redirect('stay-together');
-  }
-})
+
+
+// Removed question as it seems it's all marriages
+//
+// router.post('/marriage-civil-partnership/protected-marriage', function (req, res) {
+//   if (req.session.data['protected-marriage'] == 'No') {
+//     res.redirect('interim-check');
+//   } else {
+//     res.redirect('stay-together');
+//   }
+// })
 
 router.post('/marriage-civil-partnership/stay-together', function (req, res) {
   if (req.session.data['stay-together'] == 'No') {
+    res.redirect('interim-check');
+  } else {
+    res.redirect('partner-agrees');
+  }
+})
+
+router.post('/marriage-civil-partnership/partner-agrees', function (req, res) {
+  if (req.session.data['partner-agrees'] == 'No') {
     res.redirect('interim-check');
   } else {
     res.redirect('../personal/name');

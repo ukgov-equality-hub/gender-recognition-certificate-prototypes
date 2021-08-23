@@ -13,6 +13,15 @@
 
       <form method="post">
 
+        <h1 class="govuk-heading-l">
+          Marriages and civil partnerships
+        </h1>
+
+        <p>If you are or ever have been married or in a civil partnership then you will need to provide us with additional documents.</p>
+
+        <p class="govuk-!-margin-bottom-8">The following questions will allow us to tell you what documents you will need to provide based on your circumstances.</p>
+
+
         {{ govukRadios({
           idPrefix: 'current-check',
           name: 'current-check',
@@ -20,8 +29,7 @@
           fieldset: {
             legend: {
               text: 'Are you currently married or in a civil partnership?',
-              isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [

@@ -132,7 +132,7 @@
 
 
 
-      {% if data['current-check'] == 'No' %}
+      {% if data['current-check'] == 'Neither' %}
 
 
         <h2 class="govuk-heading-m govuk-!-font-size-27">
@@ -204,12 +204,20 @@
             } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
             {
               key: {
+                text: 'Can provide a declaration of consent from your partner'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              }
+            } if data['stay-together'] == 'Yes',
+            {
+              key: {
                 text: 'Interim GRC'
               },
               value: {
                 text: 'Yes'
               }
-            } if data['protected-civil-partnership'] == 'No' or data['stay-together'] == 'No' or data['same-time'] == 'No'
+            } if data['stay-together'] == 'No' or data['same-time'] == 'No' or data['partner-agrees'] == 'No'
           ] | cleanArray
         }) }}
 
@@ -249,12 +257,20 @@
             } if data['protected-marriage'] == 'Yes',
             {
               key: {
+                text: 'Can provide a declaration of consent from your spouse'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              }
+            } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK' and data['stay-together'] == 'Yes',
+            {
+              key: {
                 text: 'Interim GRC'
               },
               value: {
                 text: 'Yes'
               }
-            } if data['protected-marriage'] == 'No' or data['stay-together'] == 'No'
+            } if data['protected-marriage'] == 'No' or data['stay-together'] == 'No' or data['partner-agrees'] == 'No'
           ] | cleanArray
         }) }}
 
