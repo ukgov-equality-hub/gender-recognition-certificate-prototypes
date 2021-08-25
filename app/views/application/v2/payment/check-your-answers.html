@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../task-list'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check payment details before submitting your application
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Applying for help'
+            },
+            value: {
+              text: data['help-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'help-check',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Help application type'
+            },
+            value: {
+              text: data['help-type'],
+              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'help-type',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['help-check'] == 'Yes',
+          {
+            key: {
+              text: 'Payment method'
+            },
+            value: {
+              html: data['payment-method'] or 'Online using a credit or debit card'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'method',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['help-check'] != 'Yes'
+        ] | cleanArray
+      }) }}
+
+
+
+      {{ govukButton({
+        text: 'Submit application',
+        href: '../confirmation'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

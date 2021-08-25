@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block beforeContent %}
+  {% include "./_includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active">
+              Overview
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Overview
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+
+        <p>Apply for a Gender Recognition Certificate if you want your affirmed gender to be legally recognised in the UK.</p>
+
+        <p>Although you do not need a Gender Recognition Certificate to get new legal documents like a driving licence or passport, this is not the same as legal recognition.</p>
+
+        <p>Having a Gender Recognition Certificate means you will have the same legal rights as anyone else in that gender. </p>
+
+        <p>It will also let you:</p>
+        <ul>
+          <li>get a new birth certificate which shows your correct gender</li>
+          <li>retire and receive state pension at the age appropriate to your gender</li>
+        </ul>
+
+        <p>Read more about <a href="https://www.gov.uk/government/publications/gender-recognition-how-pensions-and-benefits-may-be-affected/gender-recognition-certificate-pensions-and-benefits-note">how a Gender Recognition Certificate could impact any pensions and benefits</a>.</p>
+
+
+
+
+        <h2>Gender Recognition Panel</h2>
+
+        <p>After you apply, your application will be reviewed by a Gender Recognition Panel.</p>
+
+        <p>The panel is made up of people with either legal or medical qualifications. Their responsibility is to make sure applications for a Gender Recognition Certificate meet the requirements in the Gender Recognition Act 2004.</p>
+
+        <p>If your application is not successful, you will be told why and what you can do to resubmit your application.</p>
+
+        <p>Decisions take 12 weeks on average. </p>
+
+
+
+
+
+
+        <h2>Fees</h2>
+
+        <p>It costs £5 to apply for a Gender Recognition Certificate. If you cannot pay this fee, <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees">you can apply for help</a>.</p>
+
+        <p>There may be other costs to consider, such as fees for:</p>
+        <ul>
+          <li>witnessing the signing of a Statutory Declaration</li>
+          <li>any certified copies your need of official documents like your birth certificate</li>
+          <li>medical professionals to provide your medical reports </li>
+          <li>Legal advice or mediation </li>
+        </ul>
+
+        {{ govukInsetText({
+          html: '<p><a href="https://www.gov.uk/legal-aid">Check if you can get Legal Aid to help with legal and medication costs</a></p>'
+        }) }}
+
+
+
+      </div>
+
+      {{ govukPagination({
+        next: {
+          href: 'who-can-apply',
+          text: 'Who can apply'
+        }
+      }) }}
+
+      {% include "./_includes/explore-topic.html" %}
+    </div>
+
+    {% include "./_includes/related-content.html" %}
+
+  </div>
+{% endblock %}

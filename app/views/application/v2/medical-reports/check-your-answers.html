@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Check your answers: </span>
+        Your medical reports
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Report one'
+            },
+            value: {
+              text: data['report-one']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'report-one',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Report two'
+            },
+            value: {
+              text: data['report-two']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'report-two',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      {{ govukButton({
+        text: 'Continue',
+        href: 'medical-reports-complete'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

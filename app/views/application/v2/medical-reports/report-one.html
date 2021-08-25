@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../task-list'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Upload first medical report
+        </h1>
+
+        <p>This report must include specific details of your gender dysphoria diagnosis provided by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria.</p>
+
+        <p>There is a <a rel="noreferrer noopener" target="_blank" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/937304/t493-eng.pdf">list of specialists in the field of gender dysphoria (opens in new tab)</a>.</p>
+
+        <p class="govuk-!-margin-bottom-8">You do not have to have a report from someone on this list, as long as it&rsquo;s from a medical practitioner or psychologist registered in the field of gender dysphoria.</p>
+
+        {{ govukFileUpload({
+          id: 'report-one',
+          name: 'report-one',
+          value: data['report-one'],
+          label: {
+            text: 'Upload your medical report',
+            classes: 'govuk-label--m'
+          }
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -19,6 +19,7 @@ Example usage:
 
 module.exports = {
 
-  // Insert values here
+  'tasks-completed': 1,
+  'tasks-total': 6
 
 }

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Name change documents
+      </h1>
+
+      <p>You will need to provide a copy of all change of name documents or other documents to show any changes from the name appearing on your birth certificate to your current name.</p>
+
+      {% if data['name-change-started'] != 'true' %}
+        {{ govukButton({
+          text: 'Upload a document',
+          href: 'upload'
+        }) }}
+
+
+
+      {% else %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: 'Document 1'
+              },
+              value: {
+                text: data['name-change'] or 'deed-poll.pdf'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: 'Add another document',
+          href: '#0',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+        }) }}
+        <br>
+
+        {{ govukButton({
+          text: 'Continue',
+          href: 'name-change-complete'
+        }) }}
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

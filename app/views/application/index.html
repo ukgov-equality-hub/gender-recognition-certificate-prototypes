@@ -12,13 +12,16 @@
       <p>We want to explore if a an online form is an improvement to the current paper based version. A digital journey would mean we know more about the application and we think we can improve the guidance based on that information.</p>
 
       <h2 class="govuk-heading-m">
-        Version 1
+        Version 2
       </h2>
 
-      {# <h3 class="govuk-heading-s">Changes</h3> #}
-      <p>We&rsquo;ve <a href="https://lucid.app/lucidchart/4ce1c424-e7c2-42e3-9341-5891abbd49bc/edit?viewport_loc=-1041%2C-518%2C5542%2C2409%2C0_0&shared=true">mapped out different complexity options for completing and sending the form</a>, and we now want to test the most simple of these.</p>
-
-      <p>The online journey will guide the user through the questions in the form and then allow them to print a form which has been populated with their answers, as well as a personalised checklist for which documents need to be posted with the form.</p>
+      <h3 class="govuk-heading-s">Changes</h3>
+      <p class="govuk-!-margin-bottom-2">This version:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>introduces save and return functionality</li>
+        <li>allows upload of some evidence, original documents will still be required to be posted though</li>
+        <li>adds a task list so they can fill in the form in the order they want</li>
+      </ul>
 
       {# <h3 class="govuk-heading-s">Research notes</h3>
       <p class="govuk-hint">Not researched yet.</p>
@@ -26,95 +29,31 @@
 
       {{ govukButton({
         text: 'View prototype',
-        href: 'v1/overview'
+        href: 'v2/overview'
       }) }}
 
 
 
 
-      {# {% set v3Pages %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <a href="v3/start">Start page</a>
-          </li>
-          <li class="govuk-!-font-weight-bold">
-            Questions
-            <ul class="govuk-list govuk-list--bullet">
-              <li><a href="v3/age-check">Age check</a></li>
-              <li><a href="v3/overseas-check">Overseas check</a></li>
-              <li><a href="v3/overseas-approved-check">Overseas approved list check</a></li>
-              <li><a href="v3/dysphoria-check">Dysphoria check</a></li>
-              <li><a href="v3/two-years-check">Two years check</a></li>
-              <li><a href="v3/until-death-check">Until death check</a></li>
-              <li>Married check</li>
-            </ul>
-          </li>
-
-          <li class="govuk-!-font-weight-bold">
-            Exit pages
-            <ul class="govuk-list govuk-list--bullet">
-              <li><a href="v3/not-old-enough">Age no</a></li>
-              <li><a href="v3/dysphoria-no">Dysphoria no / alt track</a></li>
-              <li><a href="v3/two-years-no">Two years no</a></li>
-              <li><a href="v3/until-death-no">Until death no</a></li>
-
-              <li><a href="v3/overseas-track">Overseas track start</a></li>
-              <li><a href="v3/standard-track">Standard track start</a></li>
-            </ul>
-          </li>
-
-          <li><a href="v3/declaration">Declaration</a></li>
-          <li><a href="v3/task-list">Task list</a></li>
-        </ul>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: 'Links to all pages',
-        html: v3Pages
-      }) }} #}
-
-
-
-
-
-
-      {# {% set v2 %}
-        <p>A more complex flow that guides the user to the standard or alternative track based on the requirements.</p>
-
-        {{ govukInsetText({
-          text: 'This version was not researched with users, it was used by the team to explore the idea. v3 was the first testable version.'
-        }) }}
-
-        {{ govukButton({
-          text: 'View prototype',
-          href: 'v2/start'
-        }) }}
-      {% endset %}
-
       {% set v1 %}
-        <p>A simplified eligibility check that still relies on the user being able to choose between the standard and alternative tracks. </p>
+        <p>We&rsquo;ve <a href="https://lucid.app/lucidchart/4ce1c424-e7c2-42e3-9341-5891abbd49bc/edit?viewport_loc=-1041%2C-518%2C5542%2C2409%2C0_0&shared=true">mapped out different complexity options for completing and sending the form</a>, and we now want to test the most simple of these.</p>
 
-        {{ govukInsetText({
-          text: 'This version was not researched with users, it was used by the team to explore the idea. v3 was the first testable version.'
-        }) }}
+        <p>The online journey will guide the user through the questions in the form and then allow them to print a form which has been populated with their answers, as well as a personalised checklist for which documents need to be posted with the form.</p>
 
         {{ govukButton({
           text: 'View prototype',
-          href: 'v1/start'
+          href: 'v1/overview'
         }) }}
       {% endset %}
 
       {{ govukAccordion({
         items: [
           {
-            heading: { text: 'Version 2' },
-            content: { html: v2 }
-          },
-          {
             heading: { text: 'Version 1' },
             content: { html: v1 }
           }
         ]
-      }) }} #}
+      }) }}
 
     </div>
   </div>

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'check-your-answers'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Upload evidence of living in your gender
+        </h1>
+
+        {% set evidenceList %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>driving licence</li>
+            <li>passport</li>
+            <li>payslips, P60 or P45</li>
+            <li>benefits or tax letters and documents</li>
+            <li>bank statements and utility bills</li>
+            <li>letters from official, professional or business organisations like solicitors, accountants, dentists, doctors and employers</li>
+            <li>academic certificates or documentation</li>
+            <li>health care or identity cards including photo ID issued by an official organisation</li>
+          </ul>
+        {% endset %}
+        {{ govukDetails({
+          summaryText: 'Examples of what you could provide',
+          html: evidenceList
+        }) }}
+
+        {{ govukFileUpload({
+          id: 'evidence',
+          name: 'evidence',
+          value: data['evidence'],
+          label: {
+            text: 'Upload a file'
+          }
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

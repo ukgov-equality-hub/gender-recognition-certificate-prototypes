@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirmation page example
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: 'Application complete'
+      }) }}
+
+      <p>We have sent you a confirmation email.</p>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>You will receive an application acknowledgment in the post which will include your GRP reference number and will request the documents you need to post.</p>
+
+      <p class="govuk-!-margin-bottom-2">Based on your application these documents will be:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+        <li>your original birth certificate or a certified copy</li>
+        <li>your statutory declaration</li>
+        {{ '<li>your spouse&rsquo;s statutory declaration</li>' if data['current-check'] == 'Marriage' and data['stay-together'] == 'Yes' }}
+        {{ '<li>your civil partner&rsquo;s statutory declaration</li>' if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
+        {{ '<li>your original marriage certificate or a certified copy</li>' if data['current-check'] == 'Marriage' }}
+        {{ '<li>your original civil partnership certificate or a certified copy</li>' if data['current-check'] == 'Civil partnership' }}
+        {{'<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' if data['partner-died'] == 'Yes'}}
+        {{'<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' if data['ended-check'] == 'Yes'}}
+      </ul>
+
+
+      <p><a href="#0">What did you think of this service?</a> (takes 30 seconds)</p>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

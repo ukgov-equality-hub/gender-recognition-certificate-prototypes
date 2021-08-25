@@ -1,0 +1,268 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Check your answers: </span>
+         Marriage or civil partnership details
+      </h1>
+
+      {% if data['current-check'] == 'Neither' %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Neither'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Spouse or partner has died'
+              },
+              value: {
+                text: data['partner-died'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'partner-died',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Married or in a civil partnership has ended'
+              },
+              value: {
+                text: data['ended-check'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'ended-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+
+
+
+
+      {% elif  data['current-check'] == 'Civil partnership' %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Civil partnership'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Protected civil partnership'
+              },
+              value: {
+                text: data['protected-civil-partnership'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'protected-civil-partnership',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Partner appling at the same time'
+              },
+              value: {
+                text: data['same-time'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'same-time',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-civil-partnership'] == 'Yes, a protected Scottish civil partnership',
+            {
+              key: {
+                text: 'Remain in civil partnership'
+              },
+              value: {
+                text: data['stay-together'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'stay-together',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['protected-civil-partnership'] == 'Yes, registered in England, Wales, Northern Ireland or outside of the UK',
+            {
+              key: {
+                text: 'Can provide a declaration of consent from your partner'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'partner-agrees',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'Yes',
+            {
+              key: {
+                text: 'Interim GRC'
+              },
+              value: {
+                text: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'interim-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'No' or data['same-time'] == 'No' or data['partner-agrees'] == 'No'
+          ] | cleanArray
+        }) }}
+
+
+
+
+
+
+      {% else %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Married'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Remain married'
+              },
+              value: {
+                text: data['stay-together'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'stay-together',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Can provide a declaration of consent from your spouse'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'partner-agrees',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'Yes',
+            {
+              key: {
+                text: 'Interim GRC'
+              },
+              value: {
+                text: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'interim-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'No' or data['partner-agrees'] == 'No'
+          ] | cleanArray
+        }) }}
+
+
+      {% endif %}
+
+      {{ govukButton({
+        text: 'Continue',
+        href: 'marriage-complete'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}
