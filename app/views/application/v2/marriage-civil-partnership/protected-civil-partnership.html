@@ -58,9 +58,12 @@
         }) }}
 
 
-        {{ govukButton({
-          html: 'Continue'
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
 
       </form>
 

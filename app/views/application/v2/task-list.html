@@ -20,12 +20,12 @@
       <ol class="app-task-list">
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">1. </span> Check before you start
+            <span class="app-task-list__section-number">1. </span> Before you start
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                  Check eligibility
+                Accept declaration
               </span>
               <strong class="govuk-tag app-task-list__tag">Completed</strong>
             </li>
@@ -39,7 +39,7 @@
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">2. </span> Prepare application
+            <span class="app-task-list__section-number">2. </span> Fill in your details
           </h2>
           <ul class="app-task-list__items">
 
@@ -60,7 +60,7 @@
 
               {% elif data['personal-details-started'] == 'true' %}
                 <span class="app-task-list__task-name">
-                  <a href="personal/name">
+                  <a href="personal/{{data['personal-details-next']}}">
                     {{ sectionTitle }}
                   </a>
                 </span>
@@ -110,7 +110,7 @@
 
               {% elif data['marriage-started'] == 'true' %}
                 <span class="app-task-list__task-name">
-                  <a href="marriage-civil-partnership/current-check">
+                  <a href="marriage-civil-partnership/{{data['marriage-next']}}">
                     {{ sectionTitle }}
                   </a>
                 </span>
@@ -168,42 +168,29 @@
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">3. </span> Upload supporting documents
+            <span class="app-task-list__section-number">3. </span> Upload your documents
           </h2>
           <ul class="app-task-list__items">
 
 
             <li class="app-task-list__item">
-              {% set sectionTitle = 'Your medical reports' %}
+              <span class="app-task-list__task-name">
+                <a href="medical-reports/upload">
+                  Your medical reports
+                </a>
+              </span>
 
               {% if data['medical-reports-completed'] == 'true' %}
-                <span class="app-task-list__task-name">
-                  <a href="medical-reports/check-your-answers">
-                    {{ sectionTitle }}
-                  </a>
-                </span>
                 {{ govukTag({
                   text: 'Completed',
                   classes: 'app-task-list__tag'
                 }) }}
-
               {% elif data['medical-reports-started'] == 'true' %}
-                <span class="app-task-list__task-name">
-                  <a href="medical-reports/report-one">
-                    {{ sectionTitle }}
-                  </a>
-                </span>
                 {{ govukTag({
                   text: 'In progress',
                   classes: 'app-task-list__tag govuk-tag--blue'
                 }) }}
-
               {% else %}
-                <span class="app-task-list__task-name">
-                  <a href="medical-reports/report-one">
-                    {{ sectionTitle }}
-                  </a>
-                </span>
                 {{ govukTag({
                   text: 'Not started',
                   classes: 'app-task-list__tag govuk-tag--grey'
@@ -214,7 +201,7 @@
 
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="evidence/check-your-answers">
+                <a href="evidence/upload">
                   Evidence of living in your gender
                 </a>
               </span>
@@ -223,6 +210,11 @@
                 {{ govukTag({
                   text: 'Completed',
                   classes: 'app-task-list__tag'
+                }) }}
+              {% elif data['evidence-started'] == 'true' %}
+                {{ govukTag({
+                  text: 'In progress',
+                  classes: 'app-task-list__tag govuk-tag--blue'
                 }) }}
               {% else %}
                 {{ govukTag({
@@ -236,7 +228,7 @@
             {% if data['previous-names-check'] == 'Yes' and data['personal-details-completed'] == 'true' %}
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="name-change/check-your-answers">
+                  <a href="name-change/upload">
                     Name change documents
                   </a>
                 </span>
@@ -245,6 +237,11 @@
                   {{ govukTag({
                     text: 'Completed',
                     classes: 'app-task-list__tag'
+                  }) }}
+                {% elif data['name-change-started'] == 'true' %}
+                  {{ govukTag({
+                    text: 'In progress',
+                    classes: 'app-task-list__tag govuk-tag--blue'
                   }) }}
                 {% else %}
                   {{ govukTag({

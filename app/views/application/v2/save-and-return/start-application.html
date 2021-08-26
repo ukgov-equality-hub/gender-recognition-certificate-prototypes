@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
-{% block beforeContent %}
+{# {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: '../eligibility/until-death-check'
+    href: '../declaration'
   }) }}
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -61,7 +61,7 @@
 
 
         {{ govukButton({
-          html: 'Continue'
+          html: 'Save and continue'
         }) }}
 
       </form>

@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
-{% block beforeContent %}
+{# {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: 'task-list'
+    href: 'apply'
   }) }}
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -14,8 +14,16 @@
       <form method="post">
 
         <h1 class="govuk-heading-l">
-          Declaration
+          Before you start
         </h1>
+
+        <p class="govuk-!-margin-bottom-2">You can apply for a Gender Recognition Certificate if you:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>are 18 or over</li>
+          <li>have been diagnosed with gender dysphoria </li>
+          <li>are living in your affirmed gender and have been for at least 2 years</li>
+          <li>you intend to live in your affirmed gender for the rest of your life</li>
+        </ul>
 
         <p>If your birth was registered in the UK the Gender Recognition Panel will give your details to the relevant Registrar General. </p>
 
@@ -23,19 +31,17 @@
 
         <p class="govuk-!-margin-bottom-8">If your application is successful, the Registrar General will contact you about your new birth certificate and a new certificate for your marriage or civil partnership, if relevant.</p>
 
+
+
         {{ govukCheckboxes({
           idPrefix: 'declaration',
           name: 'declaration',
           items: [
             {
-              html: ' I consent to the Registrar General contacting me',
-              value: ' I consent to the Registrar General contacting me',
-              checked: checked('declaration',' I consent to the Registrar General contacting me')
-            },
-            {
-              html: 'I certify that all information given in this application is correct and that I understand making a false application is an offence.',
-              value: 'I certify that all information given in this application is correct and that I understand making a false application is an offence.',
-              checked: checked('declaration','I certify that all information given in this application is correct and that I understand making a false application is an offence.')
+              html: 'I certify that I meet the requirements for applying for a Gender Recognition Certificate, that all information given in this application will be correct, I understand making a false application is an offence, and I consent to the Registrar General contacting me.',
+              value: 'yes',
+              checked: checked('declaration','yes'),
+              classes: 'govuk-!-padding-top-0'
             }
           ]
         }) }}

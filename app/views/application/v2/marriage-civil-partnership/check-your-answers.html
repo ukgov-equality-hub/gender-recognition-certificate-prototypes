@@ -258,10 +258,13 @@
 
       {% endif %}
 
-      {{ govukButton({
-        text: 'Continue',
-        href: 'marriage-complete'
-      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+          html: 'Save and continue',
+          href: 'marriage-complete'
+        }) }}
+        <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+      </div>
 
     </div>
   </div>

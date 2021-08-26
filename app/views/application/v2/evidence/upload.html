@@ -3,52 +3,202 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: 'check-your-answers'
+    href: 'javascript:history.back()'
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Evidence of living in your gender
+      </h1>
+
+      <p>You will need to provide evidence of living in your affirmed gender from the last 2 years. All documents must be dated and include your name. </p>
+
+      <p>You should provide no more than 8 documents from the last 2 years. Try to include documents from dates that are spread throughout those 2 years.</p>
+
+      <p>For example, try and provide 4 documents per year and do not provide documents that are all dated in the same month.</p>
+
+      {% set evidenceList %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>driving licence</li>
+          <li>passport</li>
+          <li>payslips, P60 or P45</li>
+          <li>benefits or tax letters and documents</li>
+          <li>bank statements and utility bills</li>
+          <li>letters from official, professional or business organisations like solicitors, accountants, dentists, doctors and employers</li>
+          <li>academic certificates or documentation</li>
+          <li>health care or identity cards including photo ID issued by an official organisation</li>
+        </ul>
+      {% endset %}
+      {{ govukDetails({
+        summaryText: 'Examples of what you could provide',
+        html: evidenceList
+      }) }}
+
+      {% if data['evidence-started'] == 'true' %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: 'Document 1'
+              },
+              value: {
+                text: data['evidence'] or 'bank-statement-july-2021.pdf'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 2'
+              },
+              value: {
+                text: 'bank-statement-january-2021.pdf'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 3'
+              },
+              value: {
+                text: 'bank-statement-july-2020.pdf'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 4'
+              },
+              value: {
+                text: 'driving_licence.png'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 5'
+              },
+              value: {
+                text: 'Passport.JPEG'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 6'
+              },
+              value: {
+                text: 'council-tax-2021.png'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 7'
+              },
+              value: {
+                text: 'university_degree.pdf'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Document 8'
+              },
+              value: {
+                text: 'P45-2020.png'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '#0',
+                    text: 'Remove'
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      {% endif %}
 
       <form method="post">
-
-        <h1 class="govuk-heading-l">
-          Upload evidence of living in your gender
-        </h1>
-
-        {% set evidenceList %}
-          <ul class="govuk-list govuk-list--bullet">
-            <li>driving licence</li>
-            <li>passport</li>
-            <li>payslips, P60 or P45</li>
-            <li>benefits or tax letters and documents</li>
-            <li>bank statements and utility bills</li>
-            <li>letters from official, professional or business organisations like solicitors, accountants, dentists, doctors and employers</li>
-            <li>academic certificates or documentation</li>
-            <li>health care or identity cards including photo ID issued by an official organisation</li>
-          </ul>
-        {% endset %}
-        {{ govukDetails({
-          summaryText: 'Examples of what you could provide',
-          html: evidenceList
-        }) }}
 
         {{ govukFileUpload({
           id: 'evidence',
           name: 'evidence',
           value: data['evidence'],
           label: {
-            text: 'Upload a file'
+            text: 'Upload a file',
+            classes: 'govuk-label--m'
           }
         }) }}
 
-
         {{ govukButton({
-          html: 'Continue'
+          html: 'Upload document',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
         }) }}
 
       </form>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          html: 'Save and continue',
+          href: 'evidence-complete'
+        }) }}
+        <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+      </div>
 
     </div>
   </div>

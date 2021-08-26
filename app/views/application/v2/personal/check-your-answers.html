@@ -197,11 +197,13 @@
         ] | cleanArray
       }) }}
 
-
-      {{ govukButton({
-        text: 'Continue',
-        href: 'personal-complete'
-      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+          html: 'Save and continue',
+          href: 'personal-complete'
+        }) }}
+        <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+      </div>
 
     </div>
   </div>
