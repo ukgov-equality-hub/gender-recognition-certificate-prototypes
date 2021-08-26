@@ -429,6 +429,10 @@ router.post('/payment/help-type', function (req, res) {
 router.post('/payment/method', function (req, res) {
   res.redirect('check-your-answers');
 })
+
+router.post('/payment/payment-details', function (req, res) {
+  res.redirect('payment-confirmation');
+})
 //
 // PAYMENT
 /////////////////////////////////////////////////////

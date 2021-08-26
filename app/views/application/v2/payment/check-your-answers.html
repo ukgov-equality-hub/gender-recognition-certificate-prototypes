@@ -71,11 +71,17 @@
       }) }}
 
 
-
-      {{ govukButton({
-        text: 'Submit application',
-        href: '../confirmation'
-      }) }}
+      {% if data['payment-method'] != 'Online using a credit or debit card' %}
+        {{ govukButton({
+          text: 'Submit application',
+          href: '../confirmation'
+        }) }}
+      {% else %}
+        {{ govukButton({
+          text: 'Submit application and pay online',
+          href: 'payment-details'
+        }) }}
+      {% endif %}
 
     </div>
   </div>
