@@ -24,11 +24,11 @@
       <p class="govuk-!-margin-bottom-2">Based on your application these documents will be:</p>
       <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
         <li>your original birth certificate or a certified copy</li>
-        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">statutory declaration for single applicants</li>' | safe if data['current-check'] == 'No' }}
-        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">statutory declaration for applicants</li>' | safe if data['current-check'] != 'No' }}
-        {{ '<li>your spouse&rsquo;s statutory declaration</li>' | safe if data['current-check'] == 'Marriage' and data['stay-together'] == 'Yes' }}
-        {{ '<li>your civil partner&rsquo;s statutory declaration</li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
-        {{ '<li>your original marriage certificate or a certified copy</li>' | safe if data['current-check'] == 'Marriage' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">statutory declaration for single applicants</a></li>' | safe if data['current-check'] == 'Neither' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">statutory declaration for applicants</a></li>' | safe if data['current-check'] != 'Neither' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your spouse&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Married' and data['stay-together'] == 'Yes' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your civil partner&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
+        {{ '<li>your original marriage certificate or a certified copy</li>' | safe if data['current-check'] == 'Married' }}
         {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
         {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
         {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
