@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% set mainClasses = "guide" %}
 
+{% block header %}
+  {% include "./_includes/govuk-header.html" %}
+{% endblock %}
+
 {% block beforeContent %}
   {% include "./_includes/breadcrumb.html" %}
 {% endblock %}
