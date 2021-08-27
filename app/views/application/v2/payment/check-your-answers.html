@@ -20,39 +20,6 @@
         rows: [
           {
             key: {
-              text: 'Applying for help'
-            },
-            value: {
-              text: data['help-check'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'help-check',
-                  text: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Help application type'
-            },
-            value: {
-              text: data['help-type'],
-              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'help-type',
-                  text: 'Change'
-                }
-              ]
-            }
-          } if data['help-check'] == 'Yes',
-          {
-            key: {
               text: 'Payment method'
             },
             value: {
@@ -66,7 +33,24 @@
                 }
               ]
             }
-          } if data['help-check'] != 'Yes'
+          },
+          {
+            key: {
+              text: 'Help type'
+            },
+            value: {
+              text: data['help-type'],
+              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'help-type',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['payment-method'] == 'I am applying for help paying the fee'
         ] | cleanArray
       }) }}
 

@@ -25,11 +25,11 @@
           <li>you intend to live in your affirmed gender for the rest of your life</li>
         </ul>
 
-        <p>If your birth was registered in the UK the Gender Recognition Panel will give your details to the relevant Registrar General. </p>
+        <p>If you were born in the UK, the Gender Recognition Panel will tell the relevant General Register Office about your application.</p>
 
-        <p>If you are married or in a civil partnership registered in England and Wales or Scotland and you are applying for gender recognition while remaining married or in a civil partnership, then the panel will need to give your details to the appropriate Registrar General. </p>
+        <p>This will include telling them if you are married or in a civil partnership registered in England and Wales or Scotland and you are applying for gender recognition while remaining married or in a civil partnership.</p>
 
-        <p class="govuk-!-margin-bottom-8">If your application is successful, the Registrar General will contact you about your new birth certificate and a new certificate for your marriage or civil partnership, if relevant.</p>
+        <p class="govuk-!-margin-bottom-8">If your application is successful, the General Register Office will contact you about your new birth certificate and, if appropriate, a new certificate for your marriage or civil partnership.</p>
 
 
 
@@ -38,10 +38,14 @@
           name: 'declaration',
           items: [
             {
-              html: 'I certify that I meet the requirements for applying for a Gender Recognition Certificate, that all information given in this application will be correct, I understand making a false application is an offence, and I consent to the Registrar General contacting me.',
-              value: 'yes',
-              checked: checked('declaration','yes'),
-              classes: 'govuk-!-padding-top-0'
+              html: 'I certify that I meet the requirements for applying for a Gender Recognition Certificate and I consent to the General Register Office contacting me about my application',
+              value: 'dec1',
+              checked: checked('declaration','dec1'),
+            },
+            {
+              html: 'I certify that any information I provide is correct and I understand making a false application is an offence',
+              value: 'dec2',
+              checked: checked('declaration','dec2'),
             }
           ]
         }) }}

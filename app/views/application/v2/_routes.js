@@ -484,19 +484,15 @@ router.get('/name-change/name-change-complete', function (req, res) {
 /////////////////////////////////////////////////////
 // PAYMENT
 //
-router.post('/payment/help-check', function (req, res) {
-  if (req.session.data['help-check'] == 'Yes') {
+router.post('/payment/method', function (req, res) {
+  if (req.session.data['payment-method'] == 'I am applying for help paying the fee') {
     res.redirect('help-type');
   } else {
-    res.redirect('method');
+    res.redirect('check-your-answers');
   }
 })
 
 router.post('/payment/help-type', function (req, res) {
-  res.redirect('check-your-answers');
-})
-
-router.post('/payment/method', function (req, res) {
   res.redirect('check-your-answers');
 })
 

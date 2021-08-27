@@ -13,6 +13,12 @@
 
       <form method="post">
 
+        <h1 class="govuk-heading-l">Applying for help with the fee</h1>
+
+        <p>You can <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">apply online for help paying this fee (opens in new tab)</a>.</p>
+
+        <p class="govuk-!-margin-bottom-8">You can also download the EX160 form from that page and submit it with your application.</p>
+
 
         {% set onlineRef %}
           {{ govukInput({
@@ -40,8 +46,7 @@
           fieldset: {
             legend: {
               text: 'How are you applying for help paying the fee?',
-              isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [

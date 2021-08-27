@@ -17,6 +17,8 @@
           Method of payment
         </h1>
 
+        <p>Applying for a Gender Recognition Certificate costs £5.</p>
+
         <p>If paying by cheque, phone or postal order, you will be given instructions for how to pay this when you receive your application acknowledgment.</p>
 
         {{ govukInsetText({
@@ -55,6 +57,14 @@
               html: 'Postal order',
               value: 'Postal order',
               checked: checked('payment-method','Postal order')
+            },
+            {
+              divider: 'or'
+            },
+            {
+              html: 'I am applying for help paying the fee',
+              value: 'I am applying for help paying the fee',
+              checked: checked('payment-method','I am applying for help paying the fee')
             }
           ]
         }) }}

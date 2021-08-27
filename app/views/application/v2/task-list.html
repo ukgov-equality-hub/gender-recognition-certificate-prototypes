@@ -8,6 +8,11 @@
         Your application
       </h1>
 
+      <p>This is where you can provide your personal details and upload your documents.</p>
+
+      <p>Once you have completed all sections you can submit your application.</p>
+
+
 
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">
         Application incomplete
@@ -25,7 +30,9 @@
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                Accept declaration
+                <a href="declaration">
+                  Accept declaration
+                </a>
               </span>
               <strong class="govuk-tag app-task-list__tag">Completed</strong>
             </li>
@@ -268,7 +275,7 @@
             <li class="app-task-list__item">
               {% if data['tasks-completed']+1 == data['tasks-total'] %}
                 <span class="app-task-list__task-name">
-                  <a href="payment/help-check">
+                  <a href="payment/method">
                     Submit and pay
                   </a>
                 </span>
