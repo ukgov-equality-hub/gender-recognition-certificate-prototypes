@@ -31,8 +31,6 @@
 
         <p class="govuk-!-margin-bottom-8">If your application is successful, the General Register Office will contact you about your new birth certificate and, if appropriate, a new certificate for your marriage or civil partnership.</p>
 
-
-
         {{ govukCheckboxes({
           idPrefix: 'declaration',
           name: 'declaration',
@@ -40,12 +38,12 @@
             {
               html: 'I certify that I meet the requirements for applying for a Gender Recognition Certificate and I consent to the General Register Office contacting me about my application',
               value: 'dec1',
-              checked: checked('declaration','dec1'),
+              checked: checked('declaration','dec1')
             },
             {
               html: 'I certify that any information I provide is correct and I understand making a false application is an offence',
               value: 'dec2',
-              checked: checked('declaration','dec2'),
+              checked: checked('declaration','dec2')
             }
           ]
         }) }}
