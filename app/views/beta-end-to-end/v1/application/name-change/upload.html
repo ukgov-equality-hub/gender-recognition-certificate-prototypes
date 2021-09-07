@@ -30,7 +30,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?name-change-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -47,13 +47,16 @@
           name: 'name-change',
           value: data['name-change'],
           label: {
-            text: 'Upload a file',
+            text: 'Select a file to upload',
             classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'The file must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
           }
         }) }}
 
         {{ govukButton({
-          html: 'Upload document',
+          html: 'Upload file',
           classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
         }) }}
 

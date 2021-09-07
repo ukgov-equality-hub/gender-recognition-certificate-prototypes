@@ -55,7 +55,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -71,7 +71,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -87,7 +87,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -103,7 +103,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -119,7 +119,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -135,7 +135,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -151,7 +151,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -167,7 +167,7 @@
               actions: {
                 items: [
                   {
-                    href: '#0',
+                    href: 'upload?evidence-started=false',
                     text: 'Remove'
                   }
                 ]
@@ -175,7 +175,7 @@
             }
           ]
         }) }}
-      {% endif %}
+      {% else %}
 
       <form method="post">
 
@@ -184,17 +184,21 @@
           name: 'evidence',
           value: data['evidence'],
           label: {
-            text: 'Upload a file',
+            text: 'Select a file to upload',
             classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'The file must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
           }
         }) }}
 
         {{ govukButton({
-          html: 'Upload document',
+          html: 'Upload file',
           classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
         }) }}
 
       </form>
+      {% endif %}
 
       <div class="govuk-button-group">
         {{ govukButton({
