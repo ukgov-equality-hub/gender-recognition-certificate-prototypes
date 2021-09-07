@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% set backLink %}
+  {% if data['current-check'] == 'Civil partnership' %}
+    {% if data['same-time'] == 'No' %}
+      same-time
+    {% elif data['stay-together'] == 'No' %}
+      stay-together
+    {% else %}
+      protected-civil-partnership
+    {% endif %}
+  {% else %}
+    {% if data['stay-together'] == 'No' %}
+      stay-together
+    {% else %}
+      protected-marriage
+    {% endif %}
+  {% endif %}
+{% endset %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: backLink
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Interim Gender Recognition Certificate
+        </h1>
+
+        <p>You cannot receive a full Gender Recognition Certificate if you want to remain married but do not have a declaration of consent from your spouse.</p>
+
+        <p class="govuk-!-margin-bottom-2">However, you can apply for an interim Gender Recognition Certificate if you are:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>currently married but do not intend to stay married,</li>
+          <li>are not able to provide a declaration of consent from your spouse</li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-8">The interim certificate can be used as grounds to end your marriage. You will then be able to receive a full Gender Recognition Certificate.</p>
+
+
+        {{ govukRadios({
+          idPrefix: 'interim-check',
+          name: 'interim-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Do you want to apply for an interim Gender Recognition Certificate?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('interim-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('interim-check','No')
+            }
+          ]
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

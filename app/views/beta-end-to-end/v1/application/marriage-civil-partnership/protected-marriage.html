@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'current-check'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Protected marriages
+        </h1>
+
+        <p>You may apply to the Gender Recognition Panel for a GRC while staying married if you are in a protected marriage.</p>
+
+        <p class="govuk-!-margin-bottom-2">Your marriage is protected if:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>you were married under the law of England, Wales or Northern Ireland (your marriage is called a &lsquo;protected&rsquo; marriage)</li>
+          <li>your marriage was solemnised in Scotland (your marriage is called a &lsquo;Scottish protected marriage&rsquo;)</li>
+          <li>you were married under the law of a country or territory outside of the UK (your marriage is called a &lsquo;protected&rsquo; marriage).</li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-8">Your spouse will need to agree to the marriage continuing after your gender recognition by completing a statutory declaration.</p>
+
+
+        {{ govukRadios({
+          idPrefix: 'protected-marriage',
+          name: 'protected-marriage',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Is your marriage a protected marriage?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('protected-marriage','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('protected-marriage','No')
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

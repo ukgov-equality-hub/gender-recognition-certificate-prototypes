@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{# {% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../declaration'
+  }) }}
+{% endblock %} #}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Returning to your application
+        </h1>
+
+        <p>Your application will be saved automatically as you progress.</p>
+
+        <p>You will need your reference number and memorable word if you want to return to your application later.</p>
+
+        {{ govukInsetText({
+          html: '<p>Your reference number is: <br><span class="callout__title">5BKQ-V2V0</span></p>',
+          classes: 'callout'
+        }) }}
+
+
+
+
+        {{ govukInput({
+          id: 'memorable-word',
+          name: 'memorable-word',
+          value: data['memorable-word'],
+          classes: 'govuk-!-width-three-quarters',
+          label: {
+            html: 'Enter a memorable word',
+            classes: 'govuk-label--s'
+          },
+          hint: {
+            html: 'You&rsquo;ll be asked for this when you return to your saved application'
+          }
+        }) }}
+
+        {{ govukInput({
+          id: 'return-email',
+          name: 'return-email',
+          value: data['return-email'],
+          type: 'email',
+          autocomplete: 'email',
+          spellcheck: false,
+          classes: 'govuk-!-width-three-quarters',
+          label: {
+            text: 'Email address (optional)',
+            classes: 'govuk-label--s'
+          },
+          hint: {
+            html: 'If you enter your email address we will send you confirmation of your reference number and you will be able to reset your memorable word if you forget it'
+          }
+        }) }}
+
+
+        {{ govukInsetText({
+          text: ' If you lose your reference number you will need to start your application again.'
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Save and continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
