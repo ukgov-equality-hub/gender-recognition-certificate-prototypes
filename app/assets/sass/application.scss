@@ -29,6 +29,19 @@ code {
 @import "govuk/guide";
 
 
+
+.remove-link {
+  &:link,
+  &:visited {
+    color: #d4351c;
+  }
+
+  &:hover {
+    color: #aa2a16;
+  }
+}
+
+
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 // .govuk-hint * {
@@ -63,4 +76,19 @@ code {
 
 .callout__title {
   @include govuk-font($size: 48, $weight: bold);
+}
+
+
+
+// Modify the moj multi upload drop styles
+.moj-multi-file-upload__dropzone {
+  border: 4px solid $govuk-link-colour;
+  outline: 0;
+  padding: 60px 15px;
+}
+
+.moj-multi-file-upload--dragover {
+	background-color: white;
+  color: $govuk-focus-text-colour;
+  border-color: $govuk-focus-colour;
 }

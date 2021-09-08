@@ -23,50 +23,12 @@
 
       <p>There is a <a rel="noreferrer noopener" target="_blank" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/937304/t493-eng.pdf">list of specialists in the field of gender dysphoria (opens in new tab)</a>.</p>
 
-      <p>You do not have to have a report from someone on this list, as long as it&rsquo;s from a medical practitioner or psychologist registered in the field of gender dysphoria.</p>
+      <p class="govuk-!-margin-bottom-8">You do not have to have a report from someone on this list, as long as it&rsquo;s from a medical practitioner or psychologist registered in the field of gender dysphoria.</p>
 
-      {% if data['medical-reports-started'] == 'true' %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: 'Document 1'
-              },
-              value: {
-                text: data['medical-report'] or 'medical-report-1.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?medical-reports-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 2'
-              },
-              value: {
-                text: 'medical-report-2.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?medical-reports-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
-      {% else %}
 
       <form method="post">
 
-        {{ govukFileUpload({
+        {# {{ govukFileUpload({
           id: 'medical-report',
           name: 'medical-report',
           value: data['medical-report'],
@@ -82,17 +44,20 @@
         {{ govukButton({
           html: 'Upload file',
           classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
-        }) }}
+        }) }} #}
 
 
-        {# {% set uploadHtml %}
+        {% set uploadHtml %}
           {{ govukFileUpload({
             id: "medical-reports",
             name: "medical-reports",
             classes: 'moj-multi-file-upload__input',
             label: {
-              text: "Upload a file",
+              text: "Upload files",
               classes: 'govuk-label--m'
+            },
+            hint: {
+              text: 'The files must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
             },
             attributes: { multiple: '' }
           }) }}
@@ -109,10 +74,9 @@
             items: uploadedFiles
           },
           uploadHtml: uploadHtml
-        }) }} #}
+        }) }}
 
       </form>
-      {% endif %}
 
       <div class="govuk-button-group">
         {{ govukButton({

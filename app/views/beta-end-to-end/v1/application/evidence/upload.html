@@ -24,8 +24,18 @@
         <li>try to include documents that are dated throughout the year</li>
       </ul>
 
-
-      {% set evidenceList %}
+      <p class="govuk-!-margin-bottom-2">Examples of what you could provide:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+        <li>driving licence</li>
+        <li>passport</li>
+        <li>payslips, P60 or P45</li>
+        <li>benefits or tax letters and documents</li>
+        <li>bank statements and utility bills</li>
+        <li>letters from official, professional or business organisations like solicitors, accountants, dentists, doctors and employers</li>
+        <li>academic certificates or documentation</li>
+        <li>health care or identity cards including photo ID issued by an official organisation</li>
+      </ul>
+      {# {% set evidenceList %}
         <ul class="govuk-list govuk-list--bullet">
           <li>driving licence</li>
           <li>passport</li>
@@ -40,165 +50,41 @@
       {{ govukDetails({
         summaryText: 'Examples of what you could provide',
         html: evidenceList
-      }) }}
+      }) }} #}
 
-      {% if data['evidence-started'] == 'true' %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: 'Document 1'
-              },
-              value: {
-                text: data['evidence'] or 'bank-statement-july-2021.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 2'
-              },
-              value: {
-                text: 'bank-statement-january-2021.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 3'
-              },
-              value: {
-                text: 'bank-statement-july-2020.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 4'
-              },
-              value: {
-                text: 'driving_licence.png'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 5'
-              },
-              value: {
-                text: 'Passport.JPEG'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 6'
-              },
-              value: {
-                text: 'council-tax-2021.png'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 7'
-              },
-              value: {
-                text: 'university_degree.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Document 8'
-              },
-              value: {
-                text: 'P45-2020.png'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?evidence-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
-      {% else %}
 
       <form method="post">
 
-        {{ govukFileUpload({
-          id: 'evidence',
-          name: 'evidence',
-          value: data['evidence'],
-          label: {
-            text: 'Select a file to upload',
-            classes: 'govuk-label--m'
-          },
-          hint: {
-            text: 'The file must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
-          }
-        }) }}
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: "medical-reports",
+            name: "medical-reports",
+            classes: 'moj-multi-file-upload__input',
+            label: {
+              text: "Upload files",
+              classes: 'govuk-label--m'
+            },
+            hint: {
+              text: 'The files must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
+            },
+            attributes: { multiple: '' }
+          }) }}
 
-        {{ govukButton({
-          html: 'Upload file',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
+          {{govukButton({
+            text: 'Upload file',
+            classes: 'govuk-button--secondary moj-multi-file-upload__button'
+          })}}
+        {% endset %}
+
+        {{ mojMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          },
+          uploadHtml: uploadHtml
         }) }}
 
       </form>
-      {% endif %}
 
       <div class="govuk-button-group">
         {{ govukButton({

@@ -15,49 +15,37 @@
         Upload name change documents
       </h1>
 
-      <p>This is where you can provide any change of name documents if your name is different from what appears on your birth certificate. </p>
-
-      {% if data['name-change-started'] == 'true' %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: 'Document 1'
-              },
-              value: {
-                text: data['name-change'] or 'deed-poll.pdf'
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'upload?name-change-started=false',
-                    text: 'Remove'
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
-      {% endif %}
+      <p class="govuk-!-margin-bottom-8">This is where you can provide any change of name documents if your name is different from what appears on your birth certificate. </p>
 
       <form method="post">
 
-        {{ govukFileUpload({
-          id: 'name-change',
-          name: 'name-change',
-          value: data['name-change'],
-          label: {
-            text: 'Select a file to upload',
-            classes: 'govuk-label--m'
-          },
-          hint: {
-            text: 'The file must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
-          }
-        }) }}
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: "medical-reports",
+            name: "medical-reports",
+            classes: 'moj-multi-file-upload__input',
+            label: {
+              text: "Upload files",
+              classes: 'govuk-label--m'
+            },
+            hint: {
+              text: 'The files must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
+            },
+            attributes: { multiple: '' }
+          }) }}
 
-        {{ govukButton({
-          html: 'Upload file',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
+          {{govukButton({
+            text: 'Upload file',
+            classes: 'govuk-button--secondary moj-multi-file-upload__button'
+          })}}
+        {% endset %}
+
+        {{ mojMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          },
+          uploadHtml: uploadHtml
         }) }}
 
       </form>
