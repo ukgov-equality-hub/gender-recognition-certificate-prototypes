@@ -32,7 +32,6 @@
         {{ govukInput({
           id: 'memorable-word',
           name: 'memorable-word',
-          value: data['memorable-word'],
           classes: 'govuk-!-width-three-quarters',
           label: {
             html: 'Enter a memorable word',
@@ -44,9 +43,8 @@
         }) }}
 
         {{ govukInput({
-          id: 'return-email',
-          name: 'return-email',
-          value: data['return-email'],
+          id: 'contact-by-email',
+          name: 'contact-by-email',
           type: 'email',
           autocomplete: 'email',
           spellcheck: false,
