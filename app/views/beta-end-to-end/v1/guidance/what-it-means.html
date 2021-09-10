@@ -32,11 +32,11 @@
             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
               <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
             </li>
-            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active gem-c-contents-list__list-item--active">
-              What it means to legally change your gender
-            </li>
             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
               <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active gem-c-contents-list__list-item--active">
+              What it means to legally change your gender
             </li>
             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
               <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
@@ -53,15 +53,9 @@
 
       <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
 
-        <p>The law sometimes treats genders differently.</p>
+        <p>The law sometimes treats genders differently. Once you receive a Gender Recognition Certificate you will receive the same rights as anybody else in that gender. </p>
 
-        <p>Although you don’t need a Gender Recognition Certificate to change your driving licence or passport or have your gender recognised by some government departments, this is not legal recognition.</p>
-
-        <p>A Gender Recognition Certificate will:</p>
-        <ul>
-          <li>allow you to get a new birth certificate that shows your affirmed gender</li>
-          <li>allow HMRC to change your gender in its records</li>
-        </ul>
+        <p>You should consider if receiving legal gender recognition will change your personal circumstances.</p>
 
 
 
@@ -69,13 +63,16 @@
           Changes to pensions
         </h2>
 
-        <p>You legally have to tell HMRC if you have received a Gender Recognition Certificate. You can ask us to do this during the application process, or you can tell them yourself after you receive your certificate.</p>
+        <p>Depending on when you were born, changing your gender could affect your State Pension age.</p>
 
-        <p>Depending on when you were born, changing your gender might affect your State Pension age. <a href="https://www.gov.uk/state-pension-age">Check your State Pension age</a>.</p>
+        {{ govukInsetText({
+          html: '<p><a href="https://www.gov.uk/state-pension-age">Check your State Pension age</a>.</p>'
+        }) }}
 
-        <p>A change in gender could also affect other pensions such as war pensions or workplace pensions and any pension your spouse or civil partner may receive based on your earnings or National Insurance contributions.</p>
+        <p>A change in gender can also affect other pensions such as war or workplace pensions, or any pension your spouse or civil partner may receive based on your earnings or National Insurance contributions.</p>
 
         <p>You should speak to the providers of any pensions so they can tell you if receiving a Gender Recognition Certificate changes anything.</p>
+
 
 
 
@@ -83,13 +80,13 @@
           Marriages and civil partnerships
         </h2>
 
-        <p>If you are married or in a civil partnership, you can apply for a Gender Recognition Certificate.</p>
+        <p>If you intend to stay married or in a civil partnership after you receive a Gender Recognition Certificate then you will need to provide a statutory declaration of consent from your spouse or civil partner as part of your application.</p>
 
-        <p>If you intend to stay married or in a civil partnership after your gender recognition then you will need to provide a declaration of consent from your spouse or civil partner as part of your application.</p>
-
-        <p>If they do not consent to it continuing, you will have to end your marriage or civil partnership. You can apply for an interim Gender Recognition Certificate, which can be used as grounds to end the marriage or civil partnership. Once it has ended, you will receive a full certificate.</p>
+        <p>If they do not consent or you do not intend to stay married or in a civil partnership then you can apply for an interim Gender Recognition Certificate. This can be used as grounds to end the marriage or civil partnership. Once it has ended, you will receive a full certificate.</p>
 
         <p>If you were married or entered into a civil partnership outside the UK, you should consider whether a legal gender change will have an impact on your marriage or civil partnership in that country.</p>
+
+
 
 
 
@@ -98,31 +95,21 @@
           Children
         </h2>
 
-        <p>Receiving a Gender Recognition Certificate does not affect your legal status as a father or mother if you have children.</p>
-
+        <p>Receiving a Gender Recognition Certificate does not affect your legal status as the father or mother if you have children.</p>
         <p>Your rights and responsibilities as a parent are not affected.</p>
 
-
-
-        <h2>
-          If you chose to revert to your birth gender
-        </h2>
-
-        <p>If you want to revert to your birth gender after receiving a GRC then you will need to apply for a new GRC.</p>
-
-        <p>You would need to meet the requirements in the same way you did when making the previous application.</p>
 
 
       </div>
 
       {{ govukPagination({
         previous: {
-          href: 'who-can-apply',
-          text: 'Who can apply'
-        },
-        next: {
           href: 'documents-needed',
           text: 'Documents you need to provide'
+        },
+        next: {
+          href: 'apply',
+          text: 'Apply for a Gender Recognition Certificate'
         }
       }) }}
 

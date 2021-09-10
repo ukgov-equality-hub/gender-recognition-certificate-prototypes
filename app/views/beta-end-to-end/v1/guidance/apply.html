@@ -33,10 +33,10 @@
               <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
             </li>
             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
             </li>
             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
             </li>
             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active">
               Apply for a Gender Recognition Certificate
@@ -53,39 +53,24 @@
 
       <div class="gem-c-govspeak govuk-govspeak">
 
-        <p>​​You can use this service to apply for a Gender Recognition Certificate online.</p>
+        <p>You can use this service to apply for a Gender Recognition Certificate online. </p>
 
         <p>It will guide you through the information and documents you need to provide by asking questions about your circumstances.</p>
 
         <p>During the application you will be able to:</p>
         <ul>
           <li>provide your personal and contact details</li>
-          <li>upload evidence that you&rsquo;ve been living in your acquired gender</li>
-          <li>upload your medical reports</li>
+          <li>upload evidence that you&rsquo;ve been living in your acquired gender, if applicable</li>
+          <li>upload your medical reports, if applicable</li>
           <li>pay the application fee</li>
         </ul>
         <p>You will be able to return to your application at any time.</p>
 
         {{ govukInsetText({
-          html: '<p>While most documents can be uploaded online, there are others that you will need to post to us, such as your statutory declaration. </p>
+          html: '<p>Most documents can be uploaded online, including your medical reports, evidence of living in your gender, and any change of name documents. </p>
 
-          <p>What you need to send us depends on the information you provide during your application.</p>'
+          <p>Documents that require original or certified copies like birth certificates and statutory declarations will need to be posted after you&rsquo;ve submitted your application. After you have submitted your application you will have 6 months to post all remaining documents to us.</p>'
         }) }}
-
-        <h2>
-          Next steps
-        </h2>
-
-        <p>After you apply we will write to you to confirm your application has been received. </p>
-
-        <p>The letter will also tell you which documents you need to send to us with instructions on how and where to send them.</p>
-
-        <p>Once you&rsquo;ve supplied those documents your application will be reviewed by the Gender Recognition Panel.</p>
-
-        <p>You will then be told if you will be issued with a Gender Recognition Certificate, and what you can do if your application has not been accepted.</p>
-
-        <p>Decisions take around 12 weeks on average.</p>
-
 
         {{ govukButton({
           text: 'Start now',
@@ -95,14 +80,41 @@
         <p><a href="../application/save-and-return/return">Return to a saved application</a></p>
 
 
+        
+
+        <h2>
+          Next steps
+        </h2>
+
+        <p>After you apply you will receive an email confirmation. You should then send any remaining documents to:</p>
+        <p class="contact">
+          Gender Recognition Panel<br>
+          PO Box 9300<br>
+          Leicester<br>
+          LE1 8DJ
+        </p>
+
+        <p>You should include your name and return address alongside these documents.</p>
+
+        <p>Once you&rsquo;ve supplied those documents your application will be reviewed by the Gender Recognition Panel. You will be contacted if the panel requires more information or documentation.</p>
+
+        <p>You will then be told if you will be issued with a Gender Recognition Certificate, and what you can do if your application has not been accepted.</p>
+
+        <p>Decisions take around 12 weeks on average.</p>
+
+
+
+
+
+
       </div>
 
 
 
       {{ govukPagination({
         previous: {
-          href: 'documents-needed',
-          text: 'Documents you need to provide'
+          href: 'what-it-means',
+          text: 'What it means to legally change your gender'
         }
       }) }}
 
