@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block header %}
+  {% include "includes/govuk-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="overview">Overview</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active gem-c-contents-list__list-item--active">
+              What it means to legally change your gender
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        What it means to legally change your gender
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+
+        <p>The law sometimes treats genders differently. Once you receive a Gender Recognition Certificate you will receive the same rights as anybody else in that gender. </p>
+
+        <p>You should consider if receiving legal gender recognition will change your personal circumstances.</p>
+
+
+
+        <h2>
+          Changes to pensions
+        </h2>
+
+        <p>Depending on when you were born, changing your gender could affect your State Pension age.</p>
+
+        {{ govukInsetText({
+          html: '<p><a href="https://www.gov.uk/state-pension-age">Check your State Pension age</a>.</p>'
+        }) }}
+
+        <p>A change in gender can also affect other pensions such as war or workplace pensions, or any pension your spouse or civil partner may receive based on your earnings or National Insurance contributions.</p>
+
+        <p>You should speak to the providers of any pensions so they can tell you if receiving a Gender Recognition Certificate changes anything.</p>
+
+
+
+
+        <h2>
+          Marriages and civil partnerships
+        </h2>
+
+        <p>If you intend to stay married or in a civil partnership after you receive a Gender Recognition Certificate then you will need to provide a statutory declaration of consent from your spouse or civil partner as part of your application.</p>
+
+        <p>If they do not consent or you do not intend to stay married or in a civil partnership then you can apply for an interim Gender Recognition Certificate. This can be used as grounds to end the marriage or civil partnership. Once it has ended, you will receive a full certificate.</p>
+
+        <p>If you were married or entered into a civil partnership outside the UK, you should consider whether a legal gender change will have an impact on your marriage or civil partnership in that country.</p>
+
+
+
+
+
+
+        <h2>
+          Children
+        </h2>
+
+        <p>Receiving a Gender Recognition Certificate does not affect your legal status as the father or mother if you have children.</p>
+        <p>Your rights and responsibilities as a parent are not affected.</p>
+
+
+
+      </div>
+
+      {{ govukPagination({
+        previous: {
+          href: 'documents-needed',
+          text: 'Documents you need to provide'
+        },
+        next: {
+          href: 'apply',
+          text: 'Apply for a Gender Recognition Certificate'
+        }
+      }) }}
+
+      {% include "includes/explore-topic.html" %}
+    </div>
+
+    {% include "includes/related-content.html" %}
+
+  </div>
+{% endblock %}

@@ -22,9 +22,8 @@ router.use('/', (req, res, next) => {
   next()
 })
 
-// Import routes from feature prototypes
-router.use(/\/(.)*\/v([0-9]+)/, (req, res, next) => {
-  return require(`./views/${req.originalUrl.split('/')[1]}/v${req.params[1]}/_routes`)(req, res, next);
+router.get('/', function (req, res) {
+  res.render('overview')
 })
 
 
