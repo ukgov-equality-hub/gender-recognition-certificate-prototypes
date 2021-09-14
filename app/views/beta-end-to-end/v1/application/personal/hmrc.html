@@ -26,19 +26,19 @@
         <p class="govuk-!-margin-bottom-8">You will have to do this if you pay tax in the Isle of Man or Channel Islands as we can only pass information to UK authorities.</p>
 
         {% set nino %}
-        {{ govukInput({
-          id: 'ni-number',
-          name: 'ni-number',
-          value: data['ni-number'],
-          classes: 'govuk-input--width-10',
-          label: {
-            html: 'National Insurance number',
-            classes: 'govuk-label--s'
-          },
-          hint: {
-            html: '<p class="govuk-hint">It&rsquo;s on your National Insurance card, benefit letter, payslip or P60. For example, &lsquo;QQ 12 34 56 C&rsquo;.</p>'
-          }
-        }) }}
+          {{ govukInput({
+            id: 'ni-number',
+            name: 'ni-number',
+            value: data['ni-number'],
+            classes: 'govuk-input--width-10',
+            label: {
+              html: 'National Insurance number',
+              classes: 'govuk-label--s'
+            },
+            hint: {
+              html: '<p class="govuk-hint">It&rsquo;s on your National Insurance card, benefit letter, payslip or P60. For example, &lsquo;QQ 12 34 56 C&rsquo;.</p>'
+            }
+          }) }}
         {% endset -%}
 
         {{ govukRadios({

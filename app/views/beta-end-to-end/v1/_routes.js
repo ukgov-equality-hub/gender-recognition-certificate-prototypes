@@ -51,15 +51,18 @@ router.post('/application/personal/name', function (req, res) {
 })
 
 router.post('/application/personal/name-for-correspondence-check', function (req, res) {
-  if (req.session.data['name-for-correspondence-check'] == 'No') {
-    req.session.data['personal-details-next'] = 'previous-names-check'
+  // if (req.session.data['name-for-correspondence-check'] == 'No') {
+  //   req.session.data['personal-details-next'] = 'previous-names-check'
+  //
+  //   res.redirect('previous-names-check');
+  // } else {
+  //   req.session.data['personal-details-next'] = 'name-for-correspondence'
+  //
+  //   res.redirect('name-for-correspondence');
+  // }
+  req.session.data['personal-details-next'] = 'previous-names-check'
 
-    res.redirect('previous-names-check');
-  } else {
-    req.session.data['personal-details-next'] = 'name-for-correspondence'
-
-    res.redirect('name-for-correspondence');
-  }
+  res.redirect('previous-names-check');
 })
 
 router.post('/application/personal/name-for-correspondence', function (req, res) {

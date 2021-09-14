@@ -13,6 +13,18 @@
 
       <form method="post">
 
+        {% set correspondenceName %}
+          {{ govukInput({
+            label: {
+              text: 'Full name'
+            },
+            id: 'correspondence-name',
+            name: 'correspondence-name',
+            autocomplete: 'name',
+            spellcheck: false
+          }) }}
+        {% endset -%}
+
         {{ govukRadios({
           idPrefix: 'name-for-correspondence-check',
           name: 'name-for-correspondence-check',
@@ -28,7 +40,10 @@
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('name-for-correspondence-check','Yes')
+              checked: checked('name-for-correspondence-check','Yes'),
+              conditional: {
+                html: correspondenceName
+              }
             },
             {
               html: 'No',

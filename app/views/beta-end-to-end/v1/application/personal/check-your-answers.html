@@ -18,7 +18,9 @@
 
       {% set name %}
         {% if data['first-name'] %}
-          {{ data['first-name'] + ' ' + data['last-name'] }}
+          {{ data['first-name'] }}
+          {{ ' ' + data['middle-name'] if data['middle-name'] }}
+          {{ ' ' + data['last-name'] if data['last-name'] }}
         {% else %}
           Rosie Armstrong
         {% endif %}
@@ -68,7 +70,7 @@
         rows: [
           {
             key: {
-              text: 'Name'
+              text: 'Name on certificate'
             },
             value: {
               text: name
@@ -77,6 +79,22 @@
               items: [
                 {
                   href: 'name',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Another name for contacting you'
+            },
+            value: {
+              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'name-for-correspondence-check',
                   text: 'Change'
                 }
               ]
@@ -98,38 +116,6 @@
               ]
             }
           },
-          {
-            key: {
-              text: 'Another name for contacting you'
-            },
-            value: {
-              text: data['name-for-correspondence-check'] or 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'name-for-correspondence-check',
-                  text: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Other name for contact'
-            },
-            value: {
-              html: data['name-for-correspondence']
-            },
-            actions: {
-              items: [
-                {
-                  href: 'name-for-correspondence',
-                  text: 'Change'
-                }
-              ]
-            }
-          } if data['name-for-correspondence-check'] == 'Yes',
           {
             key: {
               text: 'Address'
