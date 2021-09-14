@@ -13,6 +13,15 @@ router.get('*', function(req, res, next){
 })
 
 
+router.post('*', function(req, res, next){
+  if (req.session.data['cya']) {
+    delete req.session.data['cya']
+    res.redirect('check-your-answers');
+  } else {
+    next()
+  }
+})
+
 // Clear session data on apply page
 router.get('/guidance/apply', function (req, res, next) {
   req.session.destroy()
