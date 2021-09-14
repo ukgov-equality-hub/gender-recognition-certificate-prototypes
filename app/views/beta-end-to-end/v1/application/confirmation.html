@@ -19,10 +19,10 @@
         What happens next
       </h2>
 
-      <p>You will receive an application acknowledgment in the post which will include your GRP reference number and will request the documents you need to post.</p>
+      <p>You should now post us any remaining documents. Include your name and return address with them.</p>
 
-      <p class="govuk-!-margin-bottom-2">Based on your application these documents will be:</p>
-      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+      <p class="govuk-!-margin-bottom-2">Based on your application the documents that need to be posted are:</p>
+      <ul class="govuk-list govuk-list--bullet">
         <li>your original birth certificate or a certified copy</li>
         {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">statutory declaration for single applicants</a></li>' | safe if data['current-check'] == 'Neither' }}
         {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">statutory declaration for applicants</a></li>' | safe if data['current-check'] != 'Neither' }}
@@ -34,8 +34,23 @@
         {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
       </ul>
 
+      <p class="govuk-!-margin-bottom-2">They should be sent to:</p>
+      {{ govukInsetText({
+        html: 'Gender Recognition Panel<br>
+          PO Box 9300<br>
+          Leicester<br>
+          LE1 8DJ',
+          classes: 'govuk-!-margin-top-0'
+      }) }}
 
-      <p><a href="#0">What did you think of this service?</a> (takes 30 seconds)</p>
+      <p>Once you&rsquo;ve supplied these documents your application will be reviewed by the Gender Recognition Panel. You will be contacted if the panel requires more information or documentation.</p>
+
+      <p>You will then be told if you will be issued with a Gender Recognition Certificate, and what you can do if your application has not been accepted.</p>
+
+      <p>Decisions take around 12 weeks on average.</p>
+
+
+      <p class="govuk-!-margin-top-9"><a href="#0">What did you think of this service?</a> (takes 30 seconds)</p>
 
 
 
