@@ -23,7 +23,7 @@
               text: 'Payment method'
             },
             value: {
-              html: data['payment-method'] or 'Online using a credit or debit card'
+              html: data['payment-method'] or 'Over the phone'
             },
             actions: {
               items: [
@@ -55,7 +55,7 @@
       }) }}
 
 
-      {% if data['payment-method'] != 'Online using a credit or debit card' %}
+      {% if data['payment-method'] != 'Online' %}
         {{ govukButton({
           text: 'Submit application',
           href: '../confirmation'

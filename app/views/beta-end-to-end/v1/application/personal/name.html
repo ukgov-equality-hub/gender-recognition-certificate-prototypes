@@ -15,13 +15,11 @@
 
         {% call govukFieldset({
           legend: {
-            text: 'What is your name?',
+            text: 'What name do you want on your Gender Recognition Certificate?',
             classes: 'govuk-fieldset__legend--l',
             isPageHeading: true
           }
         }) %}
-
-          <p class="govuk-hint">This will be recorded on your Gender Recognition Certificate if you are successful.</p>
 
           {{ govukInput({
             id: 'first-name',
@@ -33,6 +31,19 @@
               classes: 'govuk-label--/l'
             },
             autocomplete: 'given-name',
+            spellcheck: false
+          }) }}
+
+          {{ govukInput({
+            id: 'middle-name',
+            name: 'middle-name',
+            value: data['middle-name'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'Middle names',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'additional-name',
             spellcheck: false
           }) }}
 

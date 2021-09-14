@@ -13,19 +13,23 @@
 
       <form method="post">
 
+        <h1 class="govuk-heading-l">
+          Change of name
+        </h1>
+
+        <p>If you have ever changed your name from what appears on your birth certificate, you will be asked to provide a copy of all change of name documents.</p>
+
+        <p class="govuk-!-margin-bottom-8">If you have changed your name more than once, you will need to provide documents for each name change.</p>
+
         {{ govukRadios({
           idPrefix: 'previous-names-check',
           name: 'previous-names-check',
           classes: '',
           fieldset: {
             legend: {
-              text: 'Have you changed your name from the name that appears on your birth certificate?',
-              isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              text: 'Have you ever changed your name?',
+              classes: 'govuk-fieldset__legend--m'
             }
-          },
-          hint: {
-            html: 'If you select yes, you&rsquo;ll need to provide a copy of all change of name documents or other documents to show any changes from the name appearing on your birth certificate to your current name.'
           },
           items: [
             {

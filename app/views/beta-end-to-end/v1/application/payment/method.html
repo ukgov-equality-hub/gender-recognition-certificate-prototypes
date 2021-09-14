@@ -19,12 +19,9 @@
 
         <p>Applying for a Gender Recognition Certificate costs £5.</p>
 
-        <p>If paying by cheque, phone or postal order, you will be given instructions for how to pay this when you receive your application acknowledgment.</p>
+        <p>If you want to pay online or over the phone, you will need your credit or debit card details.</p>
 
-        {{ govukInsetText({
-          text: 'If you fail to provide the correct fee, your application will not be processed until the Gender Recognition Panel receives the correct payment.',
-          classes: 'govuk-!-margin-bottom-8'
-        }) }}
+        <p class="govuk-!-margin-bottom-8">If you want to pay by cheque, phone or postal order, you will be told how to do this when you receive your application acknowledgment.</p>
 
 
         {{ govukRadios({
@@ -33,25 +30,25 @@
           classes: '',
           fieldset: {
             legend: {
-              text: 'How are you paying the fee?',
+              text: 'How do you want to pay the fee?',
               classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [
             {
+              html: 'Online',
+              value: 'Online',
+              checked: checked('payment-method','Online')
+            },
+            {
+              html: 'Over the phone',
+              value: 'Over the phone',
+              checked: checked('payment-method','Over the phone')
+            },
+            {
               html: 'Cheque',
               value: 'Cheque',
               checked: checked('payment-method','Cheque')
-            },
-            {
-              html: 'Online using a credit or debit card',
-              value: 'Online using a credit or debit card',
-              checked: checked('payment-method','Online using a credit or debit card')
-            },
-            {
-              html: 'Phone using a credit or debit card',
-              value: 'Phone using a credit or debit card',
-              checked: checked('payment-method','Phone using a credit or debit card')
             },
             {
               html: 'Postal order',

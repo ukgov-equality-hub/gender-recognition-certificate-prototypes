@@ -47,20 +47,14 @@ router.post('/application/personal/name', function (req, res) {
   req.session.data['personal-details-started'] = 'true'
   req.session.data['personal-details-next'] = 'name-for-correspondence-check'
 
-  res.redirect('previous-names-check');
-})
-
-router.post('/application/personal/previous-names-check', function (req, res) {
-  req.session.data['personal-details-next'] = 'name-for-correspondence-check'
-
   res.redirect('name-for-correspondence-check');
 })
 
 router.post('/application/personal/name-for-correspondence-check', function (req, res) {
   if (req.session.data['name-for-correspondence-check'] == 'No') {
-    req.session.data['personal-details-next'] = 'address'
+    req.session.data['personal-details-next'] = 'previous-names-check'
 
-    res.redirect('address');
+    res.redirect('previous-names-check');
   } else {
     req.session.data['personal-details-next'] = 'name-for-correspondence'
 
@@ -69,6 +63,12 @@ router.post('/application/personal/name-for-correspondence-check', function (req
 })
 
 router.post('/application/personal/name-for-correspondence', function (req, res) {
+  req.session.data['personal-details-next'] = 'previous-names-check'
+
+  res.redirect('previous-names-check');
+})
+
+router.post('/application/personal/previous-names-check', function (req, res) {
   req.session.data['personal-details-next'] = 'address'
 
   res.redirect('address');
@@ -87,15 +87,18 @@ router.post('/application/personal/contact-preferences', function (req, res) {
 })
 
 router.post('/application/personal/hmrc', function (req, res) {
-  if (req.session.data['notify-hmrc'] == 'No') {
-    req.session.data['personal-details-next'] = 'check-your-answers'
+  // if (req.session.data['notify-hmrc'] == 'No') {
+  //   req.session.data['personal-details-next'] = 'check-your-answers'
+  //
+  //   res.redirect('check-your-answers');
+  // } else {
+  //   req.session.data['personal-details-next'] = 'ni-number'
+  //
+  //   res.redirect('ni-number');
+  // }
+  req.session.data['personal-details-next'] = 'check-your-answers'
 
-    res.redirect('check-your-answers');
-  } else {
-    req.session.data['personal-details-next'] = 'ni-number'
-
-    res.redirect('ni-number');
-  }
+  res.redirect('check-your-answers');
 })
 
 router.post('/application/personal/ni-number', function (req, res) {

@@ -35,16 +35,15 @@
           Interim Gender Recognition Certificate
         </h1>
 
-        <p>You cannot receive a full Gender Recognition Certificate if you want to remain married but do not have a declaration of consent from your spouse.</p>
+        {% if data['current-check'] == 'Civil partnership' %}
+          <p>If you want to remain in your civil partnership but your partner has not signed a statutory declaration of consent, then you cannot receive a full Gender Recognition Certificate without ending your civil partnership first.</p>
 
-        <p class="govuk-!-margin-bottom-2">However, you can apply for an interim Gender Recognition Certificate if you are:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>currently married but do not intend to stay married,</li>
-          <li>are not able to provide a declaration of consent from your spouse</li>
-        </ul>
+          <p class="govuk-!-margin-bottom-8">An interim Gender Recognition Certificate will help you to do this. After you have used the interim certificate to end your civil partnership you will receive a full certificate.</p>
+        {% else %}
+          <p>If you want to remain married but your spouse has not signed a statutory declaration of consent, then you cannot receive a full Gender Recognition Certificate without ending your marriage first.</p>
 
-        <p class="govuk-!-margin-bottom-8">The interim certificate can be used as grounds to end your marriage. You will then be able to receive a full Gender Recognition Certificate.</p>
-
+          <p class="govuk-!-margin-bottom-8">An interim Gender Recognition Certificate will help you to do this. After you have used the interim certificate to end your marriage you will receive a full certificate.</p>
+        {% endif %}
 
         {{ govukRadios({
           idPrefix: 'interim-check',

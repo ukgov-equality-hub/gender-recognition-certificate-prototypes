@@ -17,15 +17,29 @@
           Notifying HMRC
         </h1>
 
-        <p>You are required by law to let HMRC know if you have received a Gender Recognition Certificate.</p>
+        <p>HMRC must be told if you have received a Gender Recognition Certificate.</p>
 
         <p>This is so they can update your tax, tax credit and benefit records.</p>
 
-        <p>If we don&rsquo;t let them know, you will have to send your Gender Recognition Certificate and National Insurance number to them yourself. </p>
+        <p>We can tell them on your behalf, otherwise <a href="https://www.gov.uk/tell-hmrc-change-of-details/gender-change" rel="noreferrer noopener" target="_blank">you will need to send your Gender Recognition Certificate and National Insurance number to them yourself (opens in new tab)</a>.</p>
 
-        <p>You will have to do this if you pay tax in the Isle of Man or Channel Islands as we can only pass information to UK authorities.</p>
+        <p class="govuk-!-margin-bottom-8">You will have to do this if you pay tax in the Isle of Man or Channel Islands as we can only pass information to UK authorities.</p>
 
-        <p class="govuk-!-margin-bottom-8">Once HMRC has been notified they will write to you at the address they have for you to tell you that your national insurance, tax, tax credits, benefits and pension records have been updated.</p>
+        {% set nino %}
+        {{ govukInput({
+          id: 'ni-number',
+          name: 'ni-number',
+          value: data['ni-number'],
+          classes: 'govuk-input--width-10',
+          label: {
+            html: 'National Insurance number',
+            classes: 'govuk-label--s'
+          },
+          hint: {
+            html: '<p class="govuk-hint">It&rsquo;s on your National Insurance card, benefit letter, payslip or P60. For example, &lsquo;QQ 12 34 56 C&rsquo;.</p>'
+          }
+        }) }}
+        {% endset -%}
 
         {{ govukRadios({
           idPrefix: 'notify-hmrc',
@@ -33,18 +47,18 @@
           classes: '',
           fieldset: {
             legend: {
-              text: 'If your application is accepted, would you like us to tell HMRC after you receive a Gender Recognition Certificate?',
+              text: 'Would you like us to tell HMRC after you receive a Gender Recognition Certificate?',
               classes: 'govuk-fieldset__legend--m'
             }
-          },
-          hint: {
-            text: 'If you select yes, we can pass this information to HMRC so you won’t have to do it yourself.'
           },
           items: [
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('notify-hmrc','Yes')
+              checked: checked('notify-hmrc','Yes'),
+              conditional: {
+                html: nino
+              }
             },
             {
               html: 'No',

@@ -35,6 +35,19 @@
           }) }}
 
           {{ govukInput({
+            id: 'middle-name-correspondence',
+            name: 'middle-name-correspondence',
+            value: data['middle-name-correspondence'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'Middle names',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'additional-name',
+            spellcheck: false
+          }) }}
+
+          {{ govukInput({
             id: 'last-name-correspondence',
             name: 'last-name-correspondence',
             value: data['last-name-correspondence'],
