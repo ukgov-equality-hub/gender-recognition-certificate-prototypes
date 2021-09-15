@@ -11,7 +11,9 @@
     <div class="govuk-grid-column-two-thirds">
       <p>We want to look at how improving the guidance content on GOV.UK would improve the service.</p>
 
-      <p>We tested guidance further in the <a href="/application/">application journeys</a> and updated it based on each round of research to reach the <a href="/beta-end-to-end/">proposed beta end-to-end prototype</a>.</p>
+      {{ govukInsetText({
+        html: '<p>We tested guidance further in the <a href="/application/">application journeys</a> and updated it based on each round of research to reach the <a href="/beta-end-to-end/">proposed beta end-to-end prototype</a>.</p>'
+      }) }}
 
       <h2 class="govuk-heading-m">
         Version 1
