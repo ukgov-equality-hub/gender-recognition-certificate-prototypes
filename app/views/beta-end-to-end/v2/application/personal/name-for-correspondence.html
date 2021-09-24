@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'name-for-correspondence-check'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: 'What name would you like us to use when contacting you?',
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true
+          }
+        }) %}
+
+          {{ govukInput({
+            id: 'first-name-correspondence',
+            name: 'first-name-correspondence',
+            value: data['first-name-correspondence'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'First name',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'given-name',
+            spellcheck: false
+          }) }}
+
+          {{ govukInput({
+            id: 'middle-name-correspondence',
+            name: 'middle-name-correspondence',
+            value: data['middle-name-correspondence'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'Middle names',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'additional-name',
+            spellcheck: false
+          }) }}
+
+          {{ govukInput({
+            id: 'last-name-correspondence',
+            name: 'last-name-correspondence',
+            value: data['last-name-correspondence'],
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              html: 'Last name',
+              classes: 'govuk-label--/l'
+            },
+            autocomplete: 'given-name',
+            spellcheck: false
+          }) }}
+
+        {% endcall %}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

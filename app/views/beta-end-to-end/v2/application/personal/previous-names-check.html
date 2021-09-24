@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'name-for-correspondence-check'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Change of name
+        </h1>
+
+        <p>If you have ever changed your name from what appears on your birth certificate, you will be asked to upload a copy of all change of name documents later.</p>
+
+        <p class="govuk-!-margin-bottom-8">If you have changed your name more than once, you will need to provide documents for each name change.</p>
+
+        {{ govukRadios({
+          idPrefix: 'previous-names-check',
+          name: 'previous-names-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Have you ever changed your name?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('previous-names-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('previous-names-check','No')
+            }
+          ]
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

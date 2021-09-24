@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block header %}
+  {% include "../_includes/govuk-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../_includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="overview">Overview</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active">
+              Apply for a Gender Recognition Certificate
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Apply for a Gender Recognition Certificate
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak">
+
+        <p>You can use this service to apply for a Gender Recognition Certificate online. </p>
+
+        <p>It will guide you through the information and documents you need to provide by asking questions about your circumstances.</p>
+
+        <p>During the application you will be able to:</p>
+        <ul>
+          <li>provide your personal and contact details</li>
+          <li>upload evidence that you&rsquo;ve been living in your acquired gender, if applicable</li>
+          <li>upload your medical reports, if applicable</li>
+          <li>pay the application fee</li>
+        </ul>
+        <p>You will be able to return to your application at any time.</p>
+
+        {{ govukInsetText({
+          html: '<p>Most documents can be uploaded online, including your medical reports, evidence of living in your gender, and any change of name documents. </p>
+
+          <p>Documents that require original or certified copies like birth certificates and statutory declarations will need to be posted after you&rsquo;ve submitted your application. After you have submitted your application you will have 6 months to post all remaining documents to us.</p>'
+        }) }}
+
+        {{ govukButton({
+          text: 'Start now',
+          href: '../application/declaration',
+          isStartButton: true
+        }) }}
+        <p><a href="../application/save-and-return/return">Return to a saved application</a></p>
+
+
+        
+
+        <h2>
+          Next steps
+        </h2>
+
+        <p>After you apply you will receive an email confirmation. You should then send any remaining documents to:</p>
+        <p class="contact">
+          Gender Recognition Panel<br>
+          PO Box 9300<br>
+          Leicester<br>
+          LE1 8DJ
+        </p>
+
+        <p>You should include your name and return address alongside these documents.</p>
+
+        <p>Once you&rsquo;ve supplied those documents your application will be reviewed by the Gender Recognition Panel. You will be contacted if the panel requires more information or documentation.</p>
+
+        <p>You will then be told if you will be issued with a Gender Recognition Certificate, and what you can do if your application has not been accepted.</p>
+
+        <p>Decisions take around 12 weeks on average.</p>
+
+
+
+
+
+
+      </div>
+
+
+
+      {{ govukPagination({
+        previous: {
+          href: 'what-it-means',
+          text: 'What it means to legally change your gender'
+        }
+      }) }}
+
+      {% include "../_includes/explore-topic.html" %}
+    </div>
+
+    {% include "../_includes/related-content.html" %}
+
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'fathers-name-check' if data['fathers-name-check'] == 'No' else 'fathers-name'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukInput({
+          id: 'place-of-birth',
+          name: 'place-of-birth',
+          value: data['place-of-birth'],
+          classes: 'govuk-!-width-three-quarters',
+          label: {
+            html: 'What is the place of birth on the certificate?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

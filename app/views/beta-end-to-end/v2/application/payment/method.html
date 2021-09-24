@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../task-list'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Method of payment
+        </h1>
+
+        <p>Applying for a Gender Recognition Certificate costs £5.</p>
+
+        <p>If you want to pay online or over the phone, you will need your credit or debit card details.</p>
+
+        <p class="govuk-!-margin-bottom-8">If you want to pay by cheque, phone or postal order, you will be told how to do this when you receive your application acknowledgment.</p>
+
+
+        {{ govukRadios({
+          idPrefix: 'payment-method',
+          name: 'payment-method',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'How do you want to pay the fee?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              html: 'Online',
+              value: 'Online',
+              checked: checked('payment-method','Online')
+            },
+            {
+              html: 'Over the phone',
+              value: 'Over the phone',
+              checked: checked('payment-method','Over the phone')
+            },
+            {
+              html: 'Cheque',
+              value: 'Cheque',
+              checked: checked('payment-method','Cheque')
+            },
+            {
+              html: 'Postal order',
+              value: 'Postal order',
+              checked: checked('payment-method','Postal order')
+            },
+            {
+              divider: 'or'
+            },
+            {
+              html: 'I am applying for help paying the fee',
+              value: 'I am applying for help paying the fee',
+              checked: checked('payment-method','I am applying for help paying the fee')
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

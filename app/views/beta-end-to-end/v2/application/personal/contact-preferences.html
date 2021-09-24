@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'address'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {% set emailHtml %}
+          {{ govukInput({
+            id: 'contact-by-email',
+            name: 'contact-by-email',
+            type: 'email',
+            autocomplete: 'email',
+            spellcheck: false,
+            classes: 'govuk-!-width-three-quarters',
+            label: {
+              text: 'Email address'
+            }
+          }) }}
+        {% endset -%}
+
+        {% set phoneHtml %}
+          {{ govukInput({
+            id: 'contact-by-phone',
+            name: 'contact-by-phone',
+            type: 'tel',
+            autocomplete: 'tel',
+            classes: 'govuk-input--width-20',
+            label: {
+              text: 'Phone number'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: 'contact',
+          name: 'contact',
+          fieldset: {
+            legend: {
+              text: 'How would you prefer to be contacted if we have any questions about your application?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              value: 'Email',
+              text: 'Email',
+              checked: checked('contact','Email'),
+              conditional: {
+                html: emailHtml
+              }
+            },
+            {
+              value: 'Phone',
+              text: 'Phone',
+              checked: checked('contact','Phone'),
+              conditional: {
+                html: phoneHtml
+              }
+            },
+            {
+              value: 'Post',
+              text: 'Post',
+              checked: checked('contact','Post')
+            }
+          ]
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
