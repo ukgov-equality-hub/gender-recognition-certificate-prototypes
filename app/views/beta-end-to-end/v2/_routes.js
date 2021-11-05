@@ -38,6 +38,25 @@ router.get('/guidance/apply', function (req, res, next) {
 /////////////////////////////////////////////////////
 // BEFORE YOU START
 //
+
+router.post('/application/overseas-check', function (req, res) {
+  if (req.session.data['overseas-check'] == 'Yes') {
+    res.redirect('overseas-approved-check');
+  } else {
+    res.redirect('declaration');
+  }
+})
+
+router.post('/application/overseas-approved-check', function (req, res) {
+  if (req.session.data['overseas-approved-check'] == 'Yes') {
+    req.session.data['overseas'] = true
+  } else {
+    delete req.session.data['overseas']
+  }
+
+  res.redirect('declaration');
+})
+
 router.post('/application/declaration', function (req, res) {
   res.redirect('save-and-return/start-application');
 })

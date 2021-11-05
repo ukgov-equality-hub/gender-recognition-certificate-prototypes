@@ -10,13 +10,14 @@
     <div class="govuk-grid-column-two-thirds">
 
       {{ govukPanel({
-        titleText: 'Application submitted'
+        titleText: 'Application submitted',
+        html: 'You have 6 months to post all remaining documents to us'
       }) }}
 
       <p>We have sent you a confirmation email.</p>
 
       <h2 class="govuk-heading-m">
-        What happens next
+        What you need to do next
       </h2>
 
       <p>You should now post us any remaining documents. Include your name and return address with them.</p>
@@ -32,6 +33,7 @@
         {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
         {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
         {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
+        {{ '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe if data['overseas'] }}
       </ul>
 
       <p class="govuk-!-margin-bottom-2">They should be sent to:</p>

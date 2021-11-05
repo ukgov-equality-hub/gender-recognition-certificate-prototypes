@@ -311,6 +311,7 @@
 
 
 
+      {% if not data['overseas'] %}
 
       <h2 class="govuk-heading-m">
         Your medical reports
@@ -372,6 +373,8 @@
           }
         ]
       }) }}
+
+      {% endif %}
 
 
 
@@ -474,6 +477,7 @@
         {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
         {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
         {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
+        {{ '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe if data['overseas'] }}
       </ul>
 
 

@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
-{# {% block beforeContent %}
+{% block beforeContent %}
   {{ govukBackLink({
     text: 'Back',
-    href: 'apply'
+    href: 'overseas-approved-check' if data['overseas-check'] == 'Yes' else 'overseas-check'
   }) }}
-{% endblock %} #}
+{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -18,12 +18,19 @@
         </h1>
 
         <p class="govuk-!-margin-bottom-2">You can apply for a Gender Recognition Certificate if you:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>are 18 or over</li>
-          <li>have been diagnosed with gender dysphoria </li>
-          <li>are living in your affirmed gender and have been for at least 2 years</li>
-          <li>you intend to live in your affirmed gender for the rest of your life</li>
-        </ul>
+        {% if data['overseas'] %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>are 18 or over</li>
+            <li>you have a legal document showing your gender recognition from that country</li>
+          </ul>
+        {% else %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>are 18 or over</li>
+            <li>have been diagnosed with gender dysphoria </li>
+            <li>are living in your affirmed gender and have been for at least 2 years</li>
+            <li>you intend to live in your affirmed gender for the rest of your life</li>
+          </ul>
+        {% endif %}
 
         <p>If you were born in the UK, the Gender Recognition Panel will tell the relevant General Register Office about your application.</p>
 
