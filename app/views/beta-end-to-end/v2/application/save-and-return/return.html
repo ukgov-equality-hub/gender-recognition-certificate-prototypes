@@ -4,34 +4,36 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <form method="post">
+
         <h1 class="govuk-heading-l">
           Return to a saved application
         </h1>
 
-
         {{ govukInput({
           classes: 'govuk-!-width-three-quarters',
           label: {
-            html: 'Enter your reference number',
-            classes: 'govuk-label--/s'
+            html: 'Email address',
+            classes: 'govuk-label--s'
+          },
+          hint: {
+            html: 'We&rsquo;ll send you a link next to confirm that you have access to it'
           }
         }) }}
 
         {{ govukInput({
           classes: 'govuk-!-width-three-quarters',
           label: {
-            html: 'Enter your memorable word',
-            classes: 'govuk-label--/s'
+            html: 'Memorable word',
+            classes: 'govuk-label--s'
           }
         }) }}
-
-
-
 
         {{ govukButton({
-          html: 'Continue',
-          href: '../task-list'
+          html: 'Continue'
         }) }}
+
+      </form>
 
     </div>
   </div>
