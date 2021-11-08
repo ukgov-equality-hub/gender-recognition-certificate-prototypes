@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block skipLink %}
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-m">
+    Subject: Your GRC application
+  </h1>
+
+  <p class="govuk-body-s">
+    <strong>GRC application team</strong> &lt;noreply@grc.application.gov.uk&gt;<br>
+    <span style="color:gray">to {{ data['return-email'] or 'example@email.com' }}</span>
+  </p>
+</div>
+{% endblock %}
+
+{% block header %}
+<style>
+  html, body {
+    font-family: arial, sans-serif!important;
+  }
+  .govuk-template__body {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .govuk-width-container {
+    padding: 10px 20px 0;
+  }
+  .govuk-phase-banner {
+    display: none;
+  }
+</style>
+{{ govukHeader({}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <p>Hello</p>
+
+      <p>Click this link to confirm your email address and continue your application:</p>
+
+      <p><a href="../task-list?signedin=true" style="color: blue">https://www.grc-application.service.gov.uk/validate/XBJ7DKNUA3VJ</a></p>
+
+      <p>This link can only be used once. The link will run out in 24 hours.</p>
+
+      <p>Kind regards</p>
+
+      <p>GRC application team</p>
+
+
+
+    </div>
+  </div>
+{% endblock %}
+
+{# Remove footer #}
+{% block footer %}{% endblock %}

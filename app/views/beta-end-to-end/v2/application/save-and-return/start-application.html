@@ -17,30 +17,9 @@
           Returning to your application
         </h1>
 
-        <p>Your application will be saved automatically as you progress.</p>
+        <p>You can choose to save your application as you progress. If you do you&rsquo;ll be able to return to it within 90 days of last accessing it.</p>
 
-        <p>You will need your reference number and memorable word if you want to return to your application later.</p>
-
-        {{ govukInsetText({
-          html: '<p>Your reference number is: <br><span class="callout__title">5BKQ-V2V0</span></p>',
-          classes: 'callout'
-        }) }}
-
-
-
-
-        {{ govukInput({
-          id: 'memorable-word',
-          name: 'memorable-word',
-          classes: 'govuk-!-width-three-quarters',
-          label: {
-            html: 'Enter a memorable word',
-            classes: 'govuk-label--s'
-          },
-          hint: {
-            html: 'You&rsquo;ll be asked for this when you return to your saved application'
-          }
-        }) }}
+        <p>You&rsquo;ll need your email address and memorable word if you want to return to your application later. You&rsquo;ll be asked for your memorable word when you return to your application or if you speak to anyone on the phone about your it.</p>
 
         {{ govukInput({
           id: 'contact-by-email',
@@ -50,23 +29,33 @@
           spellcheck: false,
           classes: 'govuk-!-width-three-quarters',
           label: {
-            text: 'Email address (optional)',
+            text: 'Email address',
             classes: 'govuk-label--s'
           },
           hint: {
-            html: 'If you enter your email address we will send you confirmation of your reference number and you will be able to reset your memorable word if you forget it'
+            html: 'We&rsquo;ll send you a link next to confirm that you have access to it'
           }
         }) }}
 
-
-        {{ govukInsetText({
-          text: 'If you do not provide your email address and you lose your reference number, you will need to start your application again.'
+        {{ govukInput({
+          id: 'memorable-word',
+          name: 'memorable-word',
+          classes: 'govuk-!-width-three-quarters',
+          label: {
+            html: 'Memorable word',
+            classes: 'govuk-label--s'
+          },
+          hint: {
+            html: 'You will not be able to change this later'
+          }
         }) }}
 
 
         {{ govukButton({
           html: 'Save and continue'
         }) }}
+
+        <p><a class="govuk-link--no-visited-state" href="../task-list?signedin=false">I do not want to save my progress as I go</a></p>
 
       </form>
 

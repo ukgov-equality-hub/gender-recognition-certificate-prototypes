@@ -62,7 +62,7 @@ router.post('/application/declaration', function (req, res) {
 })
 
 router.post('/application/save-and-return/start-application', function (req, res) {
-  res.redirect('../task-list');
+  res.redirect('check-email');
 })
 //
 // BEFORE YOU START
