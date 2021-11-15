@@ -12,7 +12,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        {{ 'Email address confirmed' if data['return-choice'] == 'Email' else 'Mobile number confirmed' }}
+        {{ data['return-choice'] | capitalize }} confirmed
       </h1>
 
       <p>Your application will now be saved automatically as you progress.</p>
