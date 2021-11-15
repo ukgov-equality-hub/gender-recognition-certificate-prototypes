@@ -47,7 +47,7 @@ router.post('/application/start-application', function (req, res) {
   } else if (req.session.data['return-choice'] == 'Text') {
     res.redirect('save-and-return/check-text');
   } else {
-    res.redirect('check-email');
+    res.redirect('overseas-check');
   }
 })
 
