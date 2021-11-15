@@ -42,11 +42,12 @@ router.get('/guidance/apply', function (req, res, next) {
 router.post('/application/start-application', function (req, res) {
   req.session.data['returning'] = false
 
-  if (req.session.data['return-choice'] == 'Email') {
+  if (req.session.data['return-choice'] == 'email address') {
     res.redirect('save-and-return/check-email');
-  } else if (req.session.data['return-choice'] == 'Text') {
+  } else if (req.session.data['return-choice'] == 'mobile phone') {
     res.redirect('save-and-return/check-text');
   } else {
+    req.session.data['signedin'] = 'false'
     res.redirect('overseas-check');
   }
 })
@@ -58,10 +59,10 @@ router.post('/application/save-and-return/return', function (req, res) {
 
 router.post('/application/save-and-return/check-text', function (req, res) {
   if (req.session.data['returning']) {
-    req.session.data['signedin'] = true
+    req.session.data['signedin'] = 'true'
     res.redirect('../task-list');
   } else {
-    res.redirect('../overseas-check');
+    res.redirect('../reference');
   }
 })
 

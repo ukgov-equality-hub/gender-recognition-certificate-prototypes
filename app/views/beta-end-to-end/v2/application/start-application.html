@@ -52,7 +52,7 @@
             }
           }) }}
         {% endset -%}
-        
+
         {{ govukRadios({
           idPrefix: 'return-choice',
           name: 'return-choice',
@@ -66,16 +66,16 @@
           items: [
             {
               html: 'Email',
-              value: 'Email',
-              checked: checked('return-choice','Email'),
+              value: 'email address',
+              checked: checked('return-choice','email address'),
               conditional: {
                 html: emailHtml
               }
             },
             {
               html: 'Text message',
-              value: 'Text',
-              checked: checked('return-choice','Text'),
+              value: 'mobile phone',
+              checked: checked('return-choice','mobile phone'),
               conditional: {
                 html: textHtml
               }
