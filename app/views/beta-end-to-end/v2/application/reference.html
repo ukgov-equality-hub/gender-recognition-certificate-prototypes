@@ -12,12 +12,12 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        {{ data['return-choice'] | capitalize }} confirmed
+        {{ data['return-choice'] | capitalize or 'Email address' }} confirmed
       </h1>
 
       <p>Your application will now be saved automatically as you progress.</p>
 
-      <p>You will need your reference number and {{ data['return-choice'] | lower or 'email' }} if you want to return to your application later.</p>
+      <p>You will need your reference number and {{ data['return-choice'] or 'email address' }} if you want to return to your application later.</p>
 
       {{ govukInsetText({
         html: '<p>Your reference number is: <br><span class="callout__title">5BKQ-V2V0</span></p>',
