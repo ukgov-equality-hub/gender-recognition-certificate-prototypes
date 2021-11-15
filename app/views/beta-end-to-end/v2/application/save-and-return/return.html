@@ -1,5 +1,12 @@
 {% extends "layout.html" %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -10,22 +17,15 @@
           Return to a saved application
         </h1>
 
-        {{ govukInput({
-          classes: 'govuk-!-width-three-quarters',
-          label: {
-            html: 'Email address',
-            classes: 'govuk-label--s'
-          },
-          hint: {
-            html: 'We&rsquo;ll send you a link next to confirm that you have access to it'
-          }
-        }) }}
+        <p>You need your reference number to return to your application.</p>
+
+        <p class="govuk-!-margin-bottom-8">We will send a link or text to your email address or mobile phone to confirm it&rsquo;s you.</p>
 
         {{ govukInput({
-          classes: 'govuk-!-width-three-quarters',
+          classes: 'govuk-input--width-10',
           label: {
-            html: 'Memorable word',
-            classes: 'govuk-label--s'
+            html: 'What is your reference number?',
+            classes: 'govuk-label--m'
           }
         }) }}
 
