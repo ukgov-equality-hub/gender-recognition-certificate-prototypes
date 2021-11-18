@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../start-application'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Enter security code
+        </h1>
+
+
+        {% if data['return-choice'] == 'email address' %}
+          <p>We&rsquo;ve sent a 5 digit security code to {{ data['email'] or 'example@email.com' }}.</p>
+
+          <p>This can take a few minutes to arrive.</p>
+
+          <p class="govuk-!-margin-bottom-2">If you do not get an email:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>check your spam or junk folder</li>
+            <li>check you have entered the correct email</li>
+          </ul>
+          <p class="govuk-!-margin-bottom-8">If it&rsquo;s still not there, we can <a href="#0">resend the email</a>.</p>
+        {% else %}
+          <p>We&rsquo;ve sent a 5 digit security code to {{ '*********982' if data['returning'] else (data['text'] or '07700 900 982') }}.</p>
+
+          <p>This can take a few minutes to arrive.</p>
+
+          <p class="govuk-!-margin-bottom-2">If you do not get a text:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>check you have signal</li>
+            <li>check you have entered the correct phone number</li>
+          </ul>
+
+          <p class="govuk-!-margin-bottom-8">If you do not receive it, we can <a href="#0">resend the text</a>.</p>
+        {% endif %}
+
+
+
+
+        {{ govukInput({
+          id: 'security-code',
+          name: 'security-code',
+          classes: 'govuk-input--width-5',
+          label: {
+            html: 'Security code',
+            classes: 'govuk-label--m'
+          }
+        }) }}
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
