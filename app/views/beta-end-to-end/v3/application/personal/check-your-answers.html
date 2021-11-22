@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Check your answers: </span>
+          Your personal details
+      </h1>
+
+      {% set name %}
+        {% if data['first-name'] %}
+          {{ data['first-name'] }}
+          {{ ' ' + data['middle-name'] if data['middle-name'] }}
+          {{ ' ' + data['last-name'] if data['last-name'] }}
+        {% else %}
+          Rosie Armstrong
+        {% endif %}
+      {% endset %}
+
+      {% set address %}
+        {% if data['address-line-1'] %}
+          {{ data['address-line-1'] }}<br>
+          {{ data['address-line-2'] }}
+          {{ '<br>' | safe if data['address-line-2'] }}
+          {{ data['address-town'] }}
+          {{ '<br>' | safe if data['address-town'] }}
+          {{ data['address-postcode'] }}
+        {% else %}
+          72 Guild Street<br>London<br>SE23 6FH
+        {% endif %}
+      {% endset %}
+
+      {% set contactDetails %}
+        {% if data['contact'] == 'Email' %}
+          Email <br>
+          {{ data['contact-by-email'] }}
+        {% elif data['contact'] == 'Phone' %}
+          Phone <br>
+          {{ data['contact-by-phone'] }}
+        {% else %}
+          Post
+        {% endif %}
+      {% endset %}
+
+      {% set niNumber %}
+        {% if data['ni-number'] %}
+          {% set nino = data['ni-number'] | upper | replace(" ", "")  %}
+          {% for item in nino | batch(2) %}
+            {% for nino in item -%}
+               {{ nino }}
+            {%- endfor %}
+          {% endfor %}
+        {% else %}
+          QQ 12 34 56 C
+        {% endif %}
+      {% endset %}
+
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Name on certificate'
+            },
+            value: {
+              text: name
+            },
+            actions: {
+              items: [
+                {
+                  href: 'name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Another name for contacting you'
+            },
+            value: {
+              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'name-for-correspondence-check?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Changed name'
+            },
+            value: {
+              text: data['previous-names-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'previous-names-check?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Address'
+            },
+            value: {
+              html: address
+            },
+            actions: {
+              items: [
+                {
+                  href: 'address?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Contact preference'
+            },
+            value: {
+              html: contactDetails
+            },
+            actions: {
+              items: [
+                {
+                  href: 'contact-preferences?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Notify HMRC'
+            },
+            value: {
+              html: 'No' if data['notify-hmrc'] != 'Yes' else 'Yes <br>' + niNumber
+            },
+            actions: {
+              items: [
+                {
+                  href: 'hmrc?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ] | cleanArray
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          html: 'Save and continue',
+          href: 'personal-complete'
+        }) }}
+        <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

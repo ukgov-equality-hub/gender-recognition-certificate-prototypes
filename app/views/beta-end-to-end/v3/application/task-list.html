@@ -1,0 +1,430 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">
+        Your application
+      </h1>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>This is where you can provide your personal details and upload your documents.</p>
+
+      {% if data['overseas'] %}
+        {{ govukInsetText({
+          html: '<p>There are documents that you will need to post to us, such as your statutory declaration.</p>
+
+          <p>What you need to send us depends on the information you provide during your application. You will be told which documents you still need to send us at the end of the application.</p>'
+        }) }}
+      {% else %}
+        {{ govukInsetText({
+          html: '<p>While most documents can be uploaded online, there are others that you will need to post to us, such as your statutory declaration.</p>
+
+          <p>What you need to send us depends on the information you provide during your application. You will be told which documents you still need to send us at the end of the application.</p>'
+        }) }}
+      {% endif %}
+
+      <ol class="app-task-list app-task-list--no-numbers">
+        <li>
+          <h2 class="app-task-list__section">
+            Before you start
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name">
+                <a href="declaration">
+                  Accept declaration
+                </a>
+              </span>
+              <strong class="govuk-tag app-task-list__tag">Completed</strong>
+            </li>
+          </ul>
+        </li>
+
+
+
+
+
+
+        <li>
+          <h2 class="app-task-list__section">
+            Fill in your details
+          </h2>
+          <ul class="app-task-list__items">
+
+
+            <li class="app-task-list__item">
+              {% set sectionTitle = 'Your personal details' %}
+
+              {% if data['personal-details-completed'] == 'true' %}
+                <span class="app-task-list__task-name">
+                  <a href="personal/check-your-answers">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'Completed',
+                  classes: 'app-task-list__tag'
+                }) }}
+
+              {% elif data['personal-details-started'] == 'true' %}
+                <span class="app-task-list__task-name">
+                  <a href="personal/{{data['personal-details-next']}}">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'In progress',
+                  classes: 'app-task-list__tag govuk-tag--blue'
+                }) }}
+
+              {% else %}
+                <span class="app-task-list__task-name">
+                  <a href="personal/name">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'Not started',
+                  classes: 'app-task-list__tag govuk-tag--grey'
+                }) }}
+              {% endif %}
+            </li>
+
+
+
+
+            <li class="app-task-list__item">
+              {% set sectionTitle = 'Your birth registration information' %}
+
+              {% if data['birth-adoption-completed'] == 'true' %}
+                <span class="app-task-list__task-name">
+                  <a href="birth-adoption/check-your-answers">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'Completed',
+                  classes: 'app-task-list__tag'
+                }) }}
+
+              {% elif data['birth-adoption-started'] == 'true' %}
+                <span class="app-task-list__task-name">
+                  <a href="birth-adoption/{{data['birth-adoption-next']}}">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'In progress',
+                  classes: 'app-task-list__tag govuk-tag--blue'
+                }) }}
+
+              {% else %}
+                <span class="app-task-list__task-name">
+                  <a href="birth-adoption/name">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'Not started',
+                  classes: 'app-task-list__tag govuk-tag--grey'
+                }) }}
+              {% endif %}
+            </li>
+
+
+
+
+            <li class="app-task-list__item">
+              {% set sectionTitle = 'Marriage or civil partnership details' %}
+
+              {% if data['marriage-completed'] == 'true' %}
+                <span class="app-task-list__task-name">
+                  <a href="marriage-civil-partnership/check-your-answers">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'Completed',
+                  classes: 'app-task-list__tag'
+                }) }}
+
+              {% elif data['marriage-started'] == 'true' %}
+                <span class="app-task-list__task-name">
+                  <a href="marriage-civil-partnership/{{data['marriage-next']}}">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'In progress',
+                  classes: 'app-task-list__tag govuk-tag--blue'
+                }) }}
+
+              {% else %}
+                <span class="app-task-list__task-name">
+                  <a href="marriage-civil-partnership/current-check">
+                    {{ sectionTitle }}
+                  </a>
+                </span>
+                {{ govukTag({
+                  text: 'Not started',
+                  classes: 'app-task-list__tag govuk-tag--grey'
+                }) }}
+              {% endif %}
+            </li>
+
+
+          </ul>
+        </li>
+
+
+
+
+
+
+        {% if data['overseas'] %}
+          {% if data['previous-names-check'] == 'Yes' %}
+            <li>
+              <h2 class="app-task-list__section">
+                Upload your documents
+              </h2>
+              <ul class="app-task-list__items">
+
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">
+                      <a href="name-change/upload">
+                        Name change documents
+                      </a>
+                    </span>
+
+                    {% if data['name-change-completed'] == 'true' %}
+                      {{ govukTag({
+                        text: 'Completed',
+                        classes: 'app-task-list__tag'
+                      }) }}
+                    {% elif data['name-change-started'] == 'true' %}
+                      {{ govukTag({
+                        text: 'In progress',
+                        classes: 'app-task-list__tag govuk-tag--blue'
+                      }) }}
+                    {% else %}
+                      {{ govukTag({
+                        text: 'Not started',
+                        classes: 'app-task-list__tag govuk-tag--grey'
+                      }) }}
+                    {% endif %}
+                  </li>
+
+              </ul>
+            </li>
+          {% endif %}
+        {% else %}
+          <li>
+            <h2 class="app-task-list__section">
+              Upload your documents
+            </h2>
+            <ul class="app-task-list__items">
+
+
+              <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                  <a href="medical-reports/upload">
+                    Your medical reports
+                  </a>
+                </span>
+
+                {% if data['medical-reports-completed'] == 'true' %}
+                  {{ govukTag({
+                    text: 'Completed',
+                    classes: 'app-task-list__tag'
+                  }) }}
+                {% elif data['medical-reports-started'] == 'true' %}
+                  {{ govukTag({
+                    text: 'In progress',
+                    classes: 'app-task-list__tag govuk-tag--blue'
+                  }) }}
+                {% else %}
+                  {{ govukTag({
+                    text: 'Not started',
+                    classes: 'app-task-list__tag govuk-tag--grey'
+                  }) }}
+                {% endif %}
+              </li>
+
+
+              <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                  <a href="evidence/upload">
+                    Evidence of living in your gender
+                  </a>
+                </span>
+
+                {% if data['evidence-completed'] == 'true' %}
+                  {{ govukTag({
+                    text: 'Completed',
+                    classes: 'app-task-list__tag'
+                  }) }}
+                {% elif data['evidence-started'] == 'true' %}
+                  {{ govukTag({
+                    text: 'In progress',
+                    classes: 'app-task-list__tag govuk-tag--blue'
+                  }) }}
+                {% else %}
+                  {{ govukTag({
+                    text: 'Not started',
+                    classes: 'app-task-list__tag govuk-tag--grey'
+                  }) }}
+                {% endif %}
+              </li>
+
+
+              {% if data['previous-names-check'] == 'Yes' %}
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="name-change/upload">
+                      Name change documents
+                    </a>
+                  </span>
+
+                  {% if data['name-change-completed'] == 'true' %}
+                    {{ govukTag({
+                      text: 'Completed',
+                      classes: 'app-task-list__tag'
+                    }) }}
+                  {% elif data['name-change-started'] == 'true' %}
+                    {{ govukTag({
+                      text: 'In progress',
+                      classes: 'app-task-list__tag govuk-tag--blue'
+                    }) }}
+                  {% else %}
+                    {{ govukTag({
+                      text: 'Not started',
+                      classes: 'app-task-list__tag govuk-tag--grey'
+                    }) }}
+                  {% endif %}
+                </li>
+              {% endif %}
+
+
+            </ul>
+          </li>
+        {% endif %}
+
+
+
+        <li>
+          <h2 class="app-task-list__section">
+            Apply
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              {% if data['overseas'] %}
+
+                {% if
+                  data['personal-details-completed'] == 'true'
+                  and data['marriage-completed'] == 'true'
+                %}
+                  {% if
+                    data['previous-names-check'] != 'Yes'
+                    or data['name-change-completed'] == 'true'
+                  %}
+                    <span class="app-task-list__task-name">
+                      <a href="payment/method">
+                        Submit and pay
+                      </a>
+                    </span>
+
+                    {{ govukTag({
+                      text: 'Not started',
+                      classes: 'app-task-list__tag govuk-tag--grey'
+                    }) }}
+                  {% endif %}
+                {% else %}
+                  <span class="app-task-list__task-name">
+                    Submit and pay
+                  </span>
+
+                  {{ govukTag({
+                    text: 'Cannot start yet',
+                    classes: 'app-task-list__tag govuk-tag--grey'
+                  }) }}
+
+                  <span class="govuk-hint govuk-!-margin-top-3 govuk-!-margin-bottom-0"><br>Once you have completed the other sections you can submit your application.</span>
+                {% endif %}
+
+              {% else %}
+
+                {% if
+                  data['personal-details-completed'] == 'true'
+                  and data['marriage-completed'] == 'true'
+                  and data['medical-reports-completed'] == 'true'
+                  and data['evidence-completed'] == 'true'
+                %}
+                  {% if
+                    data['previous-names-check'] != 'Yes'
+                    or data['name-change-completed'] == 'true'
+                  %}
+                    <span class="app-task-list__task-name">
+                      <a href="payment/method">
+                        Submit and pay
+                      </a>
+                    </span>
+
+                    {{ govukTag({
+                      text: 'Not started',
+                      classes: 'app-task-list__tag govuk-tag--grey'
+                    }) }}
+                  {% endif %}
+                {% else %}
+                  <span class="app-task-list__task-name">
+                    Submit and pay
+                  </span>
+
+                  {{ govukTag({
+                    text: 'Cannot start yet',
+                    classes: 'app-task-list__tag govuk-tag--grey'
+                  }) }}
+
+                  <span class="govuk-hint govuk-!-margin-top-3 govuk-!-margin-bottom-0"><br>Once you have completed the other sections you can submit your application.</span>
+                {% endif %}
+
+              {% endif %}
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+
+
+
+
+
+    <div class="govuk-grid-column-one-third">
+      <div class="gem-c-contextual-sidebar">
+        <div class="gem-c-related-navigation">
+
+          <h2 id="related-nav-related_items-298b5325" class="gem-c-related-navigation__main-heading">
+            Returning to your application
+          </h2>
+
+          {% if data['signedin'] == 'false' %}
+            <p class="govuk-body-s">Your application data will be cleared if you are inactive for more than two hours. We do this for your security.</p>
+
+            <p class="govuk-body-s">If you need to stop at any point, <a href="start-application">save the application</a> and return to it later.</p>
+          {% else %}
+            <p class="govuk-body-s">Your application is saved automatically as you progress.</p>
+
+            <p class="govuk-body-s">
+              <a href="save-and-return/exit-application" class="govuk-link--no-visited-state">Exit and return later</a>.
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}

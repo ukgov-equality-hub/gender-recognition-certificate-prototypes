@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'adopted'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: 'forces',
+          name: 'forces',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Was your birth registered by a Forces registering service, or with a British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          hint: {
+            text: 'This information will help us locate your original birth record.'
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('forces','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('forces','No')
+            },
+            {
+              divider: 'or'
+            },
+            {
+              html: 'I don&rsquo;t know',
+              value: 'I don&rsquo;t know',
+              checked: checked('forces','I don&rsquo;t know')
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

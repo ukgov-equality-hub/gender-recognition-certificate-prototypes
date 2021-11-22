@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'name'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: 'sex',
+          name: 'sex',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'What sex was registered on your birth or adoption certificate?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              html: 'Female',
+              value: 'Female',
+              checked: checked('sex','Female')
+            },
+            {
+              html: 'Male',
+              value: 'Male',
+              checked: checked('sex','Male')
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

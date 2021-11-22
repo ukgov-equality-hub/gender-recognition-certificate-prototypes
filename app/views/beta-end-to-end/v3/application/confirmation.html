@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirmation page example
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: 'Application submitted',
+        html: 'You have 6 months to post all remaining documents to us'
+      }) }}
+
+      <p>We have sent you a confirmation email.</p>
+
+      <h2 class="govuk-heading-m">
+        What you need to do next
+      </h2>
+
+      <p>You should now post us any remaining documents. Include your name and return address with them.</p>
+
+      <p class="govuk-!-margin-bottom-2">Based on your application the documents that need to be posted are:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        {{ '<li>your original or a certified copy of your full birth certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] != 'Yes' }}
+        {{ '<li>your original or a certified copy of your full adoption certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] == 'Yes' }}
+        {{ '<li>an official confirmation of date of birth and birth gender</li>' | safe if data['uk-check'] == 'No' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">statutory declaration for single applicants</a></li>' | safe if data['current-check'] == 'Neither' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">statutory declaration for applicants</a></li>' | safe if data['current-check'] != 'Neither' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your spouse&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Married' and data['stay-together'] == 'Yes' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your civil partner&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
+        {{ '<li>your original marriage certificate or a certified copy</li>' | safe if data['current-check'] == 'Married' }}
+        {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
+        {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
+        {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
+        {{ '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe if data['overseas'] }}
+      </ul>
+
+      <p class="govuk-!-margin-bottom-2">They should be sent to:</p>
+      {{ govukInsetText({
+        html: 'Gender Recognition Panel<br>
+          PO Box 9300<br>
+          Leicester<br>
+          LE1 8DJ',
+          classes: 'govuk-!-margin-top-0'
+      }) }}
+
+      <p>Once you&rsquo;ve supplied these documents your application will be reviewed by the Gender Recognition Panel. You will be contacted if the panel requires more information or documentation.</p>
+
+      <p>You will then be told if you will be issued with a Gender Recognition Certificate, and what you can do if your application has not been accepted.</p>
+
+      <p>Decisions take around 12 weeks on average.</p>
+
+
+      <p class="govuk-!-margin-top-9"><a href="#0">What did you think of this service?</a> (takes 30 seconds)</p>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

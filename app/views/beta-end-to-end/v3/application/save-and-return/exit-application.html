@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Application saved
+        </h1>
+
+        {{ govukInsetText({
+          html: '<p>Your reference number is: <br><span class="callout__title">5BKQ-V2V0</span></p>',
+          classes: 'callout govuk-!-margin-bottom-4'
+        }) }}
+
+        <p class="govuk-!-margin-bottom-8">You will need your reference number and memorable word to <a href="return">return to your application</a>.</p>
+
+
+
+        <p>It&rsquo;s safe to close this window.</p>
+
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

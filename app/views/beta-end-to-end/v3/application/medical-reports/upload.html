@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: '../task-list'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Upload your medical reports
+      </h1>
+
+      <p class="govuk-!-margin-bottom-2">This is where you can upload your 2 medical reports. These should be:</p>
+      <ol class="govuk-list govuk-list--number">
+        <li>a medical report that explains in full, the specific details of your gender dysphoria diagnosis, written by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria</li>
+        <li>a medical report that explains in full, the specific details of your treatment, or planned treatment, such as hormone treatments or surgery, written by a registered medical practitioner – this could be your GP or surgeon</li>
+      </ol>
+
+      <p>There is a <a rel="noreferrer noopener" target="_blank" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/937304/t493-eng.pdf">list of specialists in the field of gender dysphoria (opens in new tab)</a>. This is not a complete directory of those in this field and it may not be up to date.</p>
+      <p>The medical report does not need to be written by someone on this list, as long as it is written by a medical practitioner or psychologist registered in the field of gender dysphoria.</p>
+      <p>Each report should include the name, practice address and contact details of the person writing the report.</p>
+      {{ govukInsetText({
+        html: '<p>There is a <a href="https://www.gov.uk/government/publications/form-t452-guidelines-for-registered-medical-practitioners-and-registered-psychologists-to-facilitate-completion-of-the-medical-report-proforma-for-g">form that medical practitioners can use to make these reports</a></p>'
+      }) }}
+
+
+      <h2 class="govuk-heading-s">What the reports should include</h2>
+
+      <p>The first report needs to show your diagnosis of gender dysphoria. It should include details of:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the diagnosis, including when it was made and by who</li>
+        <li>any evidence that was used to make the diagnosis </li>
+        <li>any medication prescribed and when</li>
+        <li>any planned non-surgical treatment</li>
+        <li>when a referral for surgery was made and if it hasn&rsquo;t, the reasons why </li>
+      </ul>
+
+      <p>The second report needs to show details of your treatment, or planned treatment. It should include details of:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+        <li>whether gender reassignment surgery has been carried out</li>
+        <li>each distinct surgical procedure and the date it was carried out</li>
+        <li>any non-surgical treatment given (such as hormone treatment)</li>
+        <li>any further surgical or non-surgical treatment planned </li>
+      </ul>
+
+
+      <form method="post">
+
+
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: "medical-reports",
+            name: "medical-reports",
+            classes: 'moj-multi-file-upload__input',
+            label: {
+              text: "Upload files",
+              classes: 'govuk-label--m'
+            },
+            hint: {
+              text: 'The files must be a JPG, BMP, PNG, TIF or PDF and be smaller than 10MB'
+            },
+            attributes: { multiple: '' }
+          }) }}
+
+          {{govukButton({
+            text: 'Upload file',
+            classes: 'govuk-button--secondary moj-multi-file-upload__button'
+          })}}
+        {% endset %}
+
+        {{ mojMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          },
+          uploadHtml: uploadHtml
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

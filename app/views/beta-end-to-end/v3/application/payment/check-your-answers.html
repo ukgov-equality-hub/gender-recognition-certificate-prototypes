@@ -1,0 +1,717 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'help-type' if data['payment-method'] == 'I am applying for help paying the fee' else 'method'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your answers before sending your application
+      </h1>
+
+
+      <h2 class="govuk-heading-m">
+        Your personal details
+      </h2>
+
+      {% set name %}
+        {% if data['first-name'] %}
+          {{ data['first-name'] }}
+          {{ ' ' + data['middle-name'] if data['middle-name'] }}
+          {{ ' ' + data['last-name'] if data['last-name'] }}
+        {% else %}
+          Rosie Armstrong
+        {% endif %}
+      {% endset %}
+
+      {% set address %}
+        {% if data['address-line-1'] %}
+          {{ data['address-line-1'] }}<br>
+          {{ data['address-line-2'] }}
+          {{ '<br>' | safe if data['address-line-2'] }}
+          {{ data['address-town'] }}
+          {{ '<br>' | safe if data['address-town'] }}
+          {{ data['address-postcode'] }}
+        {% else %}
+          72 Guild Street<br>London<br>SE23 6FH
+        {% endif %}
+      {% endset %}
+
+      {% set contactDetails %}
+        {% if data['contact'] == 'Email' %}
+          Email <br>
+          {{ data['contact-by-email'] }}
+        {% elif data['contact'] == 'Phone' %}
+          Phone <br>
+          {{ data['contact-by-phone'] }}
+        {% else %}
+          Post
+        {% endif %}
+      {% endset %}
+
+      {% set niNumber %}
+        {% if data['ni-number'] %}
+          {% set nino = data['ni-number'] | upper | replace(" ", "")  %}
+          {% for item in nino | batch(2) %}
+            {% for nino in item -%}
+               {{ nino }}
+            {%- endfor %}
+          {% endfor %}
+        {% else %}
+          QQ 12 34 56 C
+        {% endif %}
+      {% endset %}
+
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Name on certificate'
+            },
+            value: {
+              text: name
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/name?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Another name for contacting you'
+            },
+            value: {
+              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/name-for-correspondence-check?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Changed name'
+            },
+            value: {
+              text: data['previous-names-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/previous-names-check?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Address'
+            },
+            value: {
+              html: address
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/address?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Contact preference'
+            },
+            value: {
+              html: contactDetails
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/contact-preferences?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Notify HMRC'
+            },
+            value: {
+              html: 'No' if data['notify-hmrc'] != 'Yes' else 'Yes <br>' + niNumber
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/hmrc?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ] | cleanArray
+      }) }}
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Birth registration details
+      </h2>
+
+      {% set dob %}
+        {% if data['dob-day'] %}
+          {% set inputdates = data['dob-year'] + "-" + data['dob-month'] + "-" + data['dob-day'] %}
+          {{ inputdates | date("DD MMMM YYYY") }}
+        {% else %}
+          1 June 1987
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Birth name'
+            },
+            value: {
+              text: (data['birth-first-name'] + ' ' + data['birth-last-name']) if data['birth-first-name'] else 'Jim Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Sex registered at birth'
+            },
+            value: {
+              text: data['sex'] or 'Male'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'sex?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Date of birth'
+            },
+            value: {
+              html: dob
+            },
+            actions: {
+              items: [
+                {
+                  href: 'dob?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Birth registered in UK'
+            },
+            value: {
+              html: data['uk-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'uk-check?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Registered birth country'
+            },
+            value: {
+              html: data['country'] or 'Egypt'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'country?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] == 'No',
+          {
+            key: {
+              html: 'Mother&rsquo;s name'
+            },
+            value: {
+              html: (data['mothers-first-name'] + ' ' + data['mothers-last-name']) if data['mothers-first-name'] else 'Rosie Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'mothers-name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              html: 'Father&rsquo;s name listed'
+            },
+            value: {
+              text: data['fathers-name-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'fathers-name-check?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              html: 'Father&rsquo;s name'
+            },
+            value: {
+              text: (data['fathers-first-name'] + ' ' + data['fathers-last-name']) if data['fathers-first-name'] else 'Paul Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'fathers-name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No' and data['fathers-name-check'] == 'Yes',
+          {
+            key: {
+              text: 'Place of birth'
+            },
+            value: {
+              text: data['place-of-birth'] or 'London'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'place-of-birth?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              text: 'Adopted'
+            },
+            value: {
+              html: data['adopted'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'adopted?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              text: 'Forces registering service, British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions'
+            },
+            value: {
+              html: data['forces'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'forces?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No'
+        ] | cleanArray
+      }) }}
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Marriage or civil partnership details
+      </h2>
+
+      {% if data['current-check'] == 'Neither' %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Neither'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/current-check?cya-end=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Spouse or partner has died'
+              },
+              value: {
+                text: data['partner-died'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/partner-died?cya-en=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Married or in a civil partnership has ended'
+              },
+              value: {
+                text: data['ended-check'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/ended-check?cya-end=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+      {% else %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: data['current-check'] or 'Married'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/current-check?cya-end=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Remain married'
+              },
+              value: {
+                text: data['stay-together'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/stay-together?cya-end=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Can provide a declaration of consent from your spouse'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/partner-agrees?cya-end=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] != 'No',
+            {
+              key: {
+                text: 'Interim GRC'
+              },
+              value: {
+                text: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '../marriage-civil-partnership/interim-check?cya-end=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'No' or data['partner-agrees'] == 'No'
+          ] | cleanArray
+        }) }}
+
+
+      {% endif %}
+
+
+
+      {% if not data['overseas'] %}
+
+      <h2 class="govuk-heading-m">
+        Your medical reports
+      </h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Uploaded documents'
+            },
+            value: {
+              html: '<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                <li>example.pdf</li>
+                <li>example.pdf</li>
+                <li>example.pdf</li>
+              </ul>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '../medical-reports/upload?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Evidence of living in your gender
+      </h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Uploaded documents'
+            },
+            value: {
+              html: '<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                <li>example.pdf</li>
+                <li>example.pdf</li>
+                <li>example.pdf</li>
+              </ul>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '../evidence/upload?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% endif %}
+
+
+
+
+
+      {% if data['previous-names-check'] == 'Yes' %}
+      <h2 class="govuk-heading-m">
+        Name change documents
+      </h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Uploaded documents'
+            },
+            value: {
+              html: '<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                <li>example.pdf</li>
+                <li>example.pdf</li>
+                <li>example.pdf</li>
+              </ul>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '../name-change/upload?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Payment details
+      </h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Payment method'
+            },
+            value: {
+              html: data['payment-method'] or 'Over the phone'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'method',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Help type'
+            },
+            value: {
+              text: data['help-type'],
+              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'help-type',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['payment-method'] == 'I am applying for help paying the fee'
+        ] | cleanArray
+      }) }}
+
+
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Documents you&rsquo;ll need to post
+      </h2>
+      <p class="govuk-!-margin-bottom-2">Based on your application the documents that will need to be posted are:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-9">
+        {{ '<li>your original or a certified copy of your full birth certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] != 'Yes' }}
+        {{ '<li>your original or a certified copy of your full adoption certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] == 'Yes' }}
+        {{ '<li>an official confirmation of date of birth and birth gender</li>' | safe if data['uk-check'] == 'No' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">statutory declaration for single applicants</a></li>' | safe if data['current-check'] == 'Neither' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">statutory declaration for applicants</a></li>' | safe if data['current-check'] != 'Neither' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your spouse&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Married' and data['stay-together'] == 'Yes' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your civil partner&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
+        {{ '<li>your original marriage certificate or a certified copy</li>' | safe if data['current-check'] == 'Married' }}
+        {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
+        {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
+        {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
+        {{ '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe if data['overseas'] }}
+      </ul>
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Now send your application
+      </h2>
+
+      {{ govukCheckboxes({
+        idPrefix: 'declaration',
+        name: 'declaration',
+        classes: 'checkboxes-long-text',
+        items: [
+          {
+            html: 'I certify that all information given in this application is correct and that I understand making a false application is an offence. ',
+            value: 'dec2',
+            checked: checked('declaration','dec2')
+          }
+        ]
+      }) }}
+
+      {% if data['payment-method'] != 'Online' %}
+        {{ govukButton({
+          text: 'Submit application',
+          href: '../confirmation'
+        }) }}
+      {% else %}
+        {{ govukButton({
+          text: 'Submit application and pay online',
+          href: 'payment-details'
+        }) }}
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

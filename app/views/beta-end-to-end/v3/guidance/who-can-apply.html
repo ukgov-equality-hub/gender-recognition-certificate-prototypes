@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block header %}
+  {% include "../_includes/govuk-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../_includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="overview">Overview</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active gem-c-contents-list__list-item--active">
+              Who can apply
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="documents-needed">Documents you need to provide</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Who can apply
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+
+        <p>During the application process we will ask for documents that show you meet the following requirements:<p>
+        <ul>
+          <li>you are 18 or over</li>
+          <li>you have been diagnosed with gender dysphoria </li>
+          <li>you have been living in your affirmed gender for at least 2 years</li>
+          <li>you intend to live in this gender for the rest of your life</li>
+        </ul>
+
+
+
+        <h2>If you have received gender recognition in another country</h2>
+
+        <p>If you have had your gender recognised in <a href="https://www.gov.uk/government/publications/overseas-gender-recognition-2011-t491">one of these countries or territories</a> and you want it recognised in the UK, the requirements are different.</p>
+
+        <p>The requirements are:</p>
+        <ul>
+          <li>you are 18 or over</li>
+          <li>you have a legal document showing your gender recognition from that country </li>
+        </ul>
+
+        <p>If your gender has been recognised in a country that is not on the list, you will have to meet the full set of requirements at the top of the page.</p>
+
+
+      </div>
+
+      {{ govukPagination({
+        previous: {
+          href: 'overview',
+          text: 'Overview'
+        },
+        next: {
+          href: 'documents-needed',
+          text: 'Documents you need to provide'
+        }
+      }) }}
+
+      {% include "../_includes/explore-topic.html" %}
+    </div>
+
+    {% include "../_includes/related-content.html" %}
+
+  </div>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Check your answers: </span>
+         Marriage or civil partnership details
+      </h1>
+
+      {% if data['current-check'] == 'Neither' %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: 'Neither'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Spouse or partner has died'
+              },
+              value: {
+                text: data['partner-died'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'partner-died?cya=true',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Married or in a civil partnership has ended'
+              },
+              value: {
+                text: data['ended-check'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'ended-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+
+
+
+
+      {% else %}
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: 'Currently married or in a civil partnership'
+              },
+              value: {
+                text: data['current-check'] or 'Married'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'current-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Remain married'
+              },
+              value: {
+                text: data['stay-together'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'stay-together',
+                    text: 'Change'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Can provide a declaration of consent from your spouse'
+              },
+              value: {
+                text: data['partner-agrees'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'partner-agrees',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] != 'No',
+            {
+              key: {
+                text: 'Interim GRC'
+              },
+              value: {
+                text: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: 'interim-check',
+                    text: 'Change'
+                  }
+                ]
+              }
+            } if data['stay-together'] == 'No' or data['partner-agrees'] == 'No'
+          ] | cleanArray
+        }) }}
+
+
+      {% endif %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          html: 'Save and continue',
+          href: 'marriage-complete'
+        }) }}
+        <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

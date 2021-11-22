@@ -1,0 +1,221 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Check your answers: </span>
+         Birth registration details
+      </h1>
+
+
+      {% set dob %}
+        {% if data['dob-day'] %}
+          {% set inputdates = data['dob-year'] + "-" + data['dob-month'] + "-" + data['dob-day'] %}
+          {{ inputdates | date("DD MMMM YYYY") }}
+        {% else %}
+          1 June 1987
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: 'Birth name'
+            },
+            value: {
+              text: (data['birth-first-name'] + ' ' + data['birth-last-name']) if data['birth-first-name'] else 'Jim Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Sex registered at birth'
+            },
+            value: {
+              text: data['sex'] or 'Male'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'sex?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Date of birth'
+            },
+            value: {
+              html: dob
+            },
+            actions: {
+              items: [
+                {
+                  href: 'dob?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Birth registered in UK'
+            },
+            value: {
+              html: data['uk-check'] or 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'uk-check?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Registered birth country'
+            },
+            value: {
+              html: data['country'] or 'Egypt'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'country?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] == 'No',
+          {
+            key: {
+              html: 'Mother&rsquo;s name'
+            },
+            value: {
+              html: (data['mothers-first-name'] + ' ' + data['mothers-last-name']) if data['mothers-first-name'] else 'Rosie Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'mothers-name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              html: 'Father&rsquo;s name listed'
+            },
+            value: {
+              text: data['fathers-name-check'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'fathers-name-check?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              html: 'Father&rsquo;s name'
+            },
+            value: {
+              text: (data['fathers-first-name'] + ' ' + data['fathers-last-name']) if data['fathers-first-name'] else 'Paul Hanson'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'fathers-name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No' and data['fathers-name-check'] == 'Yes',
+          {
+            key: {
+              text: 'Place of birth'
+            },
+            value: {
+              text: data['place-of-birth'] or 'London'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'place-of-birth?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              text: 'Adopted'
+            },
+            value: {
+              html: data['adopted'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'adopted?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No',
+          {
+            key: {
+              text: 'Forces registering service, British Consul or High Commission, or under Merchant Shipping or Civil Aviation provisions'
+            },
+            value: {
+              html: data['forces'] or 'No'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'forces?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          } if data['uk-check'] != 'No'
+        ] | cleanArray
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          html: 'Save and continue',
+          href: 'birth-adoption-complete'
+        }) }}
+        <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

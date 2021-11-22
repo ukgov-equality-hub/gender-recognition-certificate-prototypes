@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'current-check'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {% set questionText %}
+          {% if data['current-check'] == 'Civil partnership' %}
+            Do you plan to remain in your civil partnership after receiving your Gender Recognition Certificate?
+          {% else %}
+            Do you plan to remain married after receiving your Gender Recognition Certificate?
+          {% endif %}
+        {% endset %}
+
+        {{ govukRadios({
+          idPrefix: 'stay-together',
+          name: 'stay-together',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: questionText,
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('stay-together','Yes'),
+              conditional: {
+                html: stayMarriedCheck
+              }
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('stay-together','No')
+            }
+          ]
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            html: 'Save and continue'
+          }) }}
+          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
