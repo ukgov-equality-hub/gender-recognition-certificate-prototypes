@@ -14,54 +14,38 @@
       <form method="post">
 
         <h1 class="govuk-heading-l">
-          Method of payment
+          Payment
         </h1>
 
         <p>Applying for a Gender Recognition Certificate costs £5.</p>
 
-        <p>If you want to pay online or over the phone, you will need your credit or debit card details.</p>
+        <p>You can <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">apply online for help paying this fee (opens in new tab)</a>.</p>
 
-        <p class="govuk-!-margin-bottom-8">If you want to pay by cheque, phone or postal order, you will be told how to do this when you receive your application acknowledgment.</p>
+        <p class="govuk-!-margin-bottom-8">You can also download the EX160 form from that page and submit it with your application.</p>
 
 
         {{ govukRadios({
           idPrefix: 'payment-method',
           name: 'payment-method',
-          classes: '',
           fieldset: {
             legend: {
-              text: 'How do you want to pay the fee?',
+              text: 'Are you applying for help paying the fee?',
               classes: 'govuk-fieldset__legend--m'
             }
           },
+          hint: {
+            text: 'If you select yes, your application for a Gender Recognition Certificate will only be reviewed if your application for help paying the fee is accepted.'
+          },
           items: [
             {
-              html: 'Online',
+              html: 'Yes',
+              value: 'Help',
+              checked: checked('payment-method','Help')
+            },
+            {
+              html: 'No, I will pay now',
               value: 'Online',
               checked: checked('payment-method','Online')
-            },
-            {
-              html: 'Over the phone',
-              value: 'Over the phone',
-              checked: checked('payment-method','Over the phone')
-            },
-            {
-              html: 'Cheque',
-              value: 'Cheque',
-              checked: checked('payment-method','Cheque')
-            },
-            {
-              html: 'Postal order',
-              value: 'Postal order',
-              checked: checked('payment-method','Postal order')
-            },
-            {
-              divider: 'or'
-            },
-            {
-              html: 'I am applying for help paying the fee',
-              value: 'I am applying for help paying the fee',
-              checked: checked('payment-method','I am applying for help paying the fee')
             }
           ]
         }) }}

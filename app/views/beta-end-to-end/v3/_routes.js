@@ -377,7 +377,7 @@ router.post('/application/name-change/upload', function (req, res) {
 // PAYMENT
 //
 router.post('/application/payment/method', function (req, res) {
-  if (req.session.data['payment-method'] == 'I am applying for help paying the fee') {
+  if (req.session.data['payment-method'] == 'Help') {
     res.redirect('help-type');
   } else {
     res.redirect('check-your-answers');

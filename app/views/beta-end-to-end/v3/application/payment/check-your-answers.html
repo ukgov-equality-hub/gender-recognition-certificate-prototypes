@@ -633,7 +633,7 @@
               text: 'Payment method'
             },
             value: {
-              html: data['payment-method'] or 'Over the phone'
+              html: data['payment-method'] or 'Online'
             },
             actions: {
               items: [
@@ -649,8 +649,7 @@
               text: 'Help type'
             },
             value: {
-              text: data['help-type'],
-              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service'
+              html: data['help-type'] +'<br>Reference: '+ data['help-online-ref'] if data['help-type'] == 'Using the online service' else data['help-type']
             },
             actions: {
               items: [
@@ -660,7 +659,7 @@
                 }
               ]
             }
-          } if data['payment-method'] == 'I am applying for help paying the fee'
+          } if data['payment-method'] == 'Help'
         ] | cleanArray
       }) }}
 
@@ -678,15 +677,16 @@
         {{ '<li>your original or a certified copy of your full birth certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] != 'Yes' }}
         {{ '<li>your original or a certified copy of your full adoption certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] == 'Yes' }}
         {{ '<li>an official confirmation of date of birth and birth gender</li>' | safe if data['uk-check'] == 'No' }}
-        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf">statutory declaration for single applicants</a></li>' | safe if data['current-check'] == 'Neither' }}
-        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">statutory declaration for applicants</a></li>' | safe if data['current-check'] != 'Neither' }}
-        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your spouse&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Married' and data['stay-together'] == 'Yes' }}
-        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf">your civil partner&rsquo;s statutory declaration</a></li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for single applicants (opens in new tab)</a></li>' | safe if data['current-check'] == 'Neither' }}
+        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for applicants (opens in new tab)</a></li>' | safe if data['current-check'] != 'Neither' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your spouse&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe if data['current-check'] == 'Married' and data['stay-together'] == 'Yes' }}
+        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your civil partner&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
         {{ '<li>your original marriage certificate or a certified copy</li>' | safe if data['current-check'] == 'Married' }}
         {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
         {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
         {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
         {{ '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe if data['overseas'] }}
+        {{ '<li>a <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">EX160 form (opens in new tab)</li>' | safe if data['help-type'] == 'Using the EX160 form' }}
       </ul>
 
 
