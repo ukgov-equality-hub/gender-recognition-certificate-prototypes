@@ -40,15 +40,21 @@
       {% endset %}
 
       {% set contactDetails %}
-        {% if data['contact'] == 'Email' %}
-          Email <br>
-          {{ data['contact-by-email'] }}
-        {% elif data['contact'] == 'Phone' %}
-          Phone <br>
-          {{ data['contact-by-phone'] }}
-        {% else %}
-          Post
-        {% endif %}
+        <ul class="govuk-list">
+          {% if data['contact'] %}
+            {% if data['contact'].includes("Email") %}
+              <li>Email: {{ data['email'] or 'name@example.com' }}</li>
+            {% endif %}
+            {% if data['contact'].includes("Phone") %}
+              <li>Phone: {{ data['contact-by-phone'] or '07700 900457' }}</li>
+            {% endif %}
+            {% if data['contact'].includes("Post") %}
+              <li>Post</li>
+            {% endif %}
+          {% else %}
+            <li>Email: name@example.com</li>
+          {% endif %}
+        </ul>
       {% endset %}
 
       {% set niNumber %}
@@ -79,22 +85,6 @@
               items: [
                 {
                   href: 'name?cya=true',
-                  text: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Another name for contacting you'
-            },
-            value: {
-              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
-            },
-            actions: {
-              items: [
-                {
-                  href: 'name-for-correspondence-check?cya=true',
                   text: 'Change'
                 }
               ]
@@ -134,7 +124,7 @@
           },
           {
             key: {
-              text: 'Contact preference'
+              text: 'How we can contact you'
             },
             value: {
               html: contactDetails
@@ -143,6 +133,22 @@
               items: [
                 {
                   href: 'contact-preferences?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Another name for contacting you'
+            },
+            value: {
+              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'name-for-correspondence-check?cya=true',
                   text: 'Change'
                 }
               ]

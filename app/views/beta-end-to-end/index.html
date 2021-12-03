@@ -13,9 +13,24 @@
       <p>This is the end to end online journey we&rsquo;ll be building in beta.</p>
 
       <h2 class="govuk-heading-m">
-        Version 2
+        Version 3
       </h2>
 
+      <h3 class="govuk-heading-s">Changes:</h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>added birth/adoption questions back in</li>
+        <li>changed contact preference for questions to be multiple choice</li>
+        <li>moved other contact name after contact pref</li>
+      </ul>
+
+      {{ govukButton({
+        text: 'View prototype',
+        href: 'v3/guidance/apply'
+      }) }}
+
+
+
+      {% set v2 %}
       <h3 class="govuk-heading-s">Changes:</h3>
       <ul class="govuk-list govuk-list--bullet">
         <li>updated the save and return</li>
@@ -33,10 +48,7 @@
         text: 'View prototype',
         href: 'v2/guidance/overview'
       }) }}
-
-
-
-
+      {% endset %}
 
       {% set v1 %}
       <p>We want to test the proposed end to end journey before moving into beta. It&rsquo;s based on the <a href="/application/">application journey we tested previously</a>.</p>
@@ -130,6 +142,10 @@
 
       {{ govukAccordion({
         items: [
+          {
+            heading: { text: 'Version 2' },
+            content: { html: v2 }
+          },
           {
             heading: { text: 'Version 1' },
             content: { html: v1 }

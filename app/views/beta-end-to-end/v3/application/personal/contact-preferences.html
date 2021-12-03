@@ -15,8 +15,9 @@
 
         {% set emailHtml %}
           {{ govukInput({
-            id: 'contact-by-email',
-            name: 'contact-by-email',
+            id: 'email',
+            name: 'email',
+            value: data['email'],
             type: 'email',
             autocomplete: 'email',
             spellcheck: false,
@@ -29,8 +30,9 @@
 
         {% set phoneHtml %}
           {{ govukInput({
-            id: 'contact-by-phone',
-            name: 'contact-by-phone',
+            id: 'text',
+            name: 'text',
+            value: data['text'],
             type: 'tel',
             autocomplete: 'tel',
             classes: 'govuk-input--width-20',
@@ -40,12 +42,27 @@
           }) }}
         {% endset -%}
 
-        {{ govukRadios({
+        {% set address %}
+        <p>
+          {% if data['address-line-1'] %}
+            {{ data['address-line-1'] }},
+            {{ data['address-line-2'] }}
+            {{ ', ' | safe if data['address-line-2'] }}
+            {{ data['address-town'] }}
+            {{ ', ' | safe if data['address-town'] }}
+            {{ data['address-postcode'] }}
+          {% else %}
+            72 Guild Street, London, SE23 6FH
+          {% endif %}
+        </p>
+        {% endset %}
+
+        {{ govukCheckboxes({
           idPrefix: 'contact',
           name: 'contact',
           fieldset: {
             legend: {
-              text: 'How would you prefer to be contacted if we have any questions about your application?',
+              text: 'How can we contact you if we have any questions about your application?',
               isPageHeading: true,
               classes: 'govuk-fieldset__legend--l'
             }
@@ -70,7 +87,10 @@
             {
               value: 'Post',
               text: 'Post',
-              checked: checked('contact','Post')
+              checked: checked('contact','Post'),
+              conditional: {
+                html: address
+              }
             }
           ]
         }) }}

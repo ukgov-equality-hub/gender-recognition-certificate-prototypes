@@ -97,18 +97,6 @@ router.post('/application/declaration', function (req, res) {
 //
 router.post('/application/personal/name', function (req, res) {
   req.session.data['personal-details-started'] = 'true'
-  req.session.data['personal-details-next'] = 'name-for-correspondence-check'
-
-  res.redirect('name-for-correspondence-check');
-})
-
-router.post('/application/personal/name-for-correspondence-check', function (req, res) {
-  req.session.data['personal-details-next'] = 'previous-names-check'
-
-  res.redirect('previous-names-check');
-})
-
-router.post('/application/personal/name-for-correspondence', function (req, res) {
   req.session.data['personal-details-next'] = 'previous-names-check'
 
   res.redirect('previous-names-check');
@@ -127,6 +115,12 @@ router.post('/application/personal/address', function (req, res) {
 })
 
 router.post('/application/personal/contact-preferences', function (req, res) {
+  req.session.data['personal-details-next'] = 'name-for-correspondence-check'
+
+  res.redirect('name-for-correspondence-check');
+})
+
+router.post('/application/personal/name-for-correspondence-check', function (req, res) {
   req.session.data['personal-details-next'] = 'hmrc'
 
   res.redirect('hmrc');
