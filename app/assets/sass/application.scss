@@ -82,15 +82,18 @@ code {
 
 // Modify the moj multi upload drop styles
 .moj-multi-file-upload__dropzone {
-  border: 4px solid $govuk-link-colour;
-  outline: 0;
-  padding: 60px 15px;
+  outline-color: $govuk-link-colour;
+  outline-width: 4px;
+
+  @include govuk-media-query($from: desktop) {
+    padding: 100px 15px;
+  }
 }
 
 .moj-multi-file-upload--dragover {
-	background-color: white;
+	background-color: #f1f1f1;
   color: $govuk-focus-text-colour;
-  border-color: $govuk-focus-colour;
+  outline-color: $govuk-focus-colour;
 }
 
 
@@ -98,7 +101,7 @@ code {
 // align text on multi line checkboxes
 .checkboxes-long-text {
   .govuk-checkboxes__input,
-  .govuk-checkboxes__label::before {  
+  .govuk-checkboxes__label::before {
     top: 50%;
     transform: translateY(-50%);
   }
