@@ -51,6 +51,9 @@
             {% if data['contact'].includes("Post") %}
               <li>Post</li>
             {% endif %}
+            {% if data['contact-dates'] %}
+              <li>Unavailable: {{ data['contact-dates'] }}</li>
+            {% endif %}
           {% else %}
             <li>Email: name@example.com</li>
           {% endif %}
@@ -124,7 +127,7 @@
           },
           {
             key: {
-              text: 'How we can contact you'
+              text: 'Contact preferences'
             },
             value: {
               html: contactDetails

@@ -27,23 +27,10 @@
             value: data['first-name'],
             classes: 'govuk-!-width-three-quarters',
             label: {
-              html: 'First name',
+              html: 'First name(s)',
               classes: 'govuk-label--/l'
             },
             autocomplete: 'given-name',
-            spellcheck: false
-          }) }}
-
-          {{ govukInput({
-            id: 'middle-name',
-            name: 'middle-name',
-            value: data['middle-name'],
-            classes: 'govuk-!-width-three-quarters',
-            label: {
-              html: 'Middle names',
-              classes: 'govuk-label--/l'
-            },
-            autocomplete: 'additional-name',
             spellcheck: false
           }) }}
 
