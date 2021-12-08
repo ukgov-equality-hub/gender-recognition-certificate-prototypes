@@ -9,56 +9,38 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       <form method="post">
+        <div class="interuption-card">
+          <h1 class="govuk-heading-l">
+            Interim Gender Recognition Certificate
+          </h1>
 
-        <h1 class="govuk-heading-l">
-          Interim Gender Recognition Certificate
-        </h1>
+          {% if data['current-check'] == 'Civil partnership' %}
+            {% if data['stay-together'] == 'No' %}
+              <p>You cannot receive a full Gender Recognition Certificate without ending your civil partnership first.</p>
+            {% else %}
+              <p>If you want to remain in your civil partnership but your partner has not signed a statutory declaration of consent, then you cannot receive a full Gender Recognition Certificate without ending your civil partnership first.</p>
+            {% endif %}
 
-        {% if data['current-check'] == 'Civil partnership' %}
-          <p>If you want to remain in your civil partnership but your partner has not signed a statutory declaration of consent, then you cannot receive a full Gender Recognition Certificate without ending your civil partnership first.</p>
+            <p class="govuk-!-margin-bottom-8">An interim Gender Recognition Certificate will help you to do this. After you have used the interim certificate to end your civil partnership you will receive a full certificate.</p>
+          {% else %}
+            {% if data['stay-together'] == 'No' %}
+              <p>You cannot receive a full Gender Recognition Certificate without ending your marriage first.</p>
+            {% else %}
+              <p>If you want to remain married but your spouse has not signed a statutory declaration of consent, then you cannot receive a full Gender Recognition Certificate without ending your marriage first.</p>
+            {% endif %}
 
-          <p class="govuk-!-margin-bottom-8">An interim Gender Recognition Certificate will help you to do this. After you have used the interim certificate to end your civil partnership you will receive a full certificate.</p>
-        {% else %}
-          <p>If you want to remain married but your spouse has not signed a statutory declaration of consent, then you cannot receive a full Gender Recognition Certificate without ending your marriage first.</p>
+            <p class="govuk-!-margin-bottom-8">An interim Gender Recognition Certificate will help you to do this. After you have used the interim certificate to end your marriage you will receive a full certificate.</p>
+          {% endif %}
 
-          <p class="govuk-!-margin-bottom-8">An interim Gender Recognition Certificate will help you to do this. After you have used the interim certificate to end your marriage you will receive a full certificate.</p>
-        {% endif %}
-
-        {{ govukRadios({
-          idPrefix: 'interim-check',
-          name: 'interim-check',
-          classes: '',
-          fieldset: {
-            legend: {
-              text: 'Do you want to apply for an interim Gender Recognition Certificate?',
-              classes: 'govuk-fieldset__legend--m'
-            }
-          },
-          items: [
-            {
-              html: 'Yes',
-              value: 'Yes',
-              checked: checked('interim-check','Yes')
-            },
-            {
-              html: 'No',
-              value: 'No',
-              checked: checked('interim-check','No')
-            }
-          ]
-        }) }}
-
-
-        <div class="govuk-button-group">
           {{ govukButton({
-            html: 'Save and continue'
+            html: 'Continue',
+            classes: 'govuk-!-margin-bottom-0'
           }) }}
-          <a href="../task-list" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
-        </div>
 
+        </div>
       </form>
 
     </div>

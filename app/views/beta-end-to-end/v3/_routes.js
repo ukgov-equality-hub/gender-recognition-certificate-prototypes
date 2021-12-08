@@ -299,13 +299,9 @@ router.post('/application/marriage-civil-partnership/partner-agrees', function (
 })
 
 router.post('/application/marriage-civil-partnership/interim-check', function (req, res) {
-  if (req.session.data['interim-check'] == 'No') {
-    res.redirect('interim-no');
-  } else {
     req.session.data['marriage-next'] = 'check-your-answers'
 
     res.redirect('check-your-answers');
-  }
 })
 
 router.get('/application/marriage-civil-partnership/marriage-complete', function (req, res) {
