@@ -15,14 +15,18 @@
         {{ data['return-choice'] | capitalize or 'Email address' }} confirmed
       </h1>
 
-      <p>Your application will be saved automatically as you progress.</p>
-
-      <p>Make a note of your reference number &ndash; you will need this if you want to return to your application later.</p>
+      <p>We will automatically save your application as you progress.</p>
 
       {{ govukInsetText({
         html: '<p>Your reference number is: <br><span class="callout__title">5BKQ-V2V0</span></p>',
         classes: 'callout'
       }) }}
+
+      <p>Make a note of this number as we will ask for this if you come back to your application later.</p>
+
+      <p>After you provide the reference number we will text or email you a security code which lets you access your saved application.</p>
+
+
 
 
       {{ govukButton({

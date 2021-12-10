@@ -13,8 +13,6 @@
 
       <form method="post">
 
-        <h1 class="govuk-heading-l">Contact preferences</h1>
-
         {% set emailHtml %}
           {{ govukInput({
             id: 'email',
@@ -65,7 +63,8 @@
           fieldset: {
             legend: {
               text: 'How would you like to be contacted if we have any questions about your application?',
-              classes: 'govuk-fieldset__legend--m'
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
             }
           },
           items: [
@@ -94,17 +93,6 @@
               }
             }
           ]
-        }) }}
-
-        {{ govukTextarea({
-          id: 'contact-dates',
-          name: 'contact-dates',
-          value: data['contact-dates'],
-          rows: '3',
-          label: {
-            text: 'Are there any dates when you will be unavailable for more than a week over the next six months? (optional)',
-            classes: 'govuk-label--m'
-          }
         }) }}
 
 

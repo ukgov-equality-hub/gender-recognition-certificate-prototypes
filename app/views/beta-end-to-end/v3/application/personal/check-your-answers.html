@@ -51,9 +51,6 @@
             {% if data['contact'].includes("Post") %}
               <li>Post</li>
             {% endif %}
-            {% if data['contact-dates'] %}
-              <li>Unavailable: {{ data['contact-dates'] }}</li>
-            {% endif %}
           {% else %}
             <li>Email: name@example.com</li>
           {% endif %}
@@ -146,12 +143,28 @@
               text: 'Another name for contacting you'
             },
             value: {
-              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
+              html: 'No' if data['contact-name'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
             },
             actions: {
               items: [
                 {
-                  href: 'name-for-correspondence-check?cya=true',
+                  href: 'contact-name?cya=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Unavailable over the next 6 months'
+            },
+            value: {
+              html: 'No' if data['contact-dates'] != 'Yes' else 'Yes <br>' + data['unavailable-dates']
+            },
+            actions: {
+              items: [
+                {
+                  href: 'contact-dates?cya=true',
                   text: 'Change'
                 }
               ]

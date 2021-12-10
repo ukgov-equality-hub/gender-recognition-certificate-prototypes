@@ -13,13 +13,21 @@
 
       <form method="post">
 
-        {% set questionText %}
-          {% if data['current-check'] == 'Civil partnership' %}
-            Will you be able to provide a declaration of consent from your partner?
-          {% else %}
-            Will you be able to provide a declaration of consent from your spouse?
-          {% endif %}
-        {% endset %}
+        <h1 class="govuk-heading-l">
+          Declaration of consent
+        </h1>
+
+        {% if data['current-check'] == 'Civil partnership' %}
+          <p>If you plan to stay in your civil partnership, your civil partner will need to sign a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration consenting to the civil partnership continuing (opens in new tab)</a> after you receive a Gender Recognition Certificate.</p>
+
+          {% set questionText %}Can you provide a declaration of consent from your civil partner?{% endset %}
+        {% else %}
+          <p>If you plan to stay married your spouse will need to sign a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration consenting to the marriage continuing (opens in new tab)</a> after you receive a Gender Recognition Certificate.</p>
+
+          {% set questionText %}Can you provide a declaration of consent from your spouse?{% endset %}
+        {% endif %}
+
+        <p class="govuk-!-margin-bottom-8">This will need to be witnessed by someone that can administer oaths. All solicitors can do this.</p>
 
         {{ govukRadios({
           idPrefix: 'partner-agrees',
@@ -28,18 +36,14 @@
           fieldset: {
             legend: {
               text: questionText,
-              isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('partner-agrees','Yes'),
-              conditional: {
-                html: stayMarriedCheck
-              }
+              checked: checked('partner-agrees','Yes')
             },
             {
               html: 'No',

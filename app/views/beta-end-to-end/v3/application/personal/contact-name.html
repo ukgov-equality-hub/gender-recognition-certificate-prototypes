@@ -13,6 +13,13 @@
 
       <form method="post">
 
+
+        <h1 class="govuk-heading-l">
+          Contact name
+        </h1>
+
+        <p class="govuk-!-margin-bottom-8">For privacy, you may not want us to use the name you want listed on your Gender Recognition Certificate when contacting you.</p>
+
         {% set correspondenceName %}
           {{ govukInput({
             label: {
@@ -26,21 +33,20 @@
         {% endset -%}
 
         {{ govukRadios({
-          idPrefix: 'name-for-correspondence-check',
-          name: 'name-for-correspondence-check',
+          idPrefix: 'contact-name',
+          name: 'contact-name',
           classes: '',
           fieldset: {
             legend: {
-              text: 'Do you want us to use a different name when contacting you?',
-              isPageHeading: true,
-              classes: 'govuk-fieldset__legend--l'
+              text: 'Do you want us to use a different name?',
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('name-for-correspondence-check','Yes'),
+              checked: checked('contact-name','Yes'),
               conditional: {
                 html: correspondenceName
               }
@@ -48,7 +54,7 @@
             {
               html: 'No',
               value: 'No',
-              checked: checked('name-for-correspondence-check','No')
+              checked: checked('contact-name','No')
             }
           ]
         }) }}

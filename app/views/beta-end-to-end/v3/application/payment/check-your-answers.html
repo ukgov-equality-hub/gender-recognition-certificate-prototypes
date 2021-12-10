@@ -55,9 +55,6 @@
             {% if data['contact'].includes("Post") %}
               <li>Post</li>
             {% endif %}
-            {% if data['contact-dates'] %}
-              <li>Unavailable: {{ data['contact-dates'] }}</li>
-            {% endif %}
           {% else %}
             <li>Email: name@example.com</li>
           {% endif %}
@@ -91,7 +88,7 @@
             actions: {
               items: [
                 {
-                  href: '../personal/name?cya=true',
+                  href: '../personal/name?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -107,7 +104,7 @@
             actions: {
               items: [
                 {
-                  href: '../personal/previous-names-check?cya=true',
+                  href: '../personal/previous-names-check?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -123,7 +120,7 @@
             actions: {
               items: [
                 {
-                  href: '../personal/address?cya=true',
+                  href: '../personal/address?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -139,7 +136,7 @@
             actions: {
               items: [
                 {
-                  href: '../personal/contact-preferences?cya=true',
+                  href: '../personal/contact-preferences?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -150,12 +147,28 @@
               text: 'Another name for contacting you'
             },
             value: {
-              html: 'No' if data['name-for-correspondence-check'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
+              html: 'No' if data['contact-name'] != 'Yes' else 'Yes <br>' + data['correspondence-name']
             },
             actions: {
               items: [
                 {
-                  href: '../personal/name-for-correspondence-check?cya=true',
+                  href: '../personal/contact-name?cya-end=true',
+                  text: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Unavailable over the next 6 months'
+            },
+            value: {
+              html: 'No' if data['contact-dates'] != 'Yes' else 'Yes <br>' + data['unavailable-dates']
+            },
+            actions: {
+              items: [
+                {
+                  href: '../personal/contact-dates?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -171,7 +184,7 @@
             actions: {
               items: [
                 {
-                  href: '../personal/hmrc?cya=true',
+                  href: '../personal/hmrc?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -209,7 +222,7 @@
             actions: {
               items: [
                 {
-                  href: 'name?cya=true',
+                  href: '../birth-adoption/name?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -225,7 +238,7 @@
             actions: {
               items: [
                 {
-                  href: 'sex?cya=true',
+                  href: '../birth-adoption/sex?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -241,7 +254,7 @@
             actions: {
               items: [
                 {
-                  href: 'dob?cya=true',
+                  href: '../birth-adoption/dob?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -257,7 +270,7 @@
             actions: {
               items: [
                 {
-                  href: 'uk-check?cya=true',
+                  href: '../birth-adoption/uk-check?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -273,7 +286,7 @@
             actions: {
               items: [
                 {
-                  href: 'country?cya=true',
+                  href: '../birth-adoption/country?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -289,7 +302,7 @@
             actions: {
               items: [
                 {
-                  href: 'mothers-name?cya=true',
+                  href: '../birth-adoption/mothers-name?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -305,7 +318,7 @@
             actions: {
               items: [
                 {
-                  href: 'fathers-name-check?cya=true',
+                  href: '../birth-adoption/fathers-name-check?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -321,7 +334,7 @@
             actions: {
               items: [
                 {
-                  href: 'fathers-name?cya=true',
+                  href: '../birth-adoption/fathers-name?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -337,7 +350,7 @@
             actions: {
               items: [
                 {
-                  href: 'place-of-birth?cya=true',
+                  href: '../birth-adoption/place-of-birth?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -353,7 +366,7 @@
             actions: {
               items: [
                 {
-                  href: 'adopted?cya=true',
+                  href: '../birth-adoption/adopted?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -369,7 +382,7 @@
             actions: {
               items: [
                 {
-                  href: 'forces?cya=true',
+                  href: '../birth-adoption/forces?cya-end=true',
                   text: 'Change'
                 }
               ]
@@ -674,19 +687,59 @@
       </h2>
       <p class="govuk-!-margin-bottom-2">Based on your application the documents that will need to be posted are:</p>
       <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-9">
-        {{ '<li>your original or a certified copy of your full birth certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] != 'Yes' }}
-        {{ '<li>your original or a certified copy of your full adoption certificate</li>' | safe if data['uk-check'] != 'No' and data['adopted'] == 'Yes' }}
-        {{ '<li>an official confirmation of date of birth and birth gender</li>' | safe if data['uk-check'] == 'No' }}
-        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for single applicants (opens in new tab)</a></li>' | safe if data['current-check'] == 'Neither' }}
-        {{ '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for applicants (opens in new tab)</a></li>' | safe if data['current-check'] != 'Neither' }}
-        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your spouse&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe if data['current-check'] == 'Married' and data['stay-together'] == 'Yes' }}
-        {{ '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your civil partner&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes' }}
-        {{ '<li>your original marriage certificate or a certified copy</li>' | safe if data['current-check'] == 'Married' }}
-        {{ '<li>your original civil partnership certificate or a certified copy</li>' | safe if data['current-check'] == 'Civil partnership' }}
-        {{ '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe if data['partner-died'] == 'Yes' }}
-        {{ '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe if data['ended-check'] == 'Yes' }}
-        {{ '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe if data['overseas'] }}
-        {{ '<li>a <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">EX160 form (opens in new tab)</li>' | safe if data['help-type'] == 'Using the EX160 form' }}
+        {{
+          '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full birth certificate</li>' | safe
+          if data['uk-check'] != 'No' and data['adopted'] != 'Yes'
+        }}
+        {{
+          '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full adoption certificate</li>' | safe
+          if data['uk-check'] != 'No' and data['adopted'] == 'Yes'
+        }}
+        {{
+          '<li>an official confirmation of date of birth and birth gender</li>' | safe
+          if data['uk-check'] == 'No'
+        }}
+        {{
+          '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for single applicants (opens in new tab)</a></li>' | safe
+          if data['current-check'] == 'Neither'
+        }}
+        {{
+          '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for applicants who are married or in a
+civil partnership (opens in new tab)</a></li>' | safe
+          if data['current-check'] != 'Neither'
+        }}
+        {{
+          '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your spouse&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe
+          if data['current-check'] == 'Married' and data['stay-together'] == 'Yes'
+        }}
+        {{
+          '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your civil partner&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe
+          if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes'
+        }}
+        {{
+          '<li>your original marriage certificate or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a></li>' | safe
+          if data['current-check'] == 'Married'
+        }}
+        {{
+          '<li>your original civil partnership certificate or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a></li>' | safe
+          if data['current-check'] == 'Civil partnership'
+        }}
+        {{
+          '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe
+          if data['partner-died'] == 'Yes'
+        }}
+        {{
+          '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe
+          if data['ended-check'] == 'Yes'
+        }}
+        {{
+          '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe
+          if data['overseas']
+        }}
+        {{
+          '<li>an <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">EX160 form (opens in new tab)</li>' | safe
+          if data['help-type'] == 'Using the EX160 form'
+        }}
       </ul>
 
 
