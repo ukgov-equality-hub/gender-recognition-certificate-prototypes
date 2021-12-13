@@ -20,6 +20,27 @@
         href: 'v1/guidance/documents-needed'
       }) }}
 
+      {% set allPages %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="v1/guidance/documents-needed">Guidance page for docs</a></li>
+          <li><a href="v1/start">Before you start</a></li>
+          <li><a href="v1/previous-names-check">Changed name</a></li>
+          <li><a href="v1/marriage-civil-partnership/current-check">Marriage check</a></li>
+          <li><a href="v1/marriage-civil-partnership/partner-died">Partner died</a></li>
+          <li><a href="v1/marriage-civil-partnership/ended-check">Relationship ended</a></li>
+          <li><a href="v1/marriage-civil-partnership/stay-together">Stay together</a></li>
+          <li><a href="v1/marriage-civil-partnership/partner-agrees">Partners declaration</a></li>
+          <li><a href="v1/marriage-civil-partnership/interim-check">Interim</a></li>
+          <li><a href="v1/overseas-approved-check">Overseas</a></li>
+          <li><a href="v1/your-documents">Your docs</a></li>
+        </ul>
+      {% endset %} {# /allPages #}
+
+      {{ govukDetails({
+        summaryText: 'Links to all pages',
+        html: allPages
+      }) }}
+
     </div>
   </div>
 {% endblock %}
