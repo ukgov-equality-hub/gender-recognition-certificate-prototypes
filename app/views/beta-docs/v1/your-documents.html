@@ -5,20 +5,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukPanel({
-        titleText: 'Application submitted',
-        html: 'You have 28 days to post all remaining documents to us'
-      }) }}
+      <h1 class="govuk-heading-l">
+        Your documents
+      </h1>
 
-      <p>We have sent you a confirmation email.</p>
+      <p>Based on your answers there are documents you&rsquo;ll need to upload during your application and others that you need to post once you have completed it.</p>
 
-      <h2 class="govuk-heading-m">
-        What you need to do next
-      </h2>
+      <p class="govuk-!-margin-bottom-2">Documents that need to be uploaded are:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
+        {{
+          '<li>copies of all change of name documents</li>' | safe
+          if data['previous-names-check'] != 'No'
+        }}
+        {{
+          '<li>a medical report that explains in full, the specific details of your gender dysphoria diagnosis, written by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria</li>
+          <li>a medical report that explains in full, the specific details of your treatment, or planned treatment, such as hormone treatments or surgery, written by a registered medical practitioner – this could be your GP or surgeon</li>
+          <li>evidence of living in your gender for 2 years, no more than 8 documents that are spread throughout those 2 years</li>' | safe
+          if data['overseas-approved-check'] != 'Yes'
+        }}
+      </ul>
 
-      <p>You should now post us any remaining documents. Include your name and return address with them.</p>
-
-      <p class="govuk-!-margin-bottom-2">Based on your application the documents that need to be posted are:</p>
+      <p class="govuk-!-margin-bottom-2">Documents that need to be posted are:</p>
       <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
         {{
           '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full birth certificate</li>' | safe
@@ -67,33 +74,14 @@ civil partnership (opens in new tab)</a></li>' | safe
         }}
         {{
           '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe
-          if data['overseas']
-        }}
-        {{
-          '<li>an <a href="https://www.gov.uk/government/publications/apply-for-help-with-court-and-tribunal-fees" rel="noreferrer noopener" target="_blank">EX160 form (opens in new tab)</li>' | safe
-          if data['help-type'] == 'Using the EX160 form'
+          if data['overseas-approved-check'] == 'Yes'
         }}
       </ul>
 
-      <p class="govuk-!-margin-bottom-2">They should be sent to:</p>
-      {{ govukInsetText({
-        html: 'Gender Recognition Panel<br>
-          PO Box 9300<br>
-          Leicester<br>
-          LE1 8DJ',
-          classes: 'govuk-!-margin-top-0'
-      }) }}
-
       <p>You can <a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">order a birth, death, marriage or civil partnership certificate</a> online if you live in England and Wales. There&rsquo;s a different process for <a href="http://www.nrscotland.gov.uk/registration/how-to-order-an-official-extract-from-the-registers">getting certificates in Scotland</a> and <a href="http://www.nidirect.gov.uk/index/do-it-online/government-citizens-and-rights-online/order-a-birth-adoption-death-marriage-or-civil-partnership-certificate.htm">getting certificates in Northern Ireland</a>.</p>
 
-      <p>Once you&rsquo;ve supplied these documents your application will be reviewed by the Gender Recognition Panel. You will be contacted if the panel requires more information or documentation.</p>
+      <p class="govuk-!-margin-bottom-8">Once you have your documents ready you can <a href="#0">apply for a certificate</a>.</p>
 
-      <p>You will then be told if you will be issued with a Gender Recognition Certificate, and what you can do if your application has not been accepted.</p>
-
-      <p>Decisions take around 12 weeks on average.</p>
-
-
-      <p class="govuk-!-margin-top-9"><a href="#0">What did you think of this service?</a> (takes 30 seconds)</p>
 
 
 

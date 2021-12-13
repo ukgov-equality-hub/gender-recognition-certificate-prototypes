@@ -1,0 +1,236 @@
+{% extends "layout.html" %}
+{% set mainClasses = "guide" %}
+
+{% block header %}
+  {% include "../_includes/govuk-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../_includes/breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+        <h1 class="gem-c-title__text govuk-heading-xl">
+          Apply for a Gender Recognition Certificate
+        </h1>
+      </div>
+
+      <a class="gem-c-skip-link govuk-skip-link govuk-!-display-none-print" href="#guide-contents">Skip to contents of guide</a>
+
+      <aside class="part-navigation-container" role="complementary">
+        <nav class="gem-c-contents-list">
+          <h2 class="gem-c-contents-list__title">
+            Contents
+          </h2>
+          <ol class="gem-c-contents-list__list">
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="overview">Overview</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="who-can-apply">Who can apply</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active gem-c-contents-list__list-item--active">
+              Documents you need to provide
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="what-it-means">What it means to legally change your gender</a>
+            </li>
+            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+              <a class="gem-c-contents-list__link" href="apply">Apply for a Gender Recognition Certificate</a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds" id="guide-contents">
+      <h1 class="part-title">
+        Documents you need to provide
+      </h1>
+
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
+
+        <p>You should collect the documents you need before applying for a Gender Recognition Certificate. </p>
+
+        <p>Some documents, such as medical reports, name change documents and evidence of living in your gender can be uploaded when applying online.</p>
+
+        <p>The rest will need to be posted to us after you submit your application.</p>
+
+        {{ govukInsetText({
+          html: '<p>The documents you need to provide depend on your circumstances, you can read the following guidance or <a href="../start">check which documents you need</a>.</p>'
+        }) }}
+
+
+
+
+
+
+
+
+        <h2>Documents from all applicants</h2>
+
+        <p>You will need to provide:</p>
+        <ul>
+          <li>an original or certified <a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">copy of your full birth certificate</a> (if UK) or official confirmation of date of birth and birth gender (if outside UK)</li>
+          <li>a signed Gender Recognition Statutory Declaration either for <a href="https://www.gov.uk/government/publications/form-t467-statutory-declaration-for-single-applicants">single people</a>, or for <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf">people married or in a civil partnership</a>, witnessed by someone authorised to administer oaths, such as a solicitor</li>
+          <li>copies of all change of name documents if you have changed your name</li>
+        </ul>
+
+        <p>You will need to provide these documents even if you&rsquo;ve already received gender recognition in another country or territory.</p>
+
+
+
+
+
+
+        <h2>If you have ever been married or been in a civil partnership</h2>
+
+        <p>You also need to provide:</p>
+        <ul>
+          <li>an original marriage certificate or a certified copy </li>
+          <li><a href="https://www.gov.uk/government/publications/form-t469-statutory-declaration-for-the-spouse-of-an-applicant-for-gender-recognition">spouse or civil partner&rsquo;s signed and witnessed statutory declaration</a>, if you intend to remain married or in a civil partnership after receiving your Gender Recognition Certificate</li>
+          <li>a copy of your decree dissolving the marriage or civil partnership, if you do not intend to remain, or are no longer married or in a civil partnership</li>
+        </ul>
+
+        <p>However, if your spouse or civil partner has died, you only need to provide:</p>
+        <ul>
+          <li>an original marriage certificate or a certified copy </li>
+          <li>a copy of your spouse or civil partner&rsquo;s death certificate</li>
+        </ul>
+
+        <p>If your spouse or civil partner has not died but does not provide a statutory declaration then you can still apply. During the application process you can choose to apply for an interim Gender Recognition Certificate which can be used to end the relationship. </p>
+
+        <p>You have 6 months to use the interim certificate to end your marriage or civil partnership. You will then be issued with a full certificate.</p>
+
+
+
+
+
+        <h2>If your gender has been recognised in another country</h2>
+
+        <p>If your gender recognition has been legally accepted in <a href="https://www.gov.uk/government/publications/overseas-gender-recognition-2011-t491">one of these approved countries or territories</a> you will also need to provide original or certified copies of documents that show this.</p>
+
+        <p>What you need to provide depends on the country where you were recognised. It could include:</p>
+        <ul>
+          <li>your new birth certificate, showing the change of gender</li>
+          <li>a court order authorising your change of gender</li>
+          <li>a document that&rsquo;s equivalent to a Gender Recognition Certificate in that country</li>
+          <li>an entry in a legal register that proves your affirmed gender has been recognised</li>
+        </ul>
+
+
+
+
+
+        <h2>If your gender has not been recognised in another country</h2>
+
+
+        <h3>Medical reports</h3>
+
+        <p>You will need to upload 2 medical reports as part of your application. </p>
+        <ol>
+          <li>a medical report that explains in full, the specific details of your gender dysphoria diagnosis, written by a registered medical practitioner or registered psychologist practising in the field of gender dysphoria</li>
+          <li>a medical report that explains in full, the specific details of your treatment, or planned treatment, such as hormone treatments or surgery, written by a registered medical practitioner – this could be your GP or surgeon</li>
+        </ol>
+
+        <p>There is a <a rel="noreferrer noopener" target="_blank" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/937304/t493-eng.pdf">list of specialists in the field of gender dysphoria (opens in new tab)</a>. This is not a complete directory of those in this field and it may not be up to date.</p>
+        <p>The medical report does not need to be written by someone on this list, as long as it is written by a medical practitioner or psychologist registered in the field of gender dysphoria.</p>
+        <p>Each report should include the name, practice address and contact details of the person writing the report.</p>
+        {{ govukInsetText({
+          html: '<p>There is a <a href="https://www.gov.uk/government/publications/form-t452-guidelines-for-registered-medical-practitioners-and-registered-psychologists-to-facilitate-completion-of-the-medical-report-proforma-for-g">form that medical practitioners can use to make these reports</a></p>'
+        }) }}
+
+
+        <h4>What the reports should include</h4>
+
+        <p>The first report needs to show your diagnosis of gender dysphoria. It should include details of:</p>
+        <ul>
+          <li>the diagnosis, including when it was made and by who</li>
+          <li>any evidence that was used to make the diagnosis </li>
+          <li>any medication prescribed and when</li>
+          <li>any planned non-surgical treatment</li>
+          <li>when a referral for surgery was made and if it hasn&rsquo;t, the reasons why </li>
+        </ul>
+
+        <p>The second report needs to show details of your treatment, or planned treatment. It should include details of:</p>
+        <ul>
+          <li>whether gender reassignment surgery has been carried out</li>
+          <li>each distinct surgical procedure and the date it was carried out</li>
+          <li>any non-surgical treatment given (such as hormone treatment)</li>
+          <li>any further surgical or non-surgical treatment planned </li>
+        </ul>
+
+
+        <h3>Evidence of living in your gender for 2 years</h3>
+
+        <p>You also need to upload evidence that you have been living in your affirmed gender. </p>
+
+        <p>You should provide:</p>
+        <ul>
+          <li>no more than 8 documents from the last 2 years </li>
+          <li>try to include documents from dates that are spread throughout those 2 years</li>
+        </ul>
+
+        <p>For example, try and provide 4 documents per year and do not include documents that are all dated in the same month.</p>
+
+        <p>Examples of what you could provide:</p>
+        <ul>
+          <li>driving licence </li>
+          <li>passport</li>
+          <li>payslips, P60 or P45</li>
+          <li>benefits or tax letters and documents</li>
+          <li>council tax letters, bank statements, utility bills</li>
+          <li>letters from official, professional or business organisations like solicitors, accountants, dentists, doctors and employers</li>
+          <li>academic certificates or documentation</li>
+          <li>health care or identity cards including photo ID issued by an official organisation </li>
+        </ul>
+
+
+        <h3>If you cannot provide both medical reports</h3>
+
+        <p>If you currently live in England, Wales or Scotland and:</p>
+        <ul>
+          <li>were married or in a civil partnership in England or Wales on 10 December 2014 or in Scotland on 16 December 2014 </li>
+          <li>have been living in your acquired gender for at least 6 years before those dates</li>
+        </ul>
+
+        <p>Then you may be able to apply for a Gender Recognition Certificate through an alternate route.</p>
+
+        <p>This means you would not need to supply a medical report detailing a diagnosis of gender dysphoria. However, you would still need to supply a medical report that details any surgery you have had to change your sexual characteristics.</p>
+
+        <p>If you meet these requirements and you would like to apply through this route, then speak to the Gender Recognition Panel&rsquo;s admin team:</p>
+
+        <p class="contact">
+          Gender Recognition Panel<br>
+          <a href="mailto:GRPenquiries@justice.gov.uk">GRPenquiries@justice.gov.uk</a> <br>
+          Telephone: +44 (0)20 3936 8968
+        </p>
+
+
+
+
+
+
+      </div>
+
+      {{ govukPagination({
+        previous: {
+          href: 'who-can-apply',
+          text: 'Who can apply'
+        },
+        next: {
+          href: 'what-it-means',
+          text: 'What it means to legally change your gender'
+        }
+      }) }}
+
+      {% include "../_includes/explore-topic.html" %}
+    </div>
+
+    {% include "../_includes/related-content.html" %}
+
+  </div>
+{% endblock %}

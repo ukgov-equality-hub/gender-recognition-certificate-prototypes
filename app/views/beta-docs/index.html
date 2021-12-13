@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">
+        Check which documents you need
+      </h1>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <p>A tool which asks the user for their details and calulates the documents they need before applying. This extends on the work we did in alpha for the <a href="../eligibility">&lsquo;Check the service is suitable&rsquo; prototypes</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        Version 1
+      </h2>
+
+      {{ govukButton({
+        text: 'View prototype',
+        href: 'v1/guidance/documents-needed'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

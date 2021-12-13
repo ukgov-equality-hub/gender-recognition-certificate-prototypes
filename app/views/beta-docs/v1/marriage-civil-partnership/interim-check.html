@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'stay-together' if data['stay-together'] == 'No' else 'partner-agrees'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <form method="post">
+        <div class="interuption-card">
+          <h1 class="govuk-heading-l">
+            Interim Gender Recognition Certificate
+          </h1>
+
+          {% if data['current-check'] == 'Civil partnership' %}
+            {% if data['stay-together'] == 'No' %}
+              <p>You must end your civil partnership before you can receive a full Gender Recognition Certificate.</p>
+            {% else %}
+              <p>If your partner has not signed a statutory declaration of consent then you cannot receive a full Gender Recognition Certificate.</p>
+
+              <p>You will only be able to receive a full certificate if you end your civil partnership.</p>
+            {% endif %}
+
+            <p class="govuk-!-margin-bottom-8">If you apply you will receive an interim Gender Recognition Certificate which can be used to end your civil partnership, after which you will receive a full certificate. The interim certificate cannot be used for any other purpose.</p>
+          {% else %}
+            {% if data['stay-together'] == 'No' %}
+              <p>You must end your marriage before you can receive a full Gender Recognition Certificate.</p>
+            {% else %}
+              <p>If your spouse has not signed a statutory declaration of consent then you cannot receive a full Gender Recognition Certificate.</p>
+
+              <p>You will only be able to receive a full certificate if you end your marriage.</p>
+            {% endif %}
+
+            <p class="govuk-!-margin-bottom-8">If you apply you will receive an interim Gender Recognition Certificate which can be used to end your marriage, after which you will receive a full certificate. The interim certificate cannot be used for any other purpose.</p>
+          {% endif %}
+
+          {{ govukButton({
+            html: 'Continue',
+            classes: 'govuk-!-margin-bottom-0'
+          }) }}
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
