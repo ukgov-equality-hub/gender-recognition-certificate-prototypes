@@ -37,7 +37,7 @@ router.post('/marriage-civil-partnership/partner-died', function (req, res) {
 })
 
 router.post('/marriage-civil-partnership/ended-check', function (req, res) {
-  res.redirect('../overseas-check');
+  res.redirect('../overseas-approved-check');
 })
 
 router.post('/marriage-civil-partnership/stay-together', function (req, res) {
@@ -52,26 +52,17 @@ router.post('/marriage-civil-partnership/partner-agrees', function (req, res) {
   if (req.session.data['partner-agrees'] == 'No') {
     res.redirect('interim-check');
   } else {
-    res.redirect('../overseas-check');
+    res.redirect('../overseas-approved-check');
   }
 })
 
 router.post('/marriage-civil-partnership/interim-check', function (req, res) {
-  res.redirect('../overseas-check');
-})
-
-router.post('/overseas-check', function (req, res) {
-  if (req.session.data['overseas-check'] == 'Yes') {
-    res.redirect('overseas-approved-check');
-  } else {
-    res.redirect('your-documents');
-  }
+  res.redirect('../overseas-approved-check');
 })
 
 router.post('/overseas-approved-check', function (req, res) {
   res.redirect('your-documents');
 })
-
 
 
 
