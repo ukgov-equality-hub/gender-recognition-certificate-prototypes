@@ -41,24 +41,20 @@ router.post('/marriage-civil-partnership/ended-check', function (req, res) {
 })
 
 router.post('/marriage-civil-partnership/stay-together', function (req, res) {
-  if (req.session.data['stay-together'] == 'No') {
-    res.redirect('interim-check');
-  } else {
-    res.redirect('partner-agrees');
-  }
+  res.redirect('overseas-approved-check');
 })
 
-router.post('/marriage-civil-partnership/partner-agrees', function (req, res) {
-  if (req.session.data['partner-agrees'] == 'No') {
-    res.redirect('interim-check');
-  } else {
-    res.redirect('../overseas-approved-check');
-  }
-})
-
-router.post('/marriage-civil-partnership/interim-check', function (req, res) {
-  res.redirect('../overseas-approved-check');
-})
+// router.post('/marriage-civil-partnership/partner-agrees', function (req, res) {
+//   if (req.session.data['partner-agrees'] == 'No') {
+//     res.redirect('interim-check');
+//   } else {
+//     res.redirect('../overseas-approved-check');
+//   }
+// })
+//
+// router.post('/marriage-civil-partnership/interim-check', function (req, res) {
+//   res.redirect('../overseas-approved-check');
+// })
 
 router.post('/overseas-approved-check', function (req, res) {
   res.redirect('your-documents');

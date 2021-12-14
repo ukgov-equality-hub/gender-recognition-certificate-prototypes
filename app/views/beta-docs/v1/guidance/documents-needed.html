@@ -53,15 +53,20 @@
 
       <div class="gem-c-govspeak govuk-govspeak direction-ltr disable-youtube">
 
-        <p>You should collect the documents you need before applying for a Gender Recognition Certificate. </p>
+        <p>You should collect the documents you need before applying for a Gender Recognition Certificate.</p>
+
+        <p>Use this tool to find out what you need to provide based on your personal circumstances:</p>
+
+        {{ govukInsetText({
+          html: '<p><a href="../start">Check which documents you need to apply for a Gender Recognition Certificate</a></p>'
+        }) }}
 
         <p>Some documents, such as medical reports, name change documents and evidence of living in your gender can be uploaded when applying online.</p>
 
         <p>The rest will need to be posted to us after you submit your application.</p>
+        
+        <p>You can also read the guidance below which explains the different documents someone might need when applying for a Gender Recognition Certificate.</p>
 
-        {{ govukInsetText({
-          html: '<p>The documents you need to provide depend on your circumstances, you can read the following guidance or <a href="../start">check which documents you need</a>.</p>'
-        }) }}
 
 
 

@@ -15,9 +15,9 @@
 
         {% set questionText %}
           {% if data['current-check'] == 'Civil partnership' %}
-            Do you plan to remain in your civil partnership after receiving your Gender Recognition Certificate?
+            Do you plan to remain in your civil partnership when you receive your Gender Recognition Certificate?
           {% else %}
-            Do you plan to remain married after receiving your Gender Recognition Certificate?
+            Do you plan to remain in your marriage when you receive your Gender Recognition Certificate?
           {% endif %}
         {% endset %}
 
@@ -36,10 +36,7 @@
             {
               html: 'Yes',
               value: 'Yes',
-              checked: checked('stay-together','Yes'),
-              conditional: {
-                html: stayMarriedCheck
-              }
+              checked: checked('stay-together','Yes')
             },
             {
               html: 'No',
