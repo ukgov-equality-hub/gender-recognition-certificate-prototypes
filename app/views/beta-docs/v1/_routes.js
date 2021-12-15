@@ -41,7 +41,7 @@ router.post('/marriage-civil-partnership/ended-check', function (req, res) {
 })
 
 router.post('/marriage-civil-partnership/stay-together', function (req, res) {
-  res.redirect('overseas-approved-check');
+  res.redirect('../overseas-approved-check');
 })
 
 // router.post('/marriage-civil-partnership/partner-agrees', function (req, res) {
