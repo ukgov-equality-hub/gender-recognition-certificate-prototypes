@@ -1,6 +1,92 @@
-# Unreleased
+# 11.0.0 (Fix release)
 
-## 9.14.1 (Patch release)
+## Fixes
+
+We’ve recently experienced 2 security incidents involving common NPM packages used by the Prototype Kit. We’re sorry for the inconvenience this has caused.
+
+We’ve added new measures (a package-lock.json file) to help prevent this in the future. 
+
+To protect your service from any similar threats in future, please upgrade to this new version of the Kit.
+
+[Install the Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/install)
+
+For any existing prototypes, follow the guide to [update the kit](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
+
+## Pull requests
+
+[Pull request #1143: Add a package-lock.json file](https://github.com/alphagov/govuk-prototype-kit/pull/1143).
+
+
+# 10.0.0 (Breaking release)
+
+## Breaking changes
+
+You must make the following changes if you’re running Node.js 10 and you update to this release, or your prototype may break.
+
+### Update from Node.js 10
+
+You can no longer run the GOV.UK Prototype Kit on Node.js 10.
+
+If you currently run Node.js 10, you'll need to upgrade to a newer version. 
+
+We recommend using version 16. You can find more information on the [Prototype Kit requirements page](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md).
+
+### Upgrade Notify client library from version 4.7.2 to 5.1.0
+
+We have updated the Notify client library to version 5.1.0. This may break existing prototypes that are using the Notify client. Big thanks to [David McDonald](https://github.com/idavidmcdonald).
+
+## Breaking change pull requests
+
+- [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/get-in-touch/).
+- [Pull request #1127: Update to Node 16 and drop support for Node 10](https://github.com/alphagov/govuk-prototype-kit/pull/1127)
+
+## Fixes
+
+- [Pull request #1133: Remove express-writer from package file](https://github.com/alphagov/govuk-prototype-kit/pull/1133)
+
+# 9.15.0 (Feature release)
+
+## New features
+
+### Update to GOV.UK Frontend 3.14.0
+
+Added in [Pull request #1108: Update to GOV.UK Frontend v3.14.0](https://github.com/alphagov/govuk-prototype-kit/pull/1108)
+
+This release contains:
+- new override classes for text alignment
+- changes to the `govuk-spacing` function to allow negative spacing
+- a fix for an accessibility issue with the panel component
+
+### Replace back link placeholder URLs with JavaScript
+
+We've added JavaScript to make the [back link component](https://design-system.service.gov.uk/components/back-link/) take users to the previous page by default, rather than you having to update placeholder text.
+
+If you want to use JavaScript in production, you must also use a non-JavaScript alternative, so you do not exclude any users. If you cannot use a non-JavaScript alternative, you should hide the back link when JavaScript is not available.
+
+You can still override the `href` attribute if you need to provide a solution that works when JavaScript is disabled.
+
+This was added in [Pull request #1103: Replace back link placeholder URLs with JavaScript](https://github.com/alphagov/govuk-prototype-kit/pull/1103)
+
+### Update Node.js to protect your code
+
+If you use the GOV.UK Prototype Kit, we recommend you update to use the latest version of Node.js 14 Long Term Support (LTS). This is to make sure you're protected from a [recent security vulnerability in the npm (Node Package Manager)](https://github.blog/2021-09-08-github-security-update-vulnerabilities-tar-npmcli-arborist/).
+
+To make sure you're using Node.js version 14.17.6 or later, [follow the install instructions on the Prototype Kit website](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#nodejs-version-14-lts).
+
+If you're using Node Version Manager (nvm), you can instead [run `nvm install` to install v14.17.6](https://github.com/alphagov/govuk-prototype-kit/pull/1076).
+
+## Fixes
+
+- [Pull request #1104: Change visually hidden footer title](https://github.com/alphagov/govuk-prototype-kit/pull/1104)
+
+# 9.14.2 (Fix release)
+
+## Fixes
+
+- [Pull request #1036: Update to GOV.UK Frontend v3.13.1](https://github.com/alphagov/govuk-prototype-kit/pull/1069)
+- [Pull request #1050: Do not swallow errors from `session-data-defaults.js`](https://github.com/alphagov/govuk-prototype-kit/pull/1050)
+
+# 9.14.1 (Patch release)
 
 ## Fixes
 
