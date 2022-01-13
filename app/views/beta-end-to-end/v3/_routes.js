@@ -42,12 +42,7 @@ router.get('/guidance/apply', function (req, res, next) {
 router.post('/application/start-application', function (req, res) {
   req.session.data['returning'] = false
 
-  if (req.session.data['return-choice'] == 'Neither') {
-    req.session.data['signedin'] = 'false'
-    res.redirect('overseas-check');
-  } else {
-    res.redirect('save-and-return/security-code');
-  }
+  res.redirect('save-and-return/security-code');
 })
 
 router.post('/application/save-and-return/return', function (req, res) {

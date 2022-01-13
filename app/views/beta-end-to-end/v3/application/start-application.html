@@ -17,82 +17,27 @@
           Save your application
         </h1>
 
-        <p>If you want to save your progress and return to it later, we will need your email address or mobile number.</p>
+        <p>We need your email address so you can save your progress and return later.</p>
 
-        <p>This is so we can send a confirmation message to confirm it&rsquo;s you when you come back to your application. </p>
+        <p>This is so we can send a confirmation message to confirm it&rsquo;s you when you come back to your application.</p>
 
-        <p>We will also give you a reference number to use when returning to a saved application.</p>
-
-        <p class="govuk-!-margin-bottom-8">If you choose not to give an email or phone number and leave your application at any point, you will have to start it again.</p>
+        <p class="govuk-!-margin-bottom-8">We will also give you a reference number to use when returning to a saved application.</p>
 
 
 
 
-        {% set emailHtml %}
-          {{ govukInput({
-            id: 'email',
-            name: 'email',
-            value: data['email'],
-            type: 'email',
-            autocomplete: 'email',
-            spellcheck: false,
-            classes: 'govuk-input--width-20',
-            label: {
-              text: 'Email address'
-            }
-          }) }}
-        {% endset -%}
-
-        {% set textHtml %}
-          {{ govukInput({
-            id: 'text',
-            name: 'text',
-            value: data['text'],
-            type: 'tel',
-            autocomplete: 'tel',
-            classes: 'govuk-input--width-20',
-            label: {
-              text: 'Mobile number'
-            }
-          }) }}
-        {% endset -%}
-
-        {{ govukRadios({
-          idPrefix: 'return-choice',
-          name: 'return-choice',
-          classes: '',
-          fieldset: {
-            legend: {
-              html: 'How should we confirm it&rsquo;s you when you return to an application?',
-              classes: 'govuk-fieldset__legend--m'
-            }
-          },
-          items: [
-            {
-              html: 'Email',
-              value: 'email address',
-              checked: checked('return-choice','email address'),
-              conditional: {
-                html: emailHtml
-              }
-            },
-            {
-              html: 'Text message',
-              value: 'mobile phone',
-              checked: checked('return-choice','mobile phone'),
-              conditional: {
-                html: textHtml
-              }
-            },
-            {
-              divider: 'or'
-            },
-            {
-              html: 'I do not want to save my progress as I go',
-              value: 'Neither',
-              checked: checked('return-choice','Neither')
-            }
-          ]
+        {{ govukInput({
+          id: 'email',
+          name: 'email',
+          value: data['email'],
+          type: 'email',
+          autocomplete: 'email',
+          spellcheck: false,
+          classes: 'govuk-input--width-20',
+          label: {
+            text: 'What is your email address?',
+            classes: 'govuk-label--m'
+          }
         }) }}
 
 
@@ -102,7 +47,6 @@
 
         <p><a class="govuk-link--no-visited-state" href="save-and-return/return">Return to a saved application</a></p>
 
-        {# <p><a class="govuk-link--no-visited-state" href="../task-list?signedin=false">I do not want to save my progress as I go</a></p> #}
 
       </form>
 
