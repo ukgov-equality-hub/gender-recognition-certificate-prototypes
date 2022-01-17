@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: serviceUrl or "/",
+    containerClasses: "govuk-width-container",
+    navigation: [
+      {
+        html: "<span class='govuk-visually-hidden'>Signed in as </span>Chris Armstrong<br>"
+      },
+      {
+        href: "#0",
+        text: "Sign out"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Are you sure you want to remove the application from Jane Doe?</h1>
+
+      <p>The application will not be available to dowload again, you should have finished adding the application to the system.</p>
+
+
+
+      {{ govukButton ({
+        text: 'Yes, remove',
+        href: 'dashboard'
+      }) }}
+      <p><a href="dashboard" class="govuk-link govuk-link--no-visited-state">Cancel</a></p>
+
+    </div>
+  </div>
+{% endblock %}

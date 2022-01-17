@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: serviceUrl or "/",
+    containerClasses: "govuk-width-container",
+    navigation: [
+      {
+        html: "<span class='govuk-visually-hidden'>Signed in as </span>Chris Armstrong<br>"
+      },
+      {
+        href: "#0",
+        text: "Sign out"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">GRC applications</h1>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">
+        Download application
+      </h2>
+      <p>Once you have downloaded and processed the application you will need to remove it from the table below.</p>
+      {{ govukButton ({
+        text: 'Download next application',
+        href: 'example.pdf',
+        attributes: {
+          download: 'example.pdf'
+        }
+      }) }}
+
+    </div>
+
+
+
+    <div class="govuk-grid-column-full">
+
+      <h2 class="govuk-heading-m border-top-big govuk-!-margin-top-4">
+        Downloaded applications
+      </h2>
+
+      {% set actions %}
+        <ul class="govuk-summary-list__actions-list" style="text-align: right">
+
+            <li class="govuk-summary-list__actions-list-item">
+              <a href="#0">
+                Download again
+              </a>
+            </li>
+
+            <li class="govuk-summary-list__actions-list-item">
+              <a class="remove-link" href="remove">
+                Remove
+              </a>
+            </li>
+
+        </ul>
+      {% endset %}
+
+      {{ govukTable({
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Applicant name",
+            attributes: {
+              "aria-sort": "none"
+            }
+          },
+          {
+            text: "Downloaded",
+            attributes: {
+              "aria-sort": "descending"
+            }
+          },
+          {
+            text: "Downloaded by",
+            attributes: {
+              "aria-sort": "descending"
+            }
+          },
+          {
+            html: "<span class='govuk-visually-hidden'>Actions</span>",
+            attributes: {
+              "aria-sort": "none"
+            }
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Chris Armstrong"
+            },
+            {
+              text: "10 December 2022"
+            },
+            {
+              text: "Johnie Farhi"
+            },
+            {
+              html: actions
+            }
+          ],
+          [
+            {
+              html: "Rosie Hanson"
+            },
+            {
+              text: "9 December 2022"
+            },
+            {
+              text: "Johnie Farhi"
+            },
+            {
+              html: actions
+            }
+          ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  $('.govuk-table__body tr:first-child').hide()
+
+  $('.govuk-button').click(function() {
+    $('.govuk-table__body tr:first-child').show()
+  });
+</script>
+{% endblock %}

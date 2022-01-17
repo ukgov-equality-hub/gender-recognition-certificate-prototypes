@@ -111,3 +111,11 @@ code {
     transform: translateY(-50%) rotate(-45deg);
   }
 }
+
+
+
+
+.border-top-big {
+  border-top: 5px solid $govuk-brand-colour;
+  padding-top: 15px;
+}
