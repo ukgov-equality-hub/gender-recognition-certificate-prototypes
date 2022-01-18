@@ -17,18 +17,24 @@
       }
     ]
   }) }}
+
+  <style>
+    .govuk-phase-banner { display: none }
+  </style>
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-">GRC applications</h1>
+    </div>
 
-      <h1 class="govuk-heading-l">GRC applications</h1>
+    <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-m govuk-!-margin-top-4">
         Download application
       </h2>
-      <p>Once you have downloaded and processed the application you will need to remove it from the table below.</p>
+      <p>Once you&rsquo;ve added the application to GLiMR mark it as complete below.</p>
       {{ govukButton ({
         text: 'Download next application',
         href: 'example.pdf',
@@ -39,26 +45,53 @@
 
     </div>
 
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m border-top-big">
+        Search archive
+      </h2>
+
+      {{ mojSearch({
+        action: 'expected-detailed',
+        method: 'post',
+        input: {
+          id: 'search',
+          name: 'search'
+        },
+        hint: {
+          text: 'Enter applicant name',
+          classes: 'app-!-colour-black'
+        },
+        button: {
+          text: 'Search',
+          classes: 'govuk-button--secondary'
+        }
+      }) }}
+    </div>
+
+
+
 
 
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m border-top-big govuk-!-margin-top-4">
+      <h2 class="govuk-heading-m border-top-big govuk-!-margin-top-9">
         Downloaded applications
       </h2>
+
+      <p>Complete applications will be archived for 6 months.</p>
 
       {% set actions %}
         <ul class="govuk-summary-list__actions-list" style="text-align: right">
 
             <li class="govuk-summary-list__actions-list-item">
               <a href="#0">
-                Download again
+                Redownload
               </a>
             </li>
 
             <li class="govuk-summary-list__actions-list-item">
-              <a class="remove-link" href="remove">
-                Remove
+              <a class="complete-link" href="#0">
+                Complete
               </a>
             </li>
 
