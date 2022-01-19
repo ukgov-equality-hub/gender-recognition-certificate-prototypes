@@ -74,7 +74,7 @@
                 html: "Rosie Hanson"
               },
               {
-                text: "9 Dec 2022"
+                text: today | date("subtract", 1, "days") | date("DD MMM YYYY")
               },
               {
                 html: actions
@@ -152,10 +152,10 @@
                 html: "Rosie Hanson"
               },
               {
-                text: "9 Dec 2022"
+                text: today | date("subtract", 1, "days") | date("DD MMM YYYY")
               },
               {
-                text: "8 Dec 2022"
+                text: today | date("DD MMM YYYY")
               },
               {
                 text: "Chris Armstrong"
@@ -208,13 +208,13 @@
               }
             },
             {
-              text: "Downloaded",
+              text: "Completed",
               attributes: {
                 "aria-sort": "descending"
               }
             },
             {
-              text: "Downloaded by",
+              text: "Completed by",
               attributes: {
                 "aria-sort": "descending"
               }
@@ -232,10 +232,10 @@
                 html: "Rosie Hanson"
               },
               {
-                text: "9 Dec 2022"
+                text: today | date("subtract", 1, "days") | date("DD MMM YYYY")
               },
               {
-                text: "8 Dec 2022"
+                text: today | date("DD MMM YYYY")
               },
               {
                 text: "Chris Armstrong"
