@@ -12,30 +12,48 @@
       <p>A mockup of the admin dashboard used to download the applications.</p>
 
       <h2 class="govuk-heading-m">
-        Version 1
+        Version 3
       </h2>
 
-      <p>This version has the option to remove an application once it's been uploaded to glimr.</p>
+      <p>After showing the first 2 versions to the admin team we&rsquo;ve amended to show all new applications as well as tabs for downloaded and complete.</p>
 
       {{ govukButton({
         text: 'View prototype',
-        href: 'v1/dashboard'
-      }) }}
-
-      <h2 class="govuk-heading-m">
-        Version 2
-      </h2>
-
-      <p>This version archives the application after it's been uploaded to glimr.</p>
-
-      {{ govukButton({
-        text: 'View prototype',
-        href: 'v2/dashboard'
+        href: 'v3/dashboard'
       }) }}
 
 
 
+      {% set v2 %}
+        <p>This version archives the application after it's been uploaded to glimr.</p>
 
+        {{ govukButton({
+          text: 'View prototype',
+          href: 'v2/dashboard'
+        }) }}
+      {% endset %}
+
+      {% set v1 %}
+        <p>This version has the option to remove an application once it's been uploaded to glimr.</p>
+
+        {{ govukButton({
+          text: 'View prototype',
+          href: 'v1/dashboard'
+        }) }}
+      {% endset %}
+
+      {{ govukAccordion({
+        items: [
+          {
+            heading: { text: 'Version 2' },
+            content: { html: v2 }
+          },
+          {
+            heading: { text: 'Version 1' },
+            content: { html: v1 }
+          }
+        ]
+      }) }}
 
 {#
       {% set v1 %}

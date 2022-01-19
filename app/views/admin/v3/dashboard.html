@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block header %}
-  {# Set serviceName in config.js. #}
   {{ govukHeader({
-    homepageUrl: "/",
     serviceName: serviceName,
     serviceUrl: serviceUrl or "/",
     containerClasses: "govuk-width-container",
