@@ -1,0 +1,303 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: serviceUrl or "/",
+    containerClasses: "govuk-width-container",
+    navigation: [
+      {
+        html: "<span class='govuk-visually-hidden'>Signed in as </span>Chris Armstrong<br>"
+      },
+      {
+        href: "#0",
+        text: "Sign out"
+      }
+    ]
+  }) }}
+
+  <style>
+    .govuk-phase-banner { display: none }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-">GRC applications</h1>
+
+      {% set new %}
+        <h2 class="govuk-heading-m">New applications</h2>
+
+        <div class="new-content">
+          <p>There are no new applications to download.</p>
+        </div>
+
+        {% set actions %}
+          <ul class="govuk-summary-list__actions-list" style="text-align: right">
+
+              <li class="govuk-summary-list__actions-list-item">
+                <a href="#0" class="new-link">
+                  Download
+                </a>
+              </li>
+
+          </ul>
+        {% endset %}
+
+        {{ govukTable({
+          firstCellIsHeader: false,
+          classes: 'new-table',
+          head: [
+            {
+              text: "Applicant name",
+              attributes: {
+                "aria-sort": "none"
+              }
+            },
+            {
+              text: "Submitted",
+              attributes: {
+                "aria-sort": "none"
+              }
+            },
+            {
+              html: "<span class='govuk-visually-hidden'>Actions</span>",
+              attributes: {
+                "aria-sort": "none"
+              }
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "Rosie Hanson"
+              },
+              {
+                text: "9 Dec 2022"
+              },
+              {
+                html: actions
+              }
+            ]
+          ]
+        }) }}
+      {% endset -%}
+
+
+
+      {% set downloaded %}
+        <h2 class="govuk-heading-m">Downloaded applications</h2>
+
+        <div class="downloaded-content">
+          <p>There are no downloaded applications waiting to be completed.</p>
+        </div>
+
+        {% set actions %}
+          <ul class="govuk-summary-list__actions-list" style="text-align: right">
+
+              <li class="govuk-summary-list__actions-list-item">
+                <a href="#0">
+                  Redownload
+                </a>
+              </li>
+
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="downloaded-link" href="#0">
+                  Complete
+                </a>
+              </li>
+
+          </ul>
+        {% endset %}
+
+        {{ govukTable({
+          firstCellIsHeader: false,
+          classes: 'downloaded-table',
+          head: [
+            {
+              text: "Applicant name",
+              attributes: {
+                "aria-sort": "none"
+              }
+            },
+            {
+              text: "Submitted",
+              attributes: {
+                "aria-sort": "none"
+              }
+            },
+            {
+              text: "Downloaded",
+              attributes: {
+                "aria-sort": "descending"
+              }
+            },
+            {
+              text: "Downloaded by",
+              attributes: {
+                "aria-sort": "descending"
+              }
+            },
+            {
+              html: "<span class='govuk-visually-hidden'>Actions</span>",
+              attributes: {
+                "aria-sort": "none"
+              }
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "Rosie Hanson"
+              },
+              {
+                text: "9 Dec 2022"
+              },
+              {
+                text: "8 Dec 2022"
+              },
+              {
+                text: "Chris Armstrong"
+              },
+              {
+                html: actions
+              }
+            ]
+          ]
+        }) }}
+      {% endset -%}
+
+
+
+
+      {% set complete %}
+        <h2 class="govuk-heading-m">Complete applications</h2>
+
+        <p>Complete applications are automatically removed after 7 days.</p>
+        <div class="complete-content">
+          <p>There are no complete applications to view.</p>
+        </div>
+
+        {% set actions %}
+          <ul class="govuk-summary-list__actions-list" style="text-align: right">
+
+              <li class="govuk-summary-list__actions-list-item">
+                <a href="#0">
+                  Redownload
+                </a>
+              </li>
+
+          </ul>
+        {% endset %}
+
+        {{ govukTable({
+          firstCellIsHeader: false,
+          classes: 'complete-table',
+          head: [
+            {
+              text: "Applicant name",
+              attributes: {
+                "aria-sort": "none"
+              }
+            },
+            {
+              text: "Submitted",
+              attributes: {
+                "aria-sort": "none"
+              }
+            },
+            {
+              text: "Downloaded",
+              attributes: {
+                "aria-sort": "descending"
+              }
+            },
+            {
+              text: "Downloaded by",
+              attributes: {
+                "aria-sort": "descending"
+              }
+            },
+            {
+              html: "<span class='govuk-visually-hidden'>Actions</span>",
+              attributes: {
+                "aria-sort": "none"
+              }
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "Rosie Hanson"
+              },
+              {
+                text: "9 Dec 2022"
+              },
+              {
+                text: "8 Dec 2022"
+              },
+              {
+                text: "Chris Armstrong"
+              },
+              {
+                html: actions
+              }
+            ]
+          ]
+        }) }}
+      {% endset -%}
+
+      {{ govukTabs({
+        items: [
+          {
+            label: 'New applications',
+            id: 'new',
+            panel: {
+              html: new
+            }
+          },
+          {
+            label: 'Downloaded applications',
+            id: 'downloaded',
+            panel: {
+              html: downloaded
+            }
+          },
+          {
+            label: 'Complete applications',
+            id: 'complete',
+            panel: {
+              html: complete
+            }
+          }
+        ]
+      }) }}
+
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+
+  $('.new-content').hide()
+  $('.downloaded-table').hide()
+  $('.complete-table').hide()
+
+  $('.new-link').click(function() {
+    $('.new-table').hide()
+    $('.new-content').show()
+    $('.downloaded-table').show()
+    $('.downloaded-content').hide()
+  });
+
+  $('.downloaded-link').click(function() {
+    $('.downloaded-table').hide()
+    $('.downloaded-content').show()
+    $('.complete-table').show()
+    $('.complete-content').hide()
+  });
+</script>
+{% endblock %}
