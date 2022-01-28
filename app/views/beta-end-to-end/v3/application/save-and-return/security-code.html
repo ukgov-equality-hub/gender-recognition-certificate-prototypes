@@ -13,6 +13,15 @@
 
       <form method="post">
 
+        {{ govukNotificationBanner({
+          html: '<h3 class="govuk-notification-banner__heading">Email resent</h3><p>We&rsquo;ve resent you a security code. This can take a few minutes to arrive.</p>',
+          type: 'success',
+          classes: 'js-banner',
+          attributes: {
+            style: 'display:none'
+          }
+        }) }}
+
         <h1 class="govuk-heading-l">
           Enter security code
         </h1>
@@ -27,7 +36,7 @@
           <li>check your spam or junk folder</li>
           <li>check you have entered the correct email</li>
         </ul>
-        <p class="govuk-!-margin-bottom-8">If it&rsquo;s still not there, we can <a href="#0">resend the email</a>.</p>
+        <p class="govuk-!-margin-bottom-8">If it&rsquo;s still not there, we can <a href="#0" class="js-link">resend the email</a>.</p>
 
 
 
@@ -50,4 +59,12 @@
 
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    $('.js-link').click(function() {
+      $('.js-banner').show();
+    });
+  </script>
 {% endblock %}
