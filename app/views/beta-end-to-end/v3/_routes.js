@@ -110,12 +110,6 @@ router.post('/application/personal/address', function (req, res) {
 })
 
 router.post('/application/personal/contact-preferences', function (req, res) {
-  req.session.data['personal-details-next'] = 'contact-name'
-
-  res.redirect('contact-name');
-})
-
-router.post('/application/personal/contact-name', function (req, res) {
   req.session.data['personal-details-next'] = 'contact-dates'
 
   res.redirect('contact-dates');
