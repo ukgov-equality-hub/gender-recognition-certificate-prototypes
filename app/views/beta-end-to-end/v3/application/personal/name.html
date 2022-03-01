@@ -14,12 +14,15 @@
       <form method="post">
 
         {% call govukFieldset({
-          legend: {
-            text: 'What name do you want on your Gender Recognition Certificate?',
-            classes: 'govuk-fieldset__legend--l',
-            isPageHeading: true
-          }
-        }) %}
+            legend: {
+              text: 'What is your name?',
+              classes: 'govuk-fieldset__legend--l',
+              isPageHeading: true
+            }
+          })
+        %}
+
+        <p class="govuk-hint">This will appear on your Gender Recognition Certificate.</p>
 
           {{ govukInput({
             id: 'first-name',
