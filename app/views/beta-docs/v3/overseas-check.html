@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: 'overseas-check',
+          name: 'overseas-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Have you ever been issued a Gender Recognition Certificate (or its equivalent) in another country?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('overseas-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('overseas-check','No')
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

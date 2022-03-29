@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: 'Back',
+    href: 'start'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <h1 class="govuk-heading-l">
+          Name change documents
+        </h1>
+
+        <p>You&rsquo;ll need to provide documents to help match your birth records if you have ever changed your name from what appears on your birth certificate.</p>
+
+        <p class="govuk-!-margin-bottom-2">These might include:</p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+          <li>deed poll document, either enrolled or unenrolled</li>
+          <li>change of name document (Scotland)</li>
+          <li>marriage certificate</li>
+          <li>civil partnership certificate</li>
+        </ul>
+
+
+        {{ govukRadios({
+          idPrefix: 'previous-names-check',
+          name: 'previous-names-check',
+          classes: '',
+          fieldset: {
+            legend: {
+              text: 'Have you ever changed your name?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              html: 'Yes',
+              value: 'Yes',
+              checked: checked('previous-names-check','Yes')
+            },
+            {
+              html: 'No',
+              value: 'No',
+              checked: checked('previous-names-check','No')
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
