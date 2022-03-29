@@ -15,7 +15,7 @@
       submit an application.</p>
 
 
-    <p class="govuk-!-margin-bottom-2">Documents that need to be uploaded when making your application:</p>
+    <p class="govuk-!-margin-bottom-2">Upload a scan or good quality photograph of the following documents when you make your application:</p>
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
       {{
           '<li>copies of all change of name documents</li>' | safe
@@ -27,23 +27,7 @@
           <li>evidence of living in your gender from different points over the last 2 years, with roughly 4 pieces of evidence from each year</li>' | safe
           if data['overseas-approved-check'] != 'Yes'
         }}
-    </ul>
-
-    <p class="govuk-!-margin-bottom-2">Documents that need to be posted are:</p>
-    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
-      {{
-          '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full birth certificate</li>' | safe
-          if data['uk-check'] != 'No' and data['adopted'] != 'Yes'
-        }}
-      {{
-          '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full adoption certificate</li>' | safe
-          if data['uk-check'] != 'No' and data['adopted'] == 'Yes'
-        }}
-      {{
-          '<li>an official confirmation of date of birth and birth gender</li>' | safe
-          if data['uk-check'] == 'No'
-        }}
-      {{
+            {{
           '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for single applicants (opens in new tab)</a></li>' | safe
           if data['current-check'] == 'Neither'
         }}
@@ -75,6 +59,23 @@ civil partnership (opens in new tab)</a></li>' | safe
       {{
           '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe
           if data['ended-check'] == 'Yes'
+        }}
+
+    </ul>
+
+    <p class="govuk-!-margin-bottom-2">Documents that need to be posted are:</p>
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
+      {{
+          '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full birth certificate</li>' | safe
+          if data['uk-check'] != 'No' and data['adopted'] != 'Yes'
+        }}
+      {{
+          '<li>your original or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a> of your full adoption certificate</li>' | safe
+          if data['uk-check'] != 'No' and data['adopted'] == 'Yes'
+        }}
+      {{
+          '<li>an official confirmation of date of birth and birth gender</li>' | safe
+          if data['uk-check'] == 'No'
         }}
       {{
           '<li>official documentation that shows that your affirmed gender has been recognised in an approved country or territory</li>' | safe
