@@ -28,36 +28,36 @@
           if data['overseas-approved-check'] != 'Yes'
         }}
             {{
-          '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852944/t467-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for single applicants (opens in new tab)</a></li>' | safe
+          '<li>a <a href="https://draft-origin.publishing.service.gov.uk/government/publications/gender-recognition-certificate-statutory-declarations-for-applicants" rel="noreferrer noopener" target="_blank">statutory declaration for single applicants (opens in new tab)</a></li>' | safe
           if data['current-check'] == 'Neither'
         }}
       {{
-          '<li>a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852943/t466-eng.pdf" rel="noreferrer noopener" target="_blank">statutory declaration for applicants who are married or in a
+          '<li>a <a href="https://draft-origin.publishing.service.gov.uk/government/publications/gender-recognition-certificate-statutory-declarations-for-applicants" rel="noreferrer noopener" target="_blank">statutory declaration for applicants who are married or in a
 civil partnership (opens in new tab)</a></li>' | safe
           if data['current-check'] != 'Neither'
         }}
       {{
-          '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your spouse&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe
+          '<li><a href="https://draft-origin.publishing.service.gov.uk/government/publications/gender-recognition-certificate-statutory-declarations-for-applicants" rel="noreferrer noopener" target="_blank">your spouse&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe
           if data['current-check'] == 'Married' and data['stay-together'] == 'Yes'
         }}
       {{
-          '<li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/852946/t469-eng.pdf" rel="noreferrer noopener" target="_blank">your civil partner&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe
+          '<li><a href="https://draft-origin.publishing.service.gov.uk/government/publications/gender-recognition-certificate-statutory-declarations-for-applicants" rel="noreferrer noopener" target="_blank">your civil partner&rsquo;s statutory declaration (opens in new tab)</a></li>' | safe
           if data['current-check'] == 'Civil partnership' and data['stay-together'] == 'Yes'
         }}
       {{
-          '<li>your original marriage certificate or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a></li>' | safe
+          '<li>your marriage certificate</li>' | safe
           if data['current-check'] == 'Married'
         }}
       {{
-          '<li>your original civil partnership certificate or a <a href="https://www.gov.uk/certifying-a-document" rel="noreferrer noopener" target="_blank">certified copy (opens in new tab)</a></li>' | safe
+          '<li>your civil partnership certificate</li>' | safe
           if data['current-check'] == 'Civil partnership'
         }}
       {{
-          '<li>a copy of your spouse or civil partner&rsquo;s death certificate</li>' | safe
+          '<li>your spouse or civil partner&rsquo;s death certificate</li>' | safe
           if data['partner-died'] == 'Yes'
         }}
       {{
-          '<li>a copy of your decree(s) dissolving the marriage or civil partnership</li>' | safe
+          '<li>your decree(s) dissolving the marriage or civil partnership</li>' | safe
           if data['ended-check'] == 'Yes'
         }}
 
@@ -97,9 +97,27 @@ civil partnership (opens in new tab)</a></li>' | safe
         certificates in Scotland</a> and <a
          href="http://www.nidirect.gov.uk/index/do-it-online/government-citizens-and-rights-online/order-a-birth-adoption-death-marriage-or-civil-partnership-certificate.htm">getting
         certificates in Northern Ireland</a>.</p>
+    
+    <h2 class="govuk-heading-m">
+      If any of your documents are not in English
+    </h2>
+    
+    <p class="govuk-body">You’ll need to have your documents translated. The translator does not need to have any qualifications, so the translation can be done by a friend or a family member.</p>
 
-    <p class="govuk-!-margin-bottom-8">Once you have your documents ready you can <a href="#0">apply for a
-        certificate</a>.</p>
+<p class="govuk-body">Get the translator to sign the translated documents and write down their translation qualifications if they have any.</p>
+
+<p class="govuk-body">You’ll need to send in both the original documents and the translations.</p>
+
+    <div class="govuk-inset-text">
+  Once you have your documents ready you can <a href="#0">apply for a
+        Gender Recognition Certificate</a>
+</div>
+    
+    <p class="govuk-!-margin-bottom-8">.</p>
+    
+    <h2 class="govuk-heading-m">
+      Get this list by email
+    </h2>
 
 
     <p class="govuk-body govuk-!-margin-bottom-1">If you want us to email you the list of documents please click the
