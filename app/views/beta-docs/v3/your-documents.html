@@ -255,6 +255,31 @@
           if data['ended-check'] == 'Yes'
         }}
     
+          {{
+          '<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Proof that your affirmed gender is recognised outside the UK
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p class="govuk-body">If your affirmed gender is already recognised in an <a href="https://draft-origin.publishing.service.gov.uk/government/publications/overseas-gender-recognition-2011-t491">approved country or territory</a>, you need a document that proves this.</p>
+
+
+    <p class="govuk-body">The document could be:</p>
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
+
+      <li>something that’s equal to a Gender Recognition Certificate</li>
+<li>an updated birth certificate</li>
+<li>a court order</li>
+      <li>an entry in a legal register</li></ul>
+  </div>
+</details>' | safe
+          if data['overseas-approved-check'] == 'Yes'
+        }}
+
+    
     
   
 
@@ -290,29 +315,6 @@
         }}
       
   
-      {{
-          '<details class="govuk-details" data-module="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Proof that your affirmed gender is recognised outside the UK
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    <p class="govuk-body">If your affirmed gender is already recognised in an <a href="https://draft-origin.publishing.service.gov.uk/government/publications/overseas-gender-recognition-2011-t491">approved country or territory</a>, you need a document that proves this.</p>
-
-
-    <p class="govuk-body">The document could be:</p>
-
-    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-">
-
-      <li>something that’s equal to a Gender Recognition Certificate</li>
-<li>an updated birth certificate</li>
-<li>a court order</li>
-      <li>an entry in a legal register</li></ul>
-  </div>
-</details>' | safe
-          if data['overseas-approved-check'] == 'Yes'
-        }}
 
 
  
